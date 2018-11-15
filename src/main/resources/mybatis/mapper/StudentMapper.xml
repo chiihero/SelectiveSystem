@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chii.www.mapper.StudentMapper">
+    <resultMap id="BaseResultMap" type="com.chii.www.pojo.Student">
+        <id column="sno" property="sno" jdbcType="CHAR"/>
+        <result column="sname" property="sname" jdbcType="VARCHAR"/>
+        <result column="ssex" property="ssex" jdbcType="CHAR"/>
+        <result column="sage" property="sage" jdbcType="INTEGER"/>
+        <result column="sdept" property="sdept" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+
+    </resultMap>
+    <sql id="Base_Column_List">
+        sno, sname, ssex, sage, sdept, password
+    </sql>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from student
+    </select>
+    <select id="selectAllByTeaKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select student.sno, student.sname, student.ssex, student.sage, student.sdept
+        from student
+                 INNER JOIN sct ON student.sno = sct.sno
+        where sct.tno = #{tno,jdbcType=CHAR}
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from student
+        where sno = #{sno,jdbcType=CHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete
+        from student
+        where sno = #{sno,jdbcType=CHAR}
+    </delete>
+    <insert id="insert" parameterType="com.chii.www.pojo.Student">
+        insert into student (sno, sname, ssex, sage, sdept,password)
+        values (#{sno,jdbcType=CHAR},
+                #{sname,jdbcType=VARCHAR},
+                #{ssex,jdbcType=CHAR},
+                #{sage,jdbcType=INTEGER},
+                #{sdept,jdbcType=VARCHAR},
+                #{password,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.chii.www.pojo.Student">
+        insert into student
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="sno != null">
+                sno,
+            </if>
+            <if test="sname != null">
+                sname,
+            </if>
+            <if test="ssex != null">
+                ssex,
+            </if>
+            <if test="sage != null">
+                sage,
+            </if>
+            <if test="sdept != null">
+                sdept,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="sno != null">
+                #{sno,jdbcType=CHAR},
+            </if>
+            <if test="sname != null">
+                #{sname,jdbcType=VARCHAR},
+            </if>
+            <if test="ssex != null">
+                #{ssex,jdbcType=CHAR},
+            </if>
+            <if test="sage != null">
+                #{sage,jdbcType=INTEGER},
+            </if>
+            <if test="sdept != null">
+                #{sdept,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.chii.www.pojo.Student">
+        update student
+        <set>
+            <if test="sname != null">
+                sname = #{sname,jdbcType=VARCHAR},
+            </if>
+            <if test="ssex != null">
+                ssex = #{ssex,jdbcType=CHAR},
+            </if>
+            <if test="sage != null">
+                sage = #{sage,jdbcType=INTEGER},
+            </if>
+            <if test="sdept != null">
+                sdept = #{sdept,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR}
+            </if>
+        </set>
+        where sno = #{sno,jdbcType=CHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.chii.www.pojo.Student">
+        update student
+        set sname = #{sname,jdbcType=VARCHAR},
+            ssex  = #{ssex,jdbcType=CHAR},
+            sage  = #{sage,jdbcType=INTEGER},
+            sdept = #{sdept,jdbcType=VARCHAR},
+            password = #{password,jdbcType=VARCHAR}
+        where sno = #{sno,jdbcType=CHAR}
+    </update>
+</mapper>

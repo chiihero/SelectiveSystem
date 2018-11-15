@@ -1,0 +1,95 @@
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    /*background-image: url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1514881472495&di=d9c07e5a09dd0cf25a9bf773b5d18591&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F12%2F34%2F73C58PIC8uq_1024.jpg);*/
+    /*background-repeat: no-repeat;*/
+    background-color: #444444;
+    background-image: -webkit-gradient(linear, left 0%, left 100%, from(#555555), to(#111111));
+    background-image: -webkit-linear-gradient(top, #555555, #111111);
+    background-image: -moz-linear-gradient(top, #555555 0%, #111111 100%);
+    background-image: linear-gradient(to bottom, #555555 0%, #111111 100%);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff555555', endColorstr='#ff111111', GradientType=0);
+    background-attachment: fixed;
+    padding: 0;
+    margin: 0;
+}
+
+.edit {
+    margin-top: 10px;
+}
+
+.textcolor {
+    color: white;
+}
+
+.input-group {
+    padding: 0 20px 5px;
+}
+
+.form-group {
+    margin-bottom: 5px;
+}
+
+#container {
+    float: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+    text-align: center;
+    /*top: 0;*/
+    position: absolute;
+    left: 50%;
+    padding-bottom: 25px;
+    /*text-align: center;*/
+}
+
+#logo,
+#loginbox {
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    float: none;
+    display: block;
+}
+
+#loginbox {
+    height: 290px;
+    text-align: center;
+    background: #ffffff;
+    border-radius: 10px;
+}
+
+#loginbox .form-check {
+    padding: 5px 20px 15px;
+    border-radius: 0 0 30px 30px;
+}
+
+#loginbox form {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 5%;
+    left: 0;
+}
+
+#loginbox form#loginform {
+    z-index: 200;
+    /*opacity: 0;*/
+    /*display: none;*/
+}
+
+#loginbox form#registerform {
+    z-index: 100;
+    opacity: 0;
+    display: none;
+}
+
+#loginbox .float-left {
+    text-align: center;
+}

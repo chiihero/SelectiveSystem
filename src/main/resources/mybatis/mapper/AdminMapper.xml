@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chii.www.mapper.AdminMapper">
+    <resultMap id="BaseResultMap" type="com.chii.www.pojo.Admin">
+        <id column="ano" property="ano" jdbcType="CHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        ano, password
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from admin
+        where  ano = #{ano,jdbcType=CHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete
+        from admin
+        where ano = #{ano,jdbcType=CHAR}
+    </delete>
+    <insert id="insert" parameterType="com.chii.www.pojo.Admin">
+        insert into admin (ano, password)
+        values (#{ano,jdbcType=CHAR}, #{password,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.chii.www.pojo.Admin">
+        insert into admin
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="ano != null">
+                ano,
+            </if>
+            <if test="password != null">
+                password
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="ano != null">
+                #{ano,jdbcType=CHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.chii.www.pojo.Admin">
+        update admin
+        <set>
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ano = #{ano,jdbcType=CHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.chii.www.pojo.Admin">
+        update admin
+        set password = #{password,jdbcType=VARCHAR}
+        where ano = #{ano,jdbcType=CHAR}
+    </update>
+</mapper>

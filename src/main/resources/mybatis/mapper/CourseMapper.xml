@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chii.www.mapper.CourseMapper">
+    <resultMap id="BaseResultMap" type="com.chii.www.pojo.Course">
+        <id column="cno" property="cno" jdbcType="CHAR"/>
+        <result column="cname" property="cname" jdbcType="VARCHAR"/>
+        <result column="cpno" property="cpno" jdbcType="CHAR"/>
+        <result column="cnum" property="cnum" jdbcType="INTEGER"/>
+        <result column="ccredit" property="ccredit" jdbcType="SMALLINT"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        cno, cname, cpno, cnum, ccredit
+    </sql>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from course
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from course
+        where cno = #{cno,jdbcType=CHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete
+        from course
+        where cno = #{cno,jdbcType=CHAR}
+    </delete>
+    <insert id="insert" parameterType="com.chii.www.pojo.Course">
+        insert into course (cno, cname, cpno, cnum, ccredit)
+        values (#{cno,jdbcType=CHAR}, #{cname,jdbcType=VARCHAR}, #{cpno,jdbcType=CHAR}, #{cnum,jdbcType=INTEGER}, #{ccredit,jdbcType=SMALLINT})
+    </insert>
+    <insert id="insertSelective" parameterType="com.chii.www.pojo.Course">
+        insert into course
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="cno != null">
+                cno,
+            </if>
+            <if test="cname != null">
+                cname,
+            </if>
+            <if test="cpno != null">
+                cpno,
+            </if>
+            <if test="cnum != null">
+                cnum,
+            </if>
+            <if test="ccredit != null">
+                ccredit,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="cno != null">
+                #{cno,jdbcType=CHAR},
+            </if>
+            <if test="cname != null">
+                #{cname,jdbcType=VARCHAR},
+            </if>
+            <if test="cpno != null">
+                #{cpno,jdbcType=CHAR},
+            </if>
+            <if test="cnum != null">
+                #{cnum,jdbcType=INTEGER},
+            </if>
+            <if test="ccredit != null">
+                #{ccredit,jdbcType=SMALLINT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.chii.www.pojo.Course">
+        update course
+        <set>
+            <if test="cname != null">
+                cname = #{cname,jdbcType=VARCHAR},
+            </if>
+            <if test="cpno != null">
+                cpno = #{cpno,jdbcType=CHAR},
+            </if>
+            <if test="cnum != null">
+                cnum = #{cnum,jdbcType=INTEGER},
+            </if>
+            <if test="ccredit != null">
+                ccredit = #{ccredit,jdbcType=SMALLINT},
+            </if>
+        </set>
+        where cno = #{cno,jdbcType=CHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.chii.www.pojo.Course">
+        update course
+        set cname   = #{cname,jdbcType=VARCHAR},
+            cpno    = #{cpno,jdbcType=CHAR},
+            cnum    = #{cnum,jdbcType=INTEGER},
+            ccredit = #{ccredit,jdbcType=SMALLINT}
+        where cno = #{cno,jdbcType=CHAR}
+    </update>
+</mapper>
