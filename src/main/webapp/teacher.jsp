@@ -12,12 +12,7 @@
   </head>
   <body>
   $END$
-  success
-  <br>
-  <a href="/login/admin">admin</a>
-  <br>
-  <a href="/login/teacher">teacher</a>
-  <br>
+  teacher
   <a href="/logout">退出</a>
   </body>
 </html>

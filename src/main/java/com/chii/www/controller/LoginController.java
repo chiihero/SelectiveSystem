@@ -26,30 +26,37 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("index")
+    @RequestMapping("")
     public String Index(){
         return "../../index";
     }
 
     @RequestMapping(value = "/signIn", method = RequestMethod.POST)
     public String Login(User user, Model model) {
-
         Subject currentUser = SecurityUtils.getSubject();
-        if (!currentUser.isAuthenticated()){
-            UsernamePasswordToken token = new UsernamePasswordToken(user.getUsername(),user.getPassword());
+        if (!currentUser.isAuthenticated()) {
+            UsernamePasswordToken token = new UsernamePasswordToken(user.getUsername(), user.getPassword());
             token.setRememberMe(true);
             try {
                 System.out.println(token.hashCode());
                 currentUser.login(token);
+            } catch (AuthenticationException ae) {
+                System.out.println("登录失败: " + ae.getMessage());
+                return "../../false";
             }
-            catch (AuthenticationException ae){
-                System.out.println("登录失败: "+ae.getMessage());
+            model.addAttribute("userid", user.getUsername());
+            switch (user.getType()) {//根据用户类型转跳到不同view
+                case "1":
+                    return "redirect:/student/studentIndex";
+                case "2":
+                    return "redirect:/teacher/teacherIndex";
+                case "3":
+                    return "redirect:/admin/adminIndex";
             }
         }
-
         System.out.println("error!!!!!!!!!!!!!!!!!!!!");
-        model.addAttribute("error", "用户名或密码错误");
-        return "../../success";
+//        model.addAttribute("error", "用户名或密码错误");
+        return "redirect:/login";
     }
 
     @RequestMapping("/passwdUpdate")
@@ -97,6 +104,6 @@ public class LoginController {
     @RequestMapping("exit")
     public String exit(HttpServletRequest request) {
         request.getSession().invalidate();
-        return "redirect:login";
+        return "redirect:/login";
     }
 }

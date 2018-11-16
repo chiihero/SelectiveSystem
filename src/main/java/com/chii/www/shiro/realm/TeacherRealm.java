@@ -1,6 +1,7 @@
 package com.chii.www.shiro.realm;
 
-import com.chii.www.pojo.Admin;
+import com.chii.www.pojo.Teacher;
+import com.chii.www.pojo.Teacher;
 import com.chii.www.service.UserService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationException;
@@ -9,16 +10,14 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.realm.AuthenticatingRealm;
 import org.apache.shiro.realm.AuthorizingRealm;
-import org.apache.shiro.realm.Realm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.annotation.Resource;
 import java.util.HashSet;
 import java.util.Set;
 
-public class AdminRealm extends AuthorizingRealm {
+public class TeacherRealm extends AuthorizingRealm {
     @Autowired
     UserService userService;
     /**
@@ -39,33 +38,22 @@ public class AdminRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-        System.out.println("Admin doGetAuthenticationInfo: " +token);
+        System.out.println("Teacher doGetAuthenticationInfo: " +token);
         UsernamePasswordToken upToken = (UsernamePasswordToken) token;
 
         String username = upToken.getUsername();
-        Admin admin = userService.getAdminInfoById(username);
-        if (admin ==null){
+        Teacher teacher = userService.getTeaInfoById(username);
+        if (teacher ==null){
             throw new UnknownAccountException("没找到帐号");
         }
-        //交给AuthenticatingRealm使用CredentialsMatcher进行密码匹配
-        SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(
-                admin.getAno(),//principal,
-                admin.getPassword(),//credentials,
-                ByteSource.Util.bytes(admin.getAno()),//credentialsSalt,
-                getName()//realmName
-        );
-        System.out.println("admin SimpleAuthenticationInfo: " +info);
+        Object principal = teacher.getTno();
+        Object credentials = teacher.getPassword();
+        String realmName =getName();
+        ByteSource credentialsSalt = ByteSource.Util.bytes(teacher.getTno());
+        SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(principal,credentials,credentialsSalt,realmName);
+        System.out.println("Teacher SimpleAuthenticationInfo: " +info);
 
         return info;
-    }
-//
-    public static void main(String[] args) {
-        String hash = "SHA-512";
-        Object cre = "1986027b866780f74faa601a73bbcfca";
-        Object sale = "10011001";
-        int hasht = 1024;
-        Object info =  new SimpleHash(hash,cre,sale,hasht);
-        System.out.println(info);
     }
 
     /**
@@ -79,18 +67,15 @@ public class AdminRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-        System.out.println("开始Admin权限授权(进行权限验证!!)");
+        System.out.println("开始teacher权限授权(进行权限验证!!)");
         if (principals == null) {
             throw new AuthorizationException("PrincipalCollection method argument cannot be null.");
         }
         String username = (String)principals.getPrimaryPrincipal();
-        Admin admin = userService.getAdminInfoById(username);
+        Teacher teacher = userService.getTeaInfoById(username);
         Set<String> roles = new HashSet<>();
-
-        if (admin != null) {
-            roles.add("admin");
+        if (teacher != null) {
             roles.add("teacher");
-            roles.add("student");
         }
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo(roles);
         return info;

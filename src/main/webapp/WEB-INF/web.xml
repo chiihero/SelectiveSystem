@@ -4,14 +4,15 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
-<!-- Spring和mybatis的配置文件 -->
-<context-param>
-<param-name>contextConfigLocation</param-name>
-<param-value>
-    classpath:spring/spring-mybatis.xml
-    classpath:spring/spring-shiro.xml
-</param-value>
-</context-param>
+    <!-- Spring和mybatis的配置文件 -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            classpath:spring/spring-mybatis.xml
+            classpath:spring/spring-shiro.xml
+            classpath:spring/spring-mvc.xml
+        </param-value>
+    </context-param>
 
     <!-- Spring监听器 -->
     <listener>
@@ -56,6 +57,18 @@
     </welcome-file-list>
 
 
+    <error-page>
+        <error-code>403</error-code>
+        <location>/403.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/404.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/500.jsp</location>
+    </error-page>
 
 
 </web-app>

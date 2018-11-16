@@ -6,7 +6,7 @@
         <result column="password" property="password" jdbcType="VARCHAR"/>
     </resultMap>
     <sql id="Base_Column_List">
-        ano, password
+        ano,aname, password
     </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
         select
@@ -20,14 +20,17 @@
         where ano = #{ano,jdbcType=CHAR}
     </delete>
     <insert id="insert" parameterType="com.chii.www.pojo.Admin">
-        insert into admin (ano, password)
-        values (#{ano,jdbcType=CHAR}, #{password,jdbcType=VARCHAR})
+        insert into admin (ano,aname, password)
+        values (#{ano,jdbcType=CHAR}, #{aname,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR})
     </insert>
     <insert id="insertSelective" parameterType="com.chii.www.pojo.Admin">
         insert into admin
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="ano != null">
                 ano,
+            </if>
+            <if test="aname != null">
+                aname,
             </if>
             <if test="password != null">
                 password
@@ -37,6 +40,9 @@
             <if test="ano != null">
                 #{ano,jdbcType=CHAR},
             </if>
+            <if test="aname != null">
+                #{aname,jdbcType=VARCHAR},
+            </if>
             <if test="password != null">
                 #{password,jdbcType=VARCHAR},
             </if>
@@ -45,6 +51,9 @@
     <update id="updateByPrimaryKeySelective" parameterType="com.chii.www.pojo.Admin">
         update admin
         <set>
+            <if test="aname != null">
+                aname = #{aname,jdbcType=VARCHAR},
+            </if>
             <if test="password != null">
                 password = #{password,jdbcType=VARCHAR},
             </if>
@@ -53,7 +62,8 @@
     </update>
     <update id="updateByPrimaryKey" parameterType="com.chii.www.pojo.Admin">
         update admin
-        set password = #{password,jdbcType=VARCHAR}
+        set  aname = #{aname,jdbcType=VARCHAR},
+            password = #{password,jdbcType=VARCHAR}
         where ano = #{ano,jdbcType=CHAR}
     </update>
 </mapper>

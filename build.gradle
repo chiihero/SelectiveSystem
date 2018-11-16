@@ -59,6 +59,8 @@ dependencies {
     compile group: 'org.apache.shiro', name: 'shiro-quartz', version: '1.4.0'
     compile group: 'org.apache.shiro', name: 'shiro-ehcache', version: '1.4.0'
     compile group: 'org.apache.shiro', name: 'shiro-web', version: '1.4.0'
+    compile group: 'org.apache.shiro', name: 'shiro-crypto', version: '1.4.0'
+
     compile group: 'net.sf.ehcache', name: 'ehcache-core', version: '2.6.11'
 // https://mvnrepository.com/artifact/org.apache.shiro/shiro-all
     testCompile group: 'junit', name: 'junit', version: '4.11'

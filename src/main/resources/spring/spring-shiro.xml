@@ -5,20 +5,43 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
     <!-- 安全管理器 -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-        <property name="realms" ref="adminRealm"/>
+        <property name="authenticator" ref="authenticator"/>
         <!--<property name="sessionManager" ref="sessionManager"/>-->
         <property name="cacheManager" ref="cacheManager"/>
+        <property name="realms">
+            <list>
+                <ref bean="adminRealm"/>
+                <ref bean="teacherRealm"/>
+                <ref bean="studentRealm"/>
+            </list>
+        </property>
     </bean>
     <!-- 缓存管理器 使用Ehcache实现 -->
     <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
         <property name="cacheManagerConfigFile" value="classpath:spring/ehcache.xml"/>
     </bean>
-
-
+    <!-- Realm管理器 -->
+    <bean id="authenticator" class="org.apache.shiro.authc.pam.ModularRealmAuthenticator">
+        <property name="authenticationStrategy">
+            <bean class="org.apache.shiro.authc.pam.FirstSuccessfulStrategy"/>
+        </property>
+    </bean>
+    <!-- 凭证匹配器 -->
+    <bean id="credentialsMatcher" class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+        <property name="hashAlgorithmName" value="SHA-512"/>
+        <property name="hashIterations" value="1024"/>
+        <!--<property name="storedCredentialsHexEncoded" value="true"/>-->
+    </bean>
     <!-- Realm实现 -->
     <bean id="adminRealm" class="com.chii.www.shiro.realm.AdminRealm">
+        <property name="credentialsMatcher" ref="credentialsMatcher"/>
     </bean>
-
+    <bean id="teacherRealm" class="com.chii.www.shiro.realm.TeacherRealm">
+        <property name="credentialsMatcher" ref="credentialsMatcher"/>
+    </bean>
+    <bean id="studentRealm" class="com.chii.www.shiro.realm.TeacherRealm">
+        <property name="credentialsMatcher" ref="credentialsMatcher"/>
+    </bean>
     <!-- Shiro生命周期处理器-->
     <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
 
@@ -33,18 +56,19 @@
         <property name="loginUrl" value="/index.jsp"/>
         <property name="successUrl" value="/success.jsp"/>
         <property name="unauthorizedUrl" value="/unauthorizedUrl.jsp"/>
-
         <property name="filterChainDefinitions">
             <value>
                 /index.jsp = anon
                 /login/signIn = anon
-                /logout = logout
+                /login = logout
+                /false.jsp = anon
+                /admin/** = roles[admin]
+                /teacher/** = roles[teacher]
+                /student/** = roles[student]
                 /css/** = anon
                 /js/** = anon
                 /img/** = anon
                 /fonts/** = anon
-
-                <!--/** = authc-->
                 /** authc
             </value>
         </property>

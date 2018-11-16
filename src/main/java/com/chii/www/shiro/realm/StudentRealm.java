@@ -1,24 +1,22 @@
 package com.chii.www.shiro.realm;
 
-import com.chii.www.pojo.Admin;
+import com.chii.www.pojo.Student;
+import com.chii.www.pojo.Student;
 import com.chii.www.service.UserService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
-import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.realm.AuthenticatingRealm;
 import org.apache.shiro.realm.AuthorizingRealm;
-import org.apache.shiro.realm.Realm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.annotation.Resource;
 import java.util.HashSet;
 import java.util.Set;
 
-public class AdminRealm extends AuthorizingRealm {
+public class StudentRealm extends AuthorizingRealm {
     @Autowired
     UserService userService;
     /**
@@ -39,60 +37,35 @@ public class AdminRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-        System.out.println("Admin doGetAuthenticationInfo: " +token);
+        System.out.println("Student doGetAuthenticationInfo: " +token);
         UsernamePasswordToken upToken = (UsernamePasswordToken) token;
 
         String username = upToken.getUsername();
-        Admin admin = userService.getAdminInfoById(username);
-        if (admin ==null){
+        Student student = userService.getStuInfoById(username);
+        if (student ==null){
             throw new UnknownAccountException("没找到帐号");
         }
-        //交给AuthenticatingRealm使用CredentialsMatcher进行密码匹配
-        SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(
-                admin.getAno(),//principal,
-                admin.getPassword(),//credentials,
-                ByteSource.Util.bytes(admin.getAno()),//credentialsSalt,
-                getName()//realmName
-        );
-        System.out.println("admin SimpleAuthenticationInfo: " +info);
+        Object principal = student.getSno();
+        Object credentials = student.getPassword();
+        String realmName =getName();
+        ByteSource credentialsSalt = ByteSource.Util.bytes(student.getSno());
+        SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(principal,credentials,credentialsSalt,realmName);
+        System.out.println("Student SimpleAuthenticationInfo: " +info);
 
         return info;
     }
-//
-    public static void main(String[] args) {
-        String hash = "SHA-512";
-        Object cre = "1986027b866780f74faa601a73bbcfca";
-        Object sale = "10011001";
-        int hasht = 1024;
-        Object info =  new SimpleHash(hash,cre,sale,hasht);
-        System.out.println(info);
-    }
-
-    /**
-     * Retrieves the AuthorizationInfo for the given principals from the underlying data store.  When returning
-     * an instance from this method, you might want to consider using an instance of
-     * {@link SimpleAuthorizationInfo SimpleAuthorizationInfo}, as it is suitable in most cases.
-     *
-     * @param principals the primary identifying principals of the AuthorizationInfo that should be retrieved.
-     * @return the AuthorizationInfo associated with this principals.
-     * @see SimpleAuthorizationInfo
-     */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-        System.out.println("开始Admin权限授权(进行权限验证!!)");
+        System.out.println("开始student权限授权(进行权限验证!!)");
         if (principals == null) {
             throw new AuthorizationException("PrincipalCollection method argument cannot be null.");
         }
         String username = (String)principals.getPrimaryPrincipal();
-        Admin admin = userService.getAdminInfoById(username);
+        Student student = userService.getStuInfoById(username);
         Set<String> roles = new HashSet<>();
-
-        if (admin != null) {
-            roles.add("admin");
-            roles.add("teacher");
+        if (student != null) {
             roles.add("student");
         }
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo(roles);
-        return info;
-    }
+        return info;    }
 }
