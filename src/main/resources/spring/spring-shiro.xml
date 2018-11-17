@@ -39,7 +39,7 @@
     <bean id="teacherRealm" class="com.chii.www.shiro.realm.TeacherRealm">
         <property name="credentialsMatcher" ref="credentialsMatcher"/>
     </bean>
-    <bean id="studentRealm" class="com.chii.www.shiro.realm.TeacherRealm">
+    <bean id="studentRealm" class="com.chii.www.shiro.realm.StudentRealm">
         <property name="credentialsMatcher" ref="credentialsMatcher"/>
     </bean>
     <!-- Shiro生命周期处理器-->
@@ -55,11 +55,12 @@
         <property name="securityManager" ref="securityManager"/>
         <property name="loginUrl" value="/index.jsp"/>
         <property name="successUrl" value="/success.jsp"/>
-        <property name="unauthorizedUrl" value="/unauthorizedUrl.jsp"/>
+        <property name="unauthorizedUrl" value="/401.jsp"/>
         <property name="filterChainDefinitions">
             <value>
                 /index.jsp = anon
                 /login/signIn = anon
+                /login/exit = anon
                 /login = logout
                 /false.jsp = anon
                 /admin/** = roles[admin]

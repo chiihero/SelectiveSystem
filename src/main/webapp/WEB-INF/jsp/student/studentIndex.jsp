@@ -49,7 +49,7 @@
                                 href="<%=basePath%>student/changepasswd">密码修改</a>
                         </li>
                         <li class="dropdown-item"><a
-                                href="<%=basePath%>student/changeinfo?userno=${sessionScope.userid}">个人信息修改</a>
+                                href="<%=basePath%>student/changeinfo">个人信息修改</a>
                         </li>
                     </ul>
                 </li>
@@ -57,10 +57,13 @@
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
                        aria-haspopup="true" aria-expanded="false">信息查询 <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li class="dropdown-item"><a href="<%=basePath%>student/score?userno=${sessionScope.userid}">成绩查询</a>
+                        <li class="dropdown-item"><a href="<%=basePath%>student/score">成绩查询</a>
                         </li>
                         <li class="dropdown-item"><a href="<%=basePath%>student/course">选课查询</a></li>
                     </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="<%=basePath%>/login/exit" class="nav-link" role="button">退出 </a>
                 </li>
             </ul>
         </div>

@@ -27,7 +27,7 @@
 <body>
 <div class="container">
     <div class="page-header">
-        <h2>选课管理信息系统-${sessionScope.userid}</h2>
+        <h2>选课管理信息系统-${sessionScope.username}</h2>
     </div>
     <%--<%--%>
     <%--if (session.getAttribute("currentUser") == null) {--%>
@@ -82,6 +82,9 @@
                         <li class="dropdown-item"><a href="<%=basePath%>admin/departmentadd">添加院系</a></li>
                         <li class="dropdown-item"><a href="<%=basePath%>admin/department">院系管理</a></li>
                     </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="<%=basePath%>/login/exit" class="nav-link" role="button">退出 </a>
                 </li>
             </ul>
         </div>

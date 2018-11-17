@@ -26,7 +26,7 @@
 <!-- 两个输入框 -->
 <div class="container">
     <div id="logo">
-        <h1 class="textcolor text-center">教务系统</h1>
+        <h1 class="textcolor text-center">选课系统</h1>
         <h4 class="textcolor text-center">第一次登陆后请尽快更改初始密码</h4>
     </div>
     <div id="loginbox">
@@ -48,7 +48,7 @@
                         </span>
                     </div>
                     <input type="text" class="form-control" id="username" name="username" placeholder="请输入学号"
-                           value="${userno}">
+                           value="${sessionScope.username}">
                 </div>
                 <!-- 输入密码 -->
                 <div class="edit input-group">

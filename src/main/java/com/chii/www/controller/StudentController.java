@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 @SessionAttributes({"username"})//放到Session属性列表中，以便这个属性可以跨请求访问
 @RequestMapping("student")
 public class StudentController {
+
     @Autowired
     private UserService userService;
     @Autowired

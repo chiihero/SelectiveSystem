@@ -58,15 +58,7 @@ public class AdminRealm extends AuthorizingRealm {
 
         return info;
     }
-//
-    public static void main(String[] args) {
-        String hash = "SHA-512";
-        Object cre = "1986027b866780f74faa601a73bbcfca";
-        Object sale = "10011001";
-        int hasht = 1024;
-        Object info =  new SimpleHash(hash,cre,sale,hasht);
-        System.out.println(info);
-    }
+
 
     /**
      * Retrieves the AuthorizationInfo for the given principals from the underlying data store.  When returning
@@ -86,11 +78,10 @@ public class AdminRealm extends AuthorizingRealm {
         String username = (String)principals.getPrimaryPrincipal();
         Admin admin = userService.getAdminInfoById(username);
         Set<String> roles = new HashSet<>();
-
         if (admin != null) {
             roles.add("admin");
-            roles.add("teacher");
-            roles.add("student");
+//            roles.add("teacher");
+//            roles.add("student");
         }
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo(roles);
         return info;

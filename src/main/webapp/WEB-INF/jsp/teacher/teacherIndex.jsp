@@ -64,6 +64,9 @@
                         <li class="dropdown-item"><a href="<%=basePath%>teacher/studentuser">学生与成绩管理</a></li>
                     </ul>
                 </li>
+                <li class="nav-item dropdown">
+                    <a href="<%=basePath%>/login/exit" class="nav-link" role="button">退出 </a>
+                </li>
             </ul>
         </div>
     </nav>
