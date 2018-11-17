@@ -68,12 +68,12 @@ public class AdminController {
         return "admin/userimport";
     }
 
-    @RequestMapping("/score")
-    public String scoreUrl(Model model) {
-        model.addAttribute("courses", courseService.getAllCourseInfo());
-        model.addAttribute("scts", courseService.getAllSctInfo());
-        return "admin/score废弃";
-    }
+//    @RequestMapping("/score")
+//    public String scoreUrl(Model model) {
+//        model.addAttribute("courses", courseService.getAllCourseInfo());
+//        model.addAttribute("scts", courseService.getAllSctInfo());
+//        return "admin/score废弃";
+//    }
 
     @RequestMapping("/scoreupdate")
     public String scoreupdate(Sct sct, Model model) {
