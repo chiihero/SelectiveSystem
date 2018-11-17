@@ -1,27 +1,5 @@
-# Windows thumbnail cache files
-Thumbs.db
-ehthumbs.db
-ehthumbs_vista.db
-
-# Folder config file
-Desktop.ini
-
-# =========================
-# Operating System Files
-# =========================
-*.class
-src/test/
-### Example user template template
-### Example user template
-
-# IntelliJ project files
-.idea
-*.iml
-out
-.gradle/
-gradle/
-build/
-gen### Java template
+# Created by .ignore support plugin (hsz.mobi)
+### Java template
 # Compiled class file
 *.class
 
@@ -45,5 +23,17 @@ gen### Java template
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+### Example user template template
+### Example user template
 
-src/main/java/com/chii/www/shiro/credentials/
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
+.gitignore
+.gradle/
+.idea/
+build/
+out/
+src/test/
