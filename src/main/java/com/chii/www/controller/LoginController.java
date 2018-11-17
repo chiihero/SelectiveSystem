@@ -21,13 +21,13 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("login")
-@SessionAttributes({"userid", "username"})//放到Session属性列表中，以便这个属性可以跨请求访问
+@SessionAttributes({"username"})//放到Session属性列表中，以便这个属性可以跨请求访问
 public class LoginController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("")
-    public String Index(){
+    @RequestMapping("/index")
+    public String Index() {
         return "../../index";
     }
 
@@ -42,7 +42,8 @@ public class LoginController {
                 currentUser.login(token);
             } catch (AuthenticationException ae) {
                 System.out.println("登录失败: " + ae.getMessage());
-                return "../../false";
+                model.addAttribute("error", "用户名或密码错误");
+                return "redirect:/login";
             }
             model.addAttribute("userid", user.getUsername());
             switch (user.getType()) {//根据用户类型转跳到不同view
@@ -52,25 +53,25 @@ public class LoginController {
                     return "redirect:/teacher/teacherIndex";
                 case "3":
                     return "redirect:/admin/adminIndex";
+                default:
+                    model.addAttribute("error", "请选择用户类型");
+
             }
         }
         System.out.println("error!!!!!!!!!!!!!!!!!!!!");
-//        model.addAttribute("error", "用户名或密码错误");
         return "redirect:/login";
     }
 
     @RequestMapping("/passwdUpdate")
-    public String passwdUpdate(String userno, String old_password, String new_password,String type) {
+    public String passwdUpdate(String userno, String old_password, String new_password, String type) {
         String oldPad = old_password;
         String getpass = old_password;
-        if (!old_password.equals("1986027b866780f74faa601a73bbcfca")) {//密码加密
-            oldPad = SafeCode.safe_password(old_password, userno);
-        }
+        oldPad = SafeCode.PasswordHash(old_password, userno);
         switch (type) {//根据用户类型转跳到不同view
             case "1":
                 getpass = userService.getStuInfoById(userno).getPassword();//获取数据库密码
                 if (oldPad.equals(getpass)) {//加密完成的密码与数据库密码对比
-                    String newPad = SafeCode.safe_password(new_password, userno);
+                    String newPad = SafeCode.PasswordHash(new_password, userno);
                     Student student = new Student();
                     student.setSno(userno);
                     student.setPassword(newPad);
@@ -80,7 +81,7 @@ public class LoginController {
             case "2":
                 getpass = userService.getTeaInfoById(userno).getPassword();//获取数据库密码
                 if (oldPad.equals(getpass)) {//加密完成的密码与数据库密码对比
-                    String newPad = SafeCode.safe_password(new_password, userno);
+                    String newPad = SafeCode.PasswordHash(new_password, userno);
                     Teacher teacher = new Teacher();
                     teacher.setTno(userno);
                     teacher.setPassword(newPad);
@@ -90,7 +91,7 @@ public class LoginController {
             case "3":
                 getpass = userService.getAdminInfoById(userno).getPassword();//获取数据库密码
                 if (oldPad.equals(getpass)) {//加密完成的密码与数据库密码对比
-                    String newPad = SafeCode.safe_password(new_password, userno);
+                    String newPad = SafeCode.PasswordHash(new_password, userno);
                     Admin admin = new Admin();
                     admin.setAno(userno);
                     admin.setPassword(newPad);
@@ -104,6 +105,6 @@ public class LoginController {
     @RequestMapping("exit")
     public String exit(HttpServletRequest request) {
         request.getSession().invalidate();
-        return "redirect:/login";
+        return "redirect:/login/index";
     }
 }

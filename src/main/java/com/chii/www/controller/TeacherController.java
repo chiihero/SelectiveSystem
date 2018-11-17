@@ -1,5 +1,6 @@
 package com.chii.www.controller;
 
+import com.chii.www.Tool.SafeCode;
 import com.chii.www.pojo.Sct;
 import com.chii.www.pojo.Teacher;
 import com.chii.www.service.CourseService;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-@SessionAttributes({"userid"})//放到Session属性列表中，以便这个属性可以跨请求访问
+@SessionAttributes({"username"})//放到Session属性列表中，以便这个属性可以跨请求访问
 @RequestMapping("teacher")
 public class TeacherController {
     @Autowired
@@ -28,7 +29,7 @@ public class TeacherController {
     }
 
     @RequestMapping("/changeinfo")
-    public String changeinfoUrl(@ModelAttribute("msg") String msg,@ModelAttribute("userid") String tno, Model model) {
+    public String changeinfoUrl(@ModelAttribute("msg") String msg,@ModelAttribute("username") String tno, Model model) {
         if (!msg.isEmpty()) model.addAttribute("msg", msg);
 //        System.out.println(userno);
         model.addAttribute("teacher", userService.getTeaInfoById(tno));
@@ -37,13 +38,14 @@ public class TeacherController {
     }
 
     @RequestMapping("/changepasswd")
-    public String changepasswdUrl(@ModelAttribute("userid") String tno, Model model) {
-//        model.addAttribute("userno", tno);
+    public String changepasswdUrl(@ModelAttribute("username") String tno, Model model) {
+
+        model.addAttribute("userno", tno);
         return "teacher/changepasswd";
     }
 
     @RequestMapping("/studentuser")
-    public String studentuserUrl(@ModelAttribute("userid") String tno, Model model) {
+    public String studentuserUrl(@ModelAttribute("username") String tno, Model model) {
 
         model.addAttribute("students", courseService.getSctInfoByTeaId(tno));//待修改
         return "teacher/studentuser";
@@ -65,7 +67,9 @@ public class TeacherController {
 
     @RequestMapping("/insert")
     public String teacherinsert(Teacher teacher, Model model) {
-
+        //加入默认密码
+        String password = SafeCode.PasswordHash("1986027b866780f74faa601a73bbcfca",teacher.getTno());
+        teacher.setPassword(password);
         userService.insertTeaInfo(teacher);
         model.addAttribute("msg","插入成功");
         return "redirect:/admin/teacheradd";
@@ -73,7 +77,6 @@ public class TeacherController {
 
     @RequestMapping("/scoreupdate")
     public String scoreupdate(Sct sct, Model model) {
-
         courseService.updateGradeInfo(sct);
         return "redirect:/teacher/studentuser";
     }
