@@ -80,8 +80,8 @@ public class AdminRealm extends AuthorizingRealm {
         Set<String> roles = new HashSet<>();
         if (admin != null) {
             roles.add("admin");
-//            roles.add("teacher");
-//            roles.add("student");
+            roles.add("teacher");
+            roles.add("student");
         }
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo(roles);
         return info;

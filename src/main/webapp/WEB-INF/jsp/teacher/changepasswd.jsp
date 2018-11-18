@@ -8,14 +8,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="teacherIndex.jsp" %>
 <html>
-<script src="<%=basePath%>/js/md5.js" type="text/javascript"></script>
-<script src="<%=basePath%>/js/sha512.js" type="text/javascript"></script>
 <div class="container">
     <h5><b>当前位置</b>：个人信息 > 密码修改</h5>
     <hr>
     <div class="changepasswd">
         <form action="/passwdUpdate" method="post">
-            <input type="hidden" name="id" value=${sessionScope.userid}>
+            <input type="hidden" name="id" value=${sessionScope.username}>
             <input type="hidden" name="type" value="2">
 
             <div class="input-group mb-3">
@@ -52,6 +50,5 @@
         </form>
     </div>
 </div>
-<script src="<%=basePath%>/js/changepasswd.js" type="text/javascript"></script>
 
 </html>

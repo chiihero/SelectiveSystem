@@ -15,11 +15,18 @@
     <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
     <script src="<%=basePath%>/js/jquery.min.js" type="text/javascript"></script>
     <script src="<%=basePath%>/js/popper.js" type="text/javascript"></script>
+    <script src="<%=basePath%>/js/md5.min.js" type="text/javascript"></script>
+    <script src="<%=basePath%>/js/sha512.min.js" type="text/javascript"></script>
     <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
     <script src="<%=basePath%>/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="<%=basePath%>/js/checkinfo.js" type="text/javascript"></script>
+    <script src="<%=basePath%>/js/changepassword.js" type="text/javascript"></script>
+
+
     <!-- 新 Bootstrap4 核心 CSS 文件 -->
     <link href="<%=basePath%>/css/bootstrap.min.css" rel="stylesheet">
     <link href="<%=basePath%>/css/nindex.css" rel="stylesheet">
+
 </head>
 <body>
 <div class="container">

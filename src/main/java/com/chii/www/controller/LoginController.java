@@ -45,7 +45,7 @@ public class LoginController {
                 model.addAttribute("error", "用户名或密码错误");
                 return "redirect:/login";
             }
-            model.addAttribute("userid", user.getUsername());
+            model.addAttribute("username", user.getUsername());
             switch (user.getType()) {//根据用户类型转跳到不同view
                 case "1":
                     return "redirect:/student/studentIndex";

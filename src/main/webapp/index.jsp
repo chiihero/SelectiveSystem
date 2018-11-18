@@ -15,6 +15,8 @@
     <script src="<%=basePath%>/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="<%=basePath%>/js/md5.min.js" type="text/javascript"></script>
     <script src="<%=basePath%>/js/sha512.min.js" type="text/javascript"></script>
+    <script src="<%=basePath%>/js/checkinfo.js" type="text/javascript"></script>
+
     <script src="<%=basePath%>/js/bootstrap-select.min.js" type="text/javascript"></script>
     <!-- 新 Bootstrap4 核心 CSS 文件 -->
     <link href="<%=basePath%>/css/bootstrap.min.css" rel="stylesheet">
@@ -69,7 +71,7 @@
                     记住账号
                 </div>
                 <div class="float-right">
-                    <a href="<%=basePath%>/#registerform" class="to-register grey">忘记密码?</a>
+                    <a href="#registerform" class="to-register grey">忘记密码?</a>
                 </div>
                 <button type="submit" class="btn btn-success btn-block" id="sub_login">登录</button>
             </div>
@@ -116,7 +118,7 @@
             </div>
             <div class="form-check">
                 <div class="float-right">
-                    <a href="<%=basePath%>/#login" class="flip-link to-login grey">返回登录</a>
+                    <a href="#login" class="flip-link to-login grey">返回登录</a>
                 </div>
                 <button type="submit" class="btn btn-success btn-block" id="sub_register" value="修改密码">修改密码</button>
                 <input type="reset" class="btn btn-primary btn-block" value="重置"/>
@@ -124,7 +126,7 @@
         </form>
     </div>
 </div>
-<script src="<%=basePath%>/js/indexx.js" type="text/javascript" charset="uft-8">
+<script src="<%=basePath%>/js/index.js" type="text/javascript" charset="uft-8">
 </script>
 </body>
 

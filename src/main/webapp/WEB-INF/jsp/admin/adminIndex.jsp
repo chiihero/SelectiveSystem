@@ -16,6 +16,9 @@
     <script src="<%=basePath%>/js/popper.js" type="text/javascript"></script>
     <!-- 新 Bootstrap4 核心 CSS 文件 -->
     <script src="<%=basePath%>/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="<%=basePath%>/js/checkinfo.js" type="text/javascript"></script>
+    <script src="<%=basePath%>/js/md5.min.js" type="text/javascript"></script>
+    <script src="<%=basePath%>/js/sha512.min.js" type="text/javascript"></script>
     <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
     <%--<script src="<%=basePath%>/js/bootstrap-select.min.js" type="text/javascript"></script>--%>
     <%--<!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->--%>
@@ -23,6 +26,7 @@
     <%--<link href="<%=basePath%>/css/bootstrap-select.min.css" rel="stylesheet">--%>
     <%--<link rel="stylesheet" href="<%=basePath%>/css/font-awesome.min.css">--%>
     <link href="<%=basePath%>/css/nindex.css" rel="stylesheet">
+
 </head>
 <body>
 <div class="container">

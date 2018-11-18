@@ -103,9 +103,14 @@
                     </c:forEach>
                 </select>
             </div>
-
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">密码:</span>
+                </div>
+                <input type="text" class="form-control col-4" placeholder="密码" id="password" name="password">
+            </div>
             <div style="padding-top: 15px">
-                <button type="submit" class="btn btn-primary" onclick="return check_studentdata()">修改</button>
+                <button type="submit" class="btn btn-primary" id="teacherChange">修改</button>
                 <button type="reset" class="btn btn-warning">重置</button>
             </div>
         </form>
