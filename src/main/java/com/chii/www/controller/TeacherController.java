@@ -56,11 +56,13 @@ public class TeacherController {
         userService.updateTeaInfo(teacher);
         String returnURL = request.getHeader("Referer");
 //        System.out.println(returnURL);
-        if (returnURL.contains("teacher")){
-            model.addAttribute("msg","更新成功");
-            return "redirect:/teacher/changeinfo?userno="+teacher.getTno()+"";
-        }else {
+        model.addAttribute("msg","更新成功");
+
+        if (returnURL.contains("admin")){
             return "redirect:/admin/teacheruser";
+        }else {
+            return "redirect:/teacher/changeinfo";
+
         }
     }
 

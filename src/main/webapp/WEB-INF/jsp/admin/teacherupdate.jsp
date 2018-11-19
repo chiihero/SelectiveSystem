@@ -36,7 +36,7 @@
                 </div>
                 <%--<input type="hidden" id="sex" name="sex" value="${teacher.tsex}">--%>
                 <select name="tsex" title="性别">
-                    <option value="男">男</option>
+                    <option value="男" selected>男</option>
                     <option value="女">女</option>
                 </select>
                 <a id="sex_text" style="color: #c82333"></a>
@@ -54,8 +54,8 @@
                     <span class="input-group-text">学历:</span>
                 </div>
                 <%--<input type="hidden" id="teb" name="teb" value="${teacher.teb}">--%>
-                <select name="teb">
-                    <option value="学士">学士</option>
+                <select name="teb" title="学历">
+                    <option value="学士" selected>学士</option>
                     <option value="硕士">硕士</option>
                     <option value="博士">博士</option>
                 </select>
@@ -67,7 +67,7 @@
                 </div>
                 <%--<input type="hidden" id="tpt" name="tpt" value="${teacher.tpt}">--%>
                 <select name="tpt" title="职称">
-                    <option value="助教">助教</option>
+                    <option value="助教" selected>助教</option>
                     <option value="讲师">讲师</option>
                     <option value="副教授">副教授</option>
                     <option value="教授">教授</option>

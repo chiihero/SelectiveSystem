@@ -6,15 +6,17 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class SafeCode {
-    public static final Long STARTTIME = 201801011001L;
-    //    public static void main(String[] args) {
-//
-//        for (int i=0;i<6;i++) {
+    public static final Long STARTTIME = 10011001L;
+        public static void main(String[] args) {
+
+        for (int i=0;i<6;i++) {
 //            String salt = String.valueOf((STARTTIME+i));
-//            String password = PasswordHash("1986027b866780f74faa601a73bbcfca",salt);
-//            System.out.println("salt\n"+salt +"\npassword\n"+password);
-//        }
-//    }
+            String salt = "admin";
+
+            String password = PasswordHash("c6274012383f2674afbff44a332a8896",salt);
+            System.out.println("salt\n"+salt +"\npassword\n"+password);
+        }
+    }
     public static String PasswordHash(String securePassword, String salt) {
         String hash = "SHA-512";
         int hasht = 1024;

@@ -72,11 +72,11 @@ public class StudentController {
         userService.updateStuInfo(student);
         String returnURL = request.getHeader("Referer");
         System.out.println(returnURL);
-        if (returnURL.contains("student")){
-            model.addAttribute("msg", "更新成功！");
-            return "redirect:/student/changeinfo?userno="+student.getSno()+"";
-        }else {
+        model.addAttribute("msg", "更新成功！");
+        if (returnURL.contains("admin")){
             return "redirect:/admin/studentuser";
+        }else {
+            return "redirect:/student/changeinfo";
         }
 
     }

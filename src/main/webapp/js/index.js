@@ -36,7 +36,7 @@ $('#sub_login').click(function () {
     console.time("测试加密速度: ");
     password.val(encrypt(password.val()));
     console.timeEnd("测试加密速度: ");
-    console.log(password.val())
+    console.log(password.val());
 });
 
 // $('#sub_register').click(function () {

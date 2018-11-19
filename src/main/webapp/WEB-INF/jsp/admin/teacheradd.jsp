@@ -116,6 +116,7 @@
 </div>
 <script>
     $(document).ready(function () {
+
     });
 
     function infocheck() {

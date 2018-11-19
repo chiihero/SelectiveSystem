@@ -18,7 +18,7 @@
     <script src="<%=basePath%>/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="<%=basePath%>/js/checkinfo.js" type="text/javascript"></script>
     <script src="<%=basePath%>/js/md5.min.js" type="text/javascript"></script>
-    <script src="<%=basePath%>/js/sha512.min.js" type="text/javascript"></script>
+    <script src="<%=basePath%>/js/sha.js" type="text/javascript"></script>
     <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
     <%--<script src="<%=basePath%>/js/bootstrap-select.min.js" type="text/javascript"></script>--%>
     <%--<!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->--%>
