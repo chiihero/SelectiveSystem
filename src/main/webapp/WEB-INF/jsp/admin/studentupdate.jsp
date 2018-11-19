@@ -63,6 +63,12 @@
                 </select>
                 <a id="sdept_text" style="color: #c82333"></a>
             </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">密码:</span>
+                </div>
+                <input type="text" class="form-control col-4" placeholder="密码" id="password" name="password">
+            </div>
             <div style="padding-top: 15px">
                 <button type="submit" class="btn btn-primary" onclick="return check_studentdata()">修改</button>
                 <button type="reset" class="btn btn-warning">重置</button>
@@ -76,6 +82,8 @@
         var sdept = '${student.sdept}';
         $("select option[value='" + sex + "']").attr("selected", true);
         $("select option[value='" + sdept + "']").attr("selected", true);
+
+
     })
 </script>
 </body>

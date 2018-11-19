@@ -16,6 +16,9 @@
     <script src="<%=basePath%>/js/popper.js" type="text/javascript"></script>
     <!-- 新 Bootstrap4 核心 CSS 文件 -->
     <script src="<%=basePath%>/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="<%=basePath%>/js/checkinfo.js" type="text/javascript"></script>
+    <script src="<%=basePath%>/js/md5.min.js" type="text/javascript"></script>
+    <script src="<%=basePath%>/js/sha.js" type="text/javascript"></script>
     <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
     <%--<script src="<%=basePath%>/js/bootstrap-select.min.js" type="text/javascript"></script>--%>
     <%--<!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->--%>
@@ -23,6 +26,7 @@
     <%--<link href="<%=basePath%>/css/bootstrap-select.min.css" rel="stylesheet">--%>
     <%--<link rel="stylesheet" href="<%=basePath%>/css/font-awesome.min.css">--%>
     <link href="<%=basePath%>/css/nindex.css" rel="stylesheet">
+
 </head>
 <body>
 <div class="container">
@@ -45,8 +49,8 @@
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
                        aria-haspopup="true" aria-expanded="false">用户管理 <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li class="dropdown-item"><a href="<%=basePath%>admin/studentadd">添加学生</a></li>
-                        <li class="dropdown-item"><a href="<%=basePath%>admin/teacheradd">添加教师</a></li>
+                        <%--<li class="dropdown-item"><a href="<%=basePath%>admin/studentadd">添加学生</a></li>--%>
+                        <%--<li class="dropdown-item"><a href="<%=basePath%>admin/teacheradd">添加教师</a></li>--%>
                         <li class="dropdown-item"><a href="<%=basePath%>admin/studentuser">所有学生</a></li>
                         <li class="dropdown-item"><a href="<%=basePath%>admin/teacheruser">所有教师</a></li>
                         <li class="dropdown-item"><a href="<%=basePath%>admin/userimport">用户批量导入</a></li>
@@ -84,7 +88,7 @@
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
-                    <a href="<%=basePath%>/login/exit" class="nav-link" role="button">退出 </a>
+                    <a href="<%=basePath%>login/exit" class="nav-link" role="button">退出 </a>
                 </li>
             </ul>
         </div>

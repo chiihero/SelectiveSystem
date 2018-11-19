@@ -52,6 +52,7 @@ public class AdminController {
     @RequestMapping("/teacheruser")
     public String teacheruserUrl(Model model) {
         model.addAttribute("teachers", userService.getAllTeaInfo());
+        model.addAttribute("courses", courseService.getAllCourseInfo());
         return "admin/teacheruser";
     }
 

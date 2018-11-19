@@ -53,22 +53,24 @@ public class TeacherController {
 
     @RequestMapping("/update")
     public String teacherupdate(Teacher teacher, HttpServletRequest request, Model model) {
+        //加密密码
+        String password = SafeCode.PasswordHash(teacher.getPassword(),teacher.getTno());
+        teacher.setPassword(password);
         userService.updateTeaInfo(teacher);
         String returnURL = request.getHeader("Referer");
 //        System.out.println(returnURL);
-        if (returnURL.contains("teacher")){
-            model.addAttribute("msg","更新成功");
-            return "redirect:/teacher/changeinfo?userno="+teacher.getTno()+"";
-        }else {
+        model.addAttribute("msg","更新成功");
+        if (returnURL.contains("admin")){
             return "redirect:/admin/teacheruser";
+        }else {
+            return "redirect:/teacher/changeinfo";
         }
     }
-
 
     @RequestMapping("/insert")
     public String teacherinsert(Teacher teacher, Model model) {
         //加入默认密码
-        String password = SafeCode.PasswordHash("1986027b866780f74faa601a73bbcfca",teacher.getTno());
+        String password = SafeCode.PasswordHash("c6274012383f2674afbff44a332a8896",teacher.getTno());
         teacher.setPassword(password);
         userService.insertTeaInfo(teacher);
         model.addAttribute("msg","插入成功");

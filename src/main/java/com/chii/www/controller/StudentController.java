@@ -66,14 +66,17 @@ public class StudentController {
 
     @RequestMapping("/update")
     public String studentupdate(Student student, HttpServletRequest request, Model model) {
+        //加密密码
+        String password = SafeCode.PasswordHash(student.getPassword(),student.getSno());
+        student.setPassword(password);
         userService.updateStuInfo(student);
         String returnURL = request.getHeader("Referer");
         System.out.println(returnURL);
-        if (returnURL.contains("student")){
-            model.addAttribute("msg", "更新成功！");
-            return "redirect:/student/changeinfo?userno="+student.getSno()+"";
-        }else {
+        model.addAttribute("msg", "更新成功！");
+        if (returnURL.contains("admin")){
             return "redirect:/admin/studentuser";
+        }else {
+            return "redirect:/student/changeinfo";
         }
 
     }
@@ -81,7 +84,7 @@ public class StudentController {
     @RequestMapping("/insert")
     public String studentinsert(Student student, Model model) {
         //加入默认密码
-        String password = SafeCode.PasswordHash("1986027b866780f74faa601a73bbcfca",student.getSno());
+        String password = SafeCode.PasswordHash("c6274012383f2674afbff44a332a8896",student.getSno());
         student.setPassword(password);
         userService.insertStuInfo(student);
         model.addAttribute("msg","插入成功");

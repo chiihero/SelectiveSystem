@@ -15,7 +15,14 @@
 </head>
 <body>
 <div class="container">
-    <h5><b>当前位置</b>：用户管理 > 所有教师</h5>
+    <div class="row">
+        <div class="col-md-10">
+            <h5><b>当前位置</b>：用户管理 > 所有教师</h5>
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-info" onclick="window.location.href='<%=basePath%>admin/teacheradd'">添加教师</button>
+        </div>
+    </div>
     <hr>
     <div>
         <table class="table">
@@ -43,10 +50,33 @@
                     <td>${teacher.tage}</td>
                     <td>${teacher.teb}</td>
                     <td>${teacher.tpt}</td>
-                    <td>${teacher.cno1}</td>
-                    <td>${teacher.cno2}</td>
-                    <td>${teacher.cno3}</td>
-                    <td><a href="<%=basePath%>admin/teacherupdate?tno=${teacher.tno}">修改</a></td>
+                    <td>
+                        <c:forEach items="${courses}" var="course">
+                            <c:if test="${course.cno==teacher.cno1}">
+                                ${course.cname}
+                            </c:if>
+                        </c:forEach>
+                    </td>
+                    <td>
+                        <c:forEach items="${courses}" var="course">
+                            <c:if test="${course.cno==teacher.cno2}">
+                            ${course.cname}
+                            </c:if>
+                        </c:forEach>
+                    </td>
+                    <td>
+                        <c:forEach items="${courses}" var="course">
+                            <c:if test="${course.cno==teacher.cno3}">
+                                ${course.cname}
+                            </c:if>
+                        </c:forEach>
+                    </td>
+                    <td>
+                        <%--<a href="<%=basePath%>admin/teacherupdate?tno=${teacher.tno}">修改</a>--%>
+                        <button class="btn btn-info" onclick="window.location.href='<%=basePath%>admin/teacherupdate?tno=${teacher.tno}'">修改</button>
+
+                    </td>
+
                 </tr>
             </c:forEach>
             </tbody>

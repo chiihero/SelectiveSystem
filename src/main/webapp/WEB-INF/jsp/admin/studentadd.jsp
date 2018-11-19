@@ -39,9 +39,9 @@
                     <span class="input-group-text">性别:</span>
                 </div>
                 <%--<input type="text" class="form-control col-4" placeholder="性别" id="sex" name="sex">--%>
-                <select title="性别">
-                    <option name="sex" value="男">男</option>
-                    <option name="sex" value="女">女</option>
+                <select name="ssex" title="性别">
+                    <option value="男">男</option>
+                    <option value="女">女</option>
                 </select>
                 <a id="sex_text" style="color: #c82333"></a>
 
@@ -51,8 +51,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text">年龄:</span>
                 </div>
-                <input type="text" class="form-control col-4" placeholder="年龄" id="age" name="age"
-                       oninput="value=value.replace(/[^\d]/g,'')">
+                <input type="text" class="form-control col-4" placeholder="年龄" id="age" name="sage" oninput="value=value.replace(/[^\d]/g,'')">
                 <a id="age_text" style="color: #c82333"></a>
 
             </div>
@@ -68,7 +67,6 @@
                 </select>
                 <a id="sdept_text" style="color: #c82333"></a>
             </div>
-
             <%--<div>--%>
             <%--<label>密码</label>--%>
             <%--<input type="password" name="password"/>--%>

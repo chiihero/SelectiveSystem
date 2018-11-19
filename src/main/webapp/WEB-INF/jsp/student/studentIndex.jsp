@@ -14,9 +14,12 @@
     <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
     <script src="<%=basePath%>/js/jquery.min.js"></script>
     <script src="<%=basePath%>/js/popper.js" type="text/javascript"></script>
-
+    <script src="<%=basePath%>/js/md5.min.js" type="text/javascript"></script>
+    <script src="<%=basePath%>/js/sha.js" type="text/javascript"></script>
     <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
     <script src="<%=basePath%>/js/bootstrap.min.js"></script>
+    <script src="<%=basePath%>/js/checkinfo.js" type="text/javascript"></script>
+    <script src="<%=basePath%>/js/changepassword.js" type="text/javascript"></script>
     <!-- 新 Bootstrap4 核心 CSS 文件 -->
     <link rel="stylesheet" href="<%=basePath%>/css/bootstrap.min.css">
     <link href="<%=basePath%>/css/nindex.css" rel="stylesheet">
@@ -63,7 +66,7 @@
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
-                    <a href="<%=basePath%>/login/exit" class="nav-link" role="button">退出 </a>
+                    <a href="<%=basePath%>login/exit" class="nav-link" role="button">退出 </a>
                 </li>
             </ul>
         </div>

@@ -108,7 +108,7 @@
                 </select>
             </div>
             <div style="padding-top: 15px">
-                <button type="submit" class="btn btn-primary">添加</button>
+                <button type="submit" class="btn btn-primary" onclick="return check_teacherdata()">添加</button>
                 <button type="reset" class="btn btn-warning">重置</button>
             </div>
         </form>
@@ -116,6 +116,7 @@
 </div>
 <script>
     $(document).ready(function () {
+
     });
 
     function infocheck() {
