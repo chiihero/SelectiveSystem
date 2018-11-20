@@ -1,5 +1,6 @@
 package com.chii.www.controller;
 
+import com.chii.www.Tool.InfoAdd;
 import com.chii.www.pojo.Course;
 import com.chii.www.pojo.Department;
 import com.chii.www.pojo.Sct;
@@ -25,6 +26,11 @@ public class AdminController {
 
     @RequestMapping("/studentadd")
     public String studentaddUrl(Model model) {
+        final Long STARTTIME = 201801011005L;
+        for (int i = 0; i < 2; i++) {
+            String sno = String.valueOf((STARTTIME + i));
+            userService.insertStuInfo(InfoAdd.getAddress(sno));
+        }
         model.addAttribute("departments", courseService.getAllDepartmentInfo());
         return "admin/studentadd";
     }
