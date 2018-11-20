@@ -2,17 +2,13 @@ package com.chii.www.service;
 
 
 import com.chii.www.pojo.Admin;
+import com.chii.www.pojo.Page;
 import com.chii.www.pojo.Student;
 import com.chii.www.pojo.Teacher;
 
 import java.util.List;
 
 public interface UserService {
-//    String getStuLoginPass(String userno);
-//
-//    String getTeaLoginPass(String userno);
-//
-//    String getAdmLoginPass(String userno);
 
     Student getStuInfoById(String userno);
 
@@ -20,12 +16,17 @@ public interface UserService {
 
     List<Student> getAllStuInfo();
 
+    List<Student> getAllStuInfoList(Page page);
 
     Teacher getTeaInfoById(String userno);
 
     List<Teacher> getAllTeaInfo();
 
+    int getStuCount(String sdept);
+
     Admin getAdminInfoById(String userno);
+
+    void insertStuInfo(Student student);
 
     void updateStuLoginPass(Student student);
 
@@ -34,7 +35,7 @@ public interface UserService {
     void updateAdmLoginPass(Admin admin);
 
 
-    void insertStuInfo(Student student);
+
 
     void updateStuInfo(Student student);
 

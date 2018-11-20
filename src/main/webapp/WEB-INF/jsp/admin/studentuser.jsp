@@ -11,8 +11,17 @@
 <html>
 <body>
 <div class="container">
-    <h5><b>当前位置</b>：用户管理 > 所有学生</h5>
+    <div class="row">
+        <div class="col-md-10">
+            <h5><b>当前位置</b>：用户管理 > 所有学生</h5>
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-info" onclick="window.location.href='<%=basePath%>admin/studentadd'">添加学生</button>
+        </div>
+    </div>
     <hr>
+    <div class="ht-page" id="page"></div>
+
     <div>
         <table class="table">
             <thead>
@@ -33,16 +42,44 @@
                     <td>${student.ssex}</td>
                     <td>${student.sage}</td>
                     <td>${student.sdept}</td>
-                    <td><a href="<%=basePath%>admin/studentupdate?sno=${student.sno}">修改</a></td>
+                    <td>
+                        <%--<a href="<%=basePath%>admin/studentupdate?sno=${student.sno}">修改</a>--%>
+                        <button class="btn btn-info" onclick="window.location.href='<%=basePath%>admin/studentupdate?sno=${student.sno}'">修改</button>
+
+                    </td>
                 </tr>
             </c:forEach>
             </tbody>
         </table>
+
     </div>
 </div>
-<script>
 
+<script typeof="text/javascript">
+    /*
+     * 定义回掉函数
+     * @param  number:跳转页
+     * */
+    function pageChange(i) {
+        alert("index is :" + i);
+        Pagination.Page($(".ht-page"), i, 10000, 10);
+    }
 
+    /*
+     * 初始化插件
+     * @param  object:翻页容器对象
+     * @param  function:回调函数
+     * */
+    Pagination.init($("#page"), pageChange);
+
+    /*
+    * 首次调用
+    * @param  object:翻页容器对象
+    * @param  number:当前页
+    * @param  number:总页数
+    * @param  number:每页数据条数
+    * */
+    Pagination.Page($(".ht-page"), 3, 10000, 10);
 </script>
 </body>
 </html>

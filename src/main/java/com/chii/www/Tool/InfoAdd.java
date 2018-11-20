@@ -43,13 +43,13 @@ public class InfoAdd {
      * 数据封装
      * @return
      */
-    public static Student getAddress(String sno) {
+    public static Student getStudent(String sno,String sdept) {
         Student student = new Student();
         student.setSno(sno);
         student.setSname(getChineseName());
         student.setSsex(name_sex);
         student.setSage(getNum(15,25));
-        student.setSdept("数学大院");
+        student.setSdept(sdept);
         String password = SafeCode.PasswordHash("c6274012383f2674afbff44a332a8896",student.getSno());
         student.setPassword(password);
         return student;

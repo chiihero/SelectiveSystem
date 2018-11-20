@@ -3,12 +3,14 @@ package com.chii.www.controller;
 import com.chii.www.Tool.InfoAdd;
 import com.chii.www.pojo.Course;
 import com.chii.www.pojo.Department;
+import com.chii.www.pojo.Page;
 import com.chii.www.pojo.Sct;
 import com.chii.www.service.CourseService;
 import com.chii.www.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -26,17 +28,18 @@ public class AdminController {
 
     @RequestMapping("/studentadd")
     public String studentaddUrl(Model model) {
-        final Long STARTTIME = 201801011005L;
-        for (int i = 0; i < 2; i++) {
-            String sno = String.valueOf((STARTTIME + i));
-            userService.insertStuInfo(InfoAdd.getAddress(sno));
-        }
+//        final Long STARTTIME = 201802011001L;
+//        for (int i = 0; i < 100; i++) {
+//            String sno = String.valueOf((STARTTIME + i));
+//            userService.insertStuInfo(InfoAdd.getStudent(sno,"文学大院"));
+//        }
         model.addAttribute("departments", courseService.getAllDepartmentInfo());
         return "admin/studentadd";
     }
 
     @RequestMapping("/studentuser")
-    public String studentuserUrl(Model model) {
+    public String studentuserUrl(Page page, Model model) {
+        int totalCount = userService.getStuCount(page.getSdept());//获取当前用户总记录条数
         model.addAttribute("students", userService.getAllStuInfo());
         return "admin/studentuser";
     }

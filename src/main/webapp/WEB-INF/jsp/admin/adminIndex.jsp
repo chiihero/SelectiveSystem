@@ -49,8 +49,6 @@
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
                        aria-haspopup="true" aria-expanded="false">用户管理 <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li class="dropdown-item"><a href="<%=basePath%>admin/studentadd">添加学生</a></li>
-                        <li class="dropdown-item"><a href="<%=basePath%>admin/teacheradd">添加教师</a></li>
                         <li class="dropdown-item"><a href="<%=basePath%>admin/studentuser">所有学生</a></li>
                         <li class="dropdown-item"><a href="<%=basePath%>admin/teacheruser">所有教师</a></li>
                         <li class="dropdown-item"><a href="<%=basePath%>admin/userimport">用户批量导入</a></li>
@@ -88,7 +86,7 @@
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
-                    <a href="<%=basePath%>/login/exit" class="nav-link" role="button">退出 </a>
+                    <a href="<%=basePath%>login/exit" class="nav-link" role="button">退出 </a>
                 </li>
             </ul>
         </div>
