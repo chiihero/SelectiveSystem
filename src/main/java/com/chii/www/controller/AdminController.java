@@ -39,8 +39,11 @@ public class AdminController {
 
     @RequestMapping("/studentuser")
     public String studentuserUrl(Page page, Model model) {
-        int totalCount = userService.getStuCount(page.getSdept());//获取当前用户总记录条数
-        model.addAttribute("students", userService.getAllStuInfo());
+        page.setPageCount(userService.getStuCount(page.getSdept()));
+        model.addAttribute("page",page);//获取当前用户总记录条数
+        model.addAttribute("departments", courseService.getAllDepartmentInfo());
+        model.addAttribute("students", userService.getAllStuInfoList(page));
+//            model.addAttribute("students", userService.getAllStuInfo());
         return "admin/studentuser";
     }
 

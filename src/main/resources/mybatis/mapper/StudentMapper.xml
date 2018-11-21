@@ -22,8 +22,8 @@
         select Count(sno)
         from student
         <where>
-            <if test="sdept != null">
-                sdept = #{sdept,jdbcType=VARCHAR},
+            <if test="_parameter != null">
+                sdept = #{_parameter}
             </if>
         </where>
     </select>
@@ -31,8 +31,14 @@
         select
         <include refid="Base_Column_List"/>
         from student
+        <where>
+            <if test="sdept != null">
+                sdept = #{sdept,jdbcType=VARCHAR}
+            </if>
+        </where>
         ORDER BY sno ASC
         limit #{pageIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+
     </select>
     <select id="selectAllByTeaKey" resultMap="BaseResultMap" parameterType="java.lang.String">
         select student.sno, student.sname, student.ssex, student.sage, student.sdept

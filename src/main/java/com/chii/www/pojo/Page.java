@@ -7,8 +7,8 @@ public class Page<T> {
     private String sdept;
     private int pageNumber;//总记录数
     private int pageCount;//总页数
-    private int pageIndex;//当前页
-    private int pageSize;//每页大小
+    private int pageIndex = 0;//当前页
+    private int pageSize = 10;//每页大小
     private List<T> list;//当前页的数据
 
     public String getSdept() {
@@ -16,7 +16,7 @@ public class Page<T> {
     }
 
     public void setSdept(String sdept) {
-        this.sdept = sdept == null ? null : sdept.trim();
+        this.sdept = sdept;
     }
 
     public int getPageNumber() {

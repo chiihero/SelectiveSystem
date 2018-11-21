@@ -21,7 +21,12 @@
     </div>
     <hr>
     <div class="ht-page" id="page"></div>
-
+    <select id="sdept">
+        <option id="AllDep" value="sdept" selected="selected">全部学生</option>
+        <c:forEach items="${departments}" var="department">
+            <option id="${department.dname}" value="sdept">${department.dname}</option>
+        </c:forEach>
+    </select>
     <div>
         <table class="table">
             <thead>
@@ -56,30 +61,22 @@
 </div>
 
 <script typeof="text/javascript">
-    /*
-     * 定义回掉函数
-     * @param  number:跳转页
-     * */
-    function pageChange(i) {
-        alert("index is :" + i);
-        Pagination.Page($(".ht-page"), i, 10000, 10);
-    }
+    $(document).ready(function () {
+        $("select option[value='sdept']").click(function () {
+            // if (this.val() !== "AllDep")
+            // alert($(this).attr('id'));
+            var sdept= $(this).attr('id');
+            if (sdept !== "AllDep")
+                window.location.href="<%=basePath%>admin/studentuser?sdept="+sdept+"&pageCount=1";
+                else
+                window.location.href="<%=basePath%>admin/studentuser?pageCount=1";
 
-    /*
-     * 初始化插件
-     * @param  object:翻页容器对象
-     * @param  function:回调函数
-     * */
-    Pagination.init($("#page"), pageChange);
+            // $("select option[value='sdept']").attr("selected", true);
 
-    /*
-    * 首次调用
-    * @param  object:翻页容器对象
-    * @param  number:当前页
-    * @param  number:总页数
-    * @param  number:每页数据条数
-    * */
-    Pagination.Page($(".ht-page"), 3, 10000, 10);
+        })
+
+    });
+
 </script>
 </body>
 </html>
