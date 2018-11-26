@@ -4,6 +4,7 @@ import com.chii.www.mapper.AdminMapper;
 import com.chii.www.mapper.StudentMapper;
 import com.chii.www.mapper.TeacherMapper;
 import com.chii.www.pojo.Admin;
+import com.chii.www.pojo.Page;
 import com.chii.www.pojo.Student;
 import com.chii.www.pojo.Teacher;
 import com.chii.www.service.UserService;
@@ -22,33 +23,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private TeacherMapper teacherMapper;
 
-//    @Override
-//    public String getStuLoginPass(String userno) {
-//        Student student  = studentMapper.selectByPrimaryKey(userno);
-//        if (student != null)
-//            return student.getPassword();
-//        else
-//            return "false";
-//    }
-//
-//    @Override
-//    public String getTeaLoginPass(String userno) {
-//        Teacher teacher  = teacherMapper.selectByPrimaryKey(userno);
-//        if (teacher != null)
-//            return teacher.getPassword();
-//        else
-//            return "false";
-//    }
-//
-//    @Override
-//    public String getAdmLoginPass(String userno) {
-//        Admin admin  = adminMapper.selectByPrimaryKey(userno);
-//        if (admin != null)
-//            return admin.getPassword();
-//        else
-//            return "false";
-//    }
-
     @Override
     public Student getStuInfoById(String userno) {
         return studentMapper.selectByPrimaryKey(userno);
@@ -57,6 +31,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<Student> getAllStuInfo() {
         return studentMapper.selectAll();
+    }
+
+    @Override
+    public List<Student> getAllStuInfoList(Page page) {
+        return studentMapper.selectAllList(page);
     }
 
     @Override
@@ -90,6 +69,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<Teacher> getAllTeaInfo() {
         return teacherMapper.selectAll();
+    }
+
+    @Override
+    public int getStuCount(String sdept) {
+        return studentMapper.selectAllCount(sdept);
     }
 
     @Override

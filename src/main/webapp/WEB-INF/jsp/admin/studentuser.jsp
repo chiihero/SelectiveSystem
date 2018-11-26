@@ -20,6 +20,13 @@
         </div>
     </div>
     <hr>
+    <div class="ht-page" id="page"></div>
+    <select id="sdept">
+        <option id="AllDep" value="sdept" selected="selected">全部学生</option>
+        <c:forEach items="${departments}" var="department">
+            <option id="${department.dname}" value="sdept">${department.dname}</option>
+        </c:forEach>
+    </select>
     <div>
         <table class="table">
             <thead>
@@ -49,10 +56,26 @@
             </c:forEach>
             </tbody>
         </table>
+
     </div>
 </div>
-<script>
 
+<script typeof="text/javascript">
+    $(document).ready(function () {
+        $("select option[value='sdept']").click(function () {
+            // if (this.val() !== "AllDep")
+            // alert($(this).attr('id'));
+            var sdept= $(this).attr('id');
+            if (sdept !== "AllDep")
+                window.location.href="<%=basePath%>admin/studentuser?sdept="+sdept+"&pageCount=1";
+                else
+                window.location.href="<%=basePath%>admin/studentuser?pageCount=1";
+
+            // $("select option[value='sdept']").attr("selected", true);
+
+        })
+
+    });
 
 </script>
 </body>

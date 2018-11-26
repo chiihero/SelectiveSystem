@@ -1,5 +1,6 @@
 package com.chii.www.mapper;
 
+import com.chii.www.pojo.Page;
 import com.chii.www.pojo.Student;
 
 import java.util.List;
@@ -12,6 +13,10 @@ public interface StudentMapper {
     int insertSelective(Student record);
 
     List<Student> selectAll();
+
+    int selectAllCount(String sdept);
+
+    List<Student> selectAllList(Page page);
 
     List<Student> selectAllByTeaKey(String tno);
 

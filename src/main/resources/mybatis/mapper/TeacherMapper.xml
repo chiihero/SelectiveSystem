@@ -49,7 +49,7 @@
         where tno = #{tno,jdbcType=CHAR}
     </delete>
     <insert id="insert" parameterType="com.chii.www.pojo.Teacher">
-        insert into teacher (tno, tname, tsex, tage, teb, tpt, cno1, cno2, cno3)
+        insert into teacher (tno, tname, tsex, tage, teb, tpt, cno1, cno2, cno3,password)
         values (#{tno,jdbcType=CHAR},
                 #{tname,jdbcType=VARCHAR},
                 #{tsex,jdbcType=CHAR},
@@ -58,7 +58,9 @@
                 #{tpt,jdbcType=VARCHAR},
                 #{cno1,jdbcType=CHAR},
                 #{cno2,jdbcType=CHAR},
-                #{cno3,jdbcType=CHAR})
+                #{cno3,jdbcType=CHAR},
+                #{password,jdbcType=VARCHAR})
+
     </insert>
     <insert id="insertSelective" parameterType="com.chii.www.pojo.Teacher">
         insert into teacher
