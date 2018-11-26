@@ -1,17 +1,20 @@
 package com.chii.www.controller;
 
 import com.chii.www.Tool.InfoAdd;
-import com.chii.www.pojo.Course;
-import com.chii.www.pojo.Department;
-import com.chii.www.pojo.Page;
-import com.chii.www.pojo.Sct;
+import com.chii.www.pojo.*;
 import com.chii.www.service.CourseService;
 import com.chii.www.service.UserService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("admin")
@@ -38,11 +41,17 @@ public class AdminController {
     }
 
     @RequestMapping("/studentuser")
-    public String studentuserUrl(Page page, Model model) {
+    public String studentuserUrl(@RequestParam(required = false, defaultValue = "1") Integer startPage,
+                                 @RequestParam(required = false, defaultValue = "5") Integer PageSize,
+                                 Page page, Model model) {
+        PageHelper.startPage(startPage, PageSize);
         page.setPageCount(userService.getStuCount(page.getSdept()));
         model.addAttribute("page",page);//获取当前用户总记录条数
         model.addAttribute("departments", courseService.getAllDepartmentInfo());
-        model.addAttribute("students", userService.getAllStuInfoList(page));
+//        List<Student> students = new ArrayList<>();
+        List<Student> students = userService.getAllStuInfoList(page);
+        PageInfo<Student> pi = new PageInfo<>(students);
+        model.addAttribute("students",pi);
 //            model.addAttribute("students", userService.getAllStuInfo());
         return "admin/studentuser";
     }

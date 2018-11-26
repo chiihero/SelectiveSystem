@@ -36,8 +36,8 @@
                 sdept = #{sdept,jdbcType=VARCHAR}
             </if>
         </where>
-        ORDER BY sno ASC
-        limit #{pageIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+#         ORDER BY sno ASC
+#         limit #{pageIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
 
     </select>
     <select id="selectAllByTeaKey" resultMap="BaseResultMap" parameterType="java.lang.String">

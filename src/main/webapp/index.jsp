@@ -12,15 +12,15 @@
     <script src="<%=basePath%>/js/jquery.min.js" type="text/javascript"></script>
     <script src="<%=basePath%>/js/popper.js" type="text/javascript"></script>
     <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
-    <script src="<%=basePath%>/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="<%=basePath%>/js/md5.min.js" type="text/javascript"></script>
-    <script src="<%=basePath%>/js/sha3.js" type="text/javascript"></script>
+    <script src="<%=basePath%>/js/bootstrap/bootstrap.min.js" type="text/javascript"></script>
+    <script src="<%=basePath%>/js/encrypt/md5.min.js" type="text/javascript"></script>
+    <script src="<%=basePath%>/js/encrypt/sha3.js" type="text/javascript"></script>
     <script src="<%=basePath%>/js/checkinfo.js" type="text/javascript"></script>
 
-    <script src="<%=basePath%>/js/bootstrap-select.min.js" type="text/javascript"></script>
+    <script src="<%=basePath%>/js/bootstrap/bootstrap-select.min.js" type="text/javascript"></script>
     <!-- 新 Bootstrap4 核心 CSS 文件 -->
-    <link href="<%=basePath%>/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<%=basePath%>/css/bootstrap-select.min.css" rel="stylesheet">
+    <link href="<%=basePath%>/css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="<%=basePath%>/css/bootstrap/bootstrap-select.min.css" rel="stylesheet">
     <link href="<%=basePath%>/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="<%=basePath%>/css/font-awesome.min.css">
 </head>
