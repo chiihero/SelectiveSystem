@@ -39,25 +39,25 @@
                 <th>修改</th>
             </tr>
             </thead>
-            <%--<tbody>--%>
-            <%--<c:forEach items="${students.list}" var="student">--%>
-                <%--<tr>--%>
-                    <%--<td>${student.sno}</td>--%>
-                    <%--<td>${student.sname}</td>--%>
-                    <%--<td>${student.ssex}</td>--%>
-                    <%--<td>${student.sage}</td>--%>
-                    <%--<td>${student.sdept}</td>--%>
-                    <%--<td>--%>
-                            <%--&lt;%&ndash;<a href="<%=basePath%>admin/studentupdate?sno=${student.sno}">修改</a>&ndash;%&gt;--%>
-                        <%--<button class="btn btn-info"--%>
-                            <%--&lt;%&ndash;onclick="window.location.href='<%=basePath%>admin/studentupdate?sno=${student.sno}'">修改&ndash;%&gt;--%>
-                        <%--</button>--%>
+            <tbody>
+            <c:forEach items="${students.list}" var="student">
+                <tr>
+                    <td>${student.sno}</td>
+                    <td>${student.sname}</td>
+                    <td>${student.ssex}</td>
+                    <td>${student.sage}</td>
+                    <td>${student.sdept}</td>
+                    <td>
+                            <%--<a href="<%=basePath%>admin/studentupdate?sno=${student.sno}">修改</a>--%>
+                        <button class="btn btn-info"
+                            <%--onclick="window.location.href='<%=basePath%>admin/studentupdate?sno=${student.sno}'">修改--%>
+                        </button>
 
-                    <%--</td>--%>
-                    <%--wd--%>
-                <%--</tr>--%>
-            <%--</c:forEach>--%>
-            <%--</tbody>--%>
+                    </td>
+                    wd
+                </tr>
+            </c:forEach>
+            </tbody>
         </table>
     </div>
 </div>
@@ -71,7 +71,7 @@
             else
                 window.location.href = "<%=basePath%>admin/studentuser?pageCount=1";
         });
-
+        //
         $("#grid-data").bootgrid({
             ajax: true,
             get: function ()

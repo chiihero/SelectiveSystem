@@ -1,9 +1,9 @@
 package com.chii.www.controller;
 
-import com.chii.www.Tool.InfoAdd;
 import com.chii.www.pojo.*;
 import com.chii.www.service.CourseService;
 import com.chii.www.service.UserService;
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -39,24 +38,17 @@ public class AdminController {
     }
 
     @RequestMapping("/studentuser")
-    public String studentuserUrl(Page page, Model model) {
-        PageHelper.startPage(page.getCurrent(), page.getRowCount());
+    public String studentuserUrl(PageBean pageBean, Model model) {
+//        PageHelper.startPage(pageBean.getCurrent(), pageBean.getRowCount());
         model.addAttribute("departments", courseService.getAllDepartmentInfo());
-        List<Student> students = userService.getAllStuInfo(page.getSdept());
-        PageInfo<Student> pi = new PageInfo<>(students);
-        model.addAttribute("students",pi);
-//        model.addAttribute("students", userService.getAllStuInfo(page.getSdept()));
+        model.addAttribute("students",userService.getAllStuInfo(pageBean));
         return "admin/studentuser";
     }
     @RequestMapping(value ="/AllStudentUser")
     @ResponseBody
-    public PageInfo<Student> listget(Page page) {
-        PageHelper.startPage(page.getCurrent(), page.getRowCount());
-        List<Student> students = userService.getAllStuInfo(page.getSdept());
-        PageInfo<Student> pi = new PageInfo<>(students);
-        return pi;
+    public PageInfo<Student> listget(PageBean page) {
+        return userService.getAllStuInfo(page);
     }
-
     @RequestMapping("/studentupdate")
     public String studentupdateUrl(String sno, Model model) {
         System.out.println(sno);

@@ -4,10 +4,13 @@ import com.chii.www.mapper.AdminMapper;
 import com.chii.www.mapper.StudentMapper;
 import com.chii.www.mapper.TeacherMapper;
 import com.chii.www.pojo.Admin;
-import com.chii.www.pojo.Page;
+import com.chii.www.pojo.PageBean;
 import com.chii.www.pojo.Student;
 import com.chii.www.pojo.Teacher;
 import com.chii.www.service.UserService;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,12 +32,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<Student> getAllStuInfo(String sdept) {
-        return studentMapper.selectAll(sdept);
+    public PageInfo<Student> getAllStuInfo(PageBean pageBean) {
+        PageHelper.startPage(pageBean.getCurrent(), pageBean.getRowCount());
+        List<Student> students = studentMapper.selectAll(pageBean.getSdept());
+        PageInfo<Student> pi = new PageInfo<>(students);
+//        PageBean<Student> pi = new PageInfo<>(students);
+        return pi;
     }
 
 //    @Override
-//    public List<Student> getAllStuInfoList(Page page) {
+//    public List<Student> getAllStuInfoList(PageBean page) {
 //        return studentMapper.selectAllList(page);
 //    }
 

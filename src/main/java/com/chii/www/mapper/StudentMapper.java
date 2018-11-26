@@ -1,7 +1,8 @@
 package com.chii.www.mapper;
 
-import com.chii.www.pojo.Page;
+import com.chii.www.pojo.PageBean;
 import com.chii.www.pojo.Student;
+import com.github.pagehelper.Page;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public interface StudentMapper {
 
     int selectAllCount(String sdept);
 
-//    List<Student> selectAllList(Page page);
+//    List<Student> selectAllList(PageBean page);
 
     List<Student> selectAllByTeaKey(String tno);
 

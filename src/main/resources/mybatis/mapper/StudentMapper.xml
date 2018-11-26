@@ -32,7 +32,7 @@
             </if>
         </where>
     </select>
-    <!--<select id="selectAllList" resultMap="BaseResultMap" parameterType="com.chii.www.pojo.Page">-->
+    <!--<select id="selectAllList" resultMap="BaseResultMap" parameterType="com.chii.www.pojo.PageBeanBean">-->
         <!--select-->
         <!--<include refid="Base_Column_List"/>-->
         <!--from student-->

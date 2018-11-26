@@ -2,7 +2,7 @@ package com.chii.www.pojo;
 
 import java.util.List;
 
-public class Page<T> {
+public class PageBean<T> {
     //属性
     private String sdept;
     private int current = 1;//当前页

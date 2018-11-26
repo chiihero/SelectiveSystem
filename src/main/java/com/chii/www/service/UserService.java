@@ -2,9 +2,11 @@ package com.chii.www.service;
 
 
 import com.chii.www.pojo.Admin;
-import com.chii.www.pojo.Page;
+import com.chii.www.pojo.PageBean;
 import com.chii.www.pojo.Student;
 import com.chii.www.pojo.Teacher;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
@@ -14,9 +16,9 @@ public interface UserService {
 
     List<Student> getAllStuInfoByTeaId(String userno);
 
-    List<Student> getAllStuInfo(String sdept);
+    PageInfo<Student> getAllStuInfo(PageBean pageBean);
 
-//    List<Student> getAllStuInfoList(Page page);
+//    List<Student> getAllStuInfoList(PageBean page);
 
     Teacher getTeaInfoById(String userno);
 
