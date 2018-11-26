@@ -12,11 +12,11 @@ public interface StudentMapper {
 
     int insertSelective(Student record);
 
-    List<Student> selectAll();
+    List<Student> selectAll(String sdept);
 
     int selectAllCount(String sdept);
 
-    List<Student> selectAllList(Page page);
+//    List<Student> selectAllList(Page page);
 
     List<Student> selectAllByTeaKey(String tno);
 

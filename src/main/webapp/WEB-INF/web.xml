@@ -8,9 +8,9 @@
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
+            classpath:spring/spring-mvc.xml
             classpath:spring/spring-mybatis.xml
             classpath:spring/spring-shiro.xml
-            classpath:spring/spring-mvc.xml
         </param-value>
     </context-param>
     <!-- 编码过滤器 -->
@@ -76,16 +76,16 @@
 
 
     <!--<error-page>-->
-        <!--<error-code>403</error-code>-->
-        <!--<location>/403.jsp</location>-->
+    <!--<error-code>403</error-code>-->
+    <!--<location>/403.jsp</location>-->
     <!--</error-page>-->
     <!--<error-page>-->
-        <!--<error-code>404</error-code>-->
-        <!--<location>/404.jsp</location>-->
+    <!--<error-code>404</error-code>-->
+    <!--<location>/404.jsp</location>-->
     <!--</error-page>-->
     <!--<error-page>-->
-        <!--<error-code>500</error-code>-->
-        <!--<location>/500.jsp</location>-->
+    <!--<error-code>500</error-code>-->
+    <!--<location>/500.jsp</location>-->
     <!--</error-page>-->
 
 

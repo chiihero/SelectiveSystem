@@ -9,9 +9,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,19 +39,22 @@ public class AdminController {
     }
 
     @RequestMapping("/studentuser")
-    public String studentuserUrl(@RequestParam(required = false, defaultValue = "1") Integer startPage,
-                                 @RequestParam(required = false, defaultValue = "5") Integer PageSize,
-                                 Page page, Model model) {
-        PageHelper.startPage(startPage, PageSize);
-        page.setPageCount(userService.getStuCount(page.getSdept()));
-        model.addAttribute("page",page);//获取当前用户总记录条数
+    public String studentuserUrl(Page page, Model model) {
+        PageHelper.startPage(page.getCurrent(), page.getRowCount());
         model.addAttribute("departments", courseService.getAllDepartmentInfo());
-//        List<Student> students = new ArrayList<>();
-        List<Student> students = userService.getAllStuInfoList(page);
+        List<Student> students = userService.getAllStuInfo(page.getSdept());
         PageInfo<Student> pi = new PageInfo<>(students);
         model.addAttribute("students",pi);
-//            model.addAttribute("students", userService.getAllStuInfo());
+//        model.addAttribute("students", userService.getAllStuInfo(page.getSdept()));
         return "admin/studentuser";
+    }
+    @RequestMapping(value ="/AllStudentUser")
+    @ResponseBody
+    public PageInfo<Student> listget(Page page) {
+        PageHelper.startPage(page.getCurrent(), page.getRowCount());
+        List<Student> students = userService.getAllStuInfo(page.getSdept());
+        PageInfo<Student> pi = new PageInfo<>(students);
+        return pi;
     }
 
     @RequestMapping("/studentupdate")
@@ -89,13 +90,6 @@ public class AdminController {
     public String userimportUrl() {
         return "admin/userimport";
     }
-
-//    @RequestMapping("/score")
-//    public String scoreUrl(Model model) {
-//        model.addAttribute("courses", courseService.getAllCourseInfo());
-//        model.addAttribute("scts", courseService.getAllSctInfo());
-//        return "admin/score废弃";
-//    }
 
     @RequestMapping("/scoreupdate")
     public String scoreupdate(Sct sct, Model model) {

@@ -13,10 +13,15 @@
     <sql id="Base_Column_List">
         sno, sname, ssex, sage, sdept, password
     </sql>
-    <select id="selectAll" resultMap="BaseResultMap">
+    <select id="selectAll" resultMap="BaseResultMap" parameterType="java.lang.String">
         select
         <include refid="Base_Column_List"/>
         from student
+        <where>
+            <if test="_parameter != null">
+                sdept = #{_parameter}
+            </if>
+        </where>
     </select>
     <select id="selectAllCount" resultType="int" parameterType="java.lang.String">
         select Count(sno)
@@ -27,19 +32,18 @@
             </if>
         </where>
     </select>
-    <select id="selectAllList" resultMap="BaseResultMap" parameterType="com.chii.www.pojo.Page">
-        select
-        <include refid="Base_Column_List"/>
-        from student
-        <where>
-            <if test="sdept != null">
-                sdept = #{sdept,jdbcType=VARCHAR}
-            </if>
-        </where>
-#         ORDER BY sno ASC
-#         limit #{pageIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
-
-    </select>
+    <!--<select id="selectAllList" resultMap="BaseResultMap" parameterType="com.chii.www.pojo.Page">-->
+        <!--select-->
+        <!--<include refid="Base_Column_List"/>-->
+        <!--from student-->
+        <!--<where>-->
+            <!--<if test="sdept != null">-->
+                <!--sdept = #{sdept,jdbcType=VARCHAR}-->
+            <!--</if>-->
+        <!--</where>-->
+        <!--ORDER BY sno ASC-->
+        <!--limit #{current,jdbcType=INTEGER},#{rowCount,jdbcType=INTEGER}-->
+    <!--</select>-->
     <select id="selectAllByTeaKey" resultMap="BaseResultMap" parameterType="java.lang.String">
         select student.sno, student.sname, student.ssex, student.sage, student.sdept
         from student

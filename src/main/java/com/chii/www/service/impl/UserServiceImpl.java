@@ -29,14 +29,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<Student> getAllStuInfo() {
-        return studentMapper.selectAll();
+    public List<Student> getAllStuInfo(String sdept) {
+        return studentMapper.selectAll(sdept);
     }
 
-    @Override
-    public List<Student> getAllStuInfoList(Page page) {
-        return studentMapper.selectAllList(page);
-    }
+//    @Override
+//    public List<Student> getAllStuInfoList(Page page) {
+//        return studentMapper.selectAllList(page);
+//    }
 
     @Override
     public List<Student> getAllStuInfoByTeaId(String userno) {

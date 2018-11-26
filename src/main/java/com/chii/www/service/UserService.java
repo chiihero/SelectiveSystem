@@ -14,9 +14,9 @@ public interface UserService {
 
     List<Student> getAllStuInfoByTeaId(String userno);
 
-    List<Student> getAllStuInfo();
+    List<Student> getAllStuInfo(String sdept);
 
-    List<Student> getAllStuInfoList(Page page);
+//    List<Student> getAllStuInfoList(Page page);
 
     Teacher getTeaInfoById(String userno);
 
@@ -33,9 +33,6 @@ public interface UserService {
     void updateTeaLoginPass(Teacher teacher);
 
     void updateAdmLoginPass(Admin admin);
-
-
-
 
     void updateStuInfo(Student student);
 

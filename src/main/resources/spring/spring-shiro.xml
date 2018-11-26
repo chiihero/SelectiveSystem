@@ -94,14 +94,14 @@
                 /login/signIn = anon
                 /login/exit = anon
                 /login = logout
-                /admin/** = roles[admin]
-                /teacher/** = roles[teacher]
-                /student/** = roles[student]
+                <!--/admin/** = roles[admin]-->
+                <!--/teacher/** = roles[teacher]-->
+                <!--/student/** = roles[student]-->
                 /css/** = anon
                 /js/** = anon
                 /img/** = anon
                 /fonts/** = anon
-                /** authc
+                /** anon
             </value>
         </property>
     </bean>

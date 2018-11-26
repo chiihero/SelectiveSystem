@@ -27,7 +27,7 @@
             <option id="${department.dname}" value="sdept">${department.dname}</option>
         </c:forEach>
     </select>
-    <div>
+    <div id="grid-data" class="table table-condensed table-hover table-striped">
         <table class="table">
             <thead>
             <tr>
@@ -39,41 +39,57 @@
                 <th>修改</th>
             </tr>
             </thead>
-            <tbody>
-            <c:forEach items="${students}" var="student">
-                <tr>
-                    <td>${student.sno}</td>
-                    <td>${student.sname}</td>
-                    <td>${student.ssex}</td>
-                    <td>${student.sage}</td>
-                    <td>${student.sdept}</td>
-                    <td>
-                        <%--<a href="<%=basePath%>admin/studentupdate?sno=${student.sno}">修改</a>--%>
-                        <button class="btn btn-info" onclick="window.location.href='<%=basePath%>admin/studentupdate?sno=${student.sno}'">修改</button>
+            <%--<tbody>--%>
+            <%--<c:forEach items="${students.list}" var="student">--%>
+                <%--<tr>--%>
+                    <%--<td>${student.sno}</td>--%>
+                    <%--<td>${student.sname}</td>--%>
+                    <%--<td>${student.ssex}</td>--%>
+                    <%--<td>${student.sage}</td>--%>
+                    <%--<td>${student.sdept}</td>--%>
+                    <%--<td>--%>
+                            <%--&lt;%&ndash;<a href="<%=basePath%>admin/studentupdate?sno=${student.sno}">修改</a>&ndash;%&gt;--%>
+                        <%--<button class="btn btn-info"--%>
+                            <%--&lt;%&ndash;onclick="window.location.href='<%=basePath%>admin/studentupdate?sno=${student.sno}'">修改&ndash;%&gt;--%>
+                        <%--</button>--%>
 
-                    </td>
-                </tr>
-            </c:forEach>
-            </tbody>
+                    <%--</td>--%>
+                    <%--wd--%>
+                <%--</tr>--%>
+            <%--</c:forEach>--%>
+            <%--</tbody>--%>
         </table>
-
     </div>
 </div>
 
 <script typeof="text/javascript">
     $(document).ready(function () {
         $("select option[value='sdept']").click(function () {
-            // if (this.val() !== "AllDep")
-            // alert($(this).attr('id'));
-            var sdept= $(this).attr('id');
+            var sdept = $(this).attr('id');
             if (sdept !== "AllDep")
-                window.location.href="<%=basePath%>admin/studentuser?sdept="+sdept+"&pageCount=1";
-                else
-                window.location.href="<%=basePath%>admin/studentuser?pageCount=1";
+                window.location.href = "<%=basePath%>admin/studentuser?sdept=" + sdept + "&pageCount=1";
+            else
+                window.location.href = "<%=basePath%>admin/studentuser?pageCount=1";
+        });
 
-            // $("select option[value='sdept']").attr("selected", true);
+        $("#grid-data").bootgrid({
+            ajax: true,
+            get: function ()
+            {
+                /* To accumulate custom parameter with the request object */
+                return {
+                    id: "b0df282a-0d67-40e5-8558-c9e93b7befed"
+                };
+            },
+            url: "/admin/AllStudentUser",
+            formatters: {
+                "link": function(column, row)
+                {
+                    return "<a href=\"#\">" + column.id + ": " + row.id + "</a>";
+                }
+            }
+        });
 
-        })
 
     });
 

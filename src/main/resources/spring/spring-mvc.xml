@@ -24,5 +24,14 @@
         <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
+    <!-- 支持返回json（避免IE在ajax请求时，返回json出现下载），@responseBody-（数据绑定）-messageConverters -->
+    <bean id="fastjson" class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+        <property name="supportedMediaTypes">
+        <list>
+            <value>text/html;charset=UTF-8</value>
+            <value>application/json;charset=UTF-8</value>
+        </list>
+    </property>
+    </bean>
 
 </beans>
