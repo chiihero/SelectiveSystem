@@ -7,7 +7,7 @@
 <html>
 <%
     String path = request.getContextPath();
-    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path;
 %>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -26,9 +26,6 @@
     <%--<link href="<%=basePath%>/css/bootstrap-select.min.css" rel="stylesheet">--%>
     <%--<link rel="stylesheet" href="<%=basePath%>/css/font-awesome.min.css">--%>
     <link href="<%=basePath%>/css/nindex.css" rel="stylesheet">
-
-
-
 
 </head>
 <body>

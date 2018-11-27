@@ -40,15 +40,15 @@ public class AdminController {
     }
 
     @RequestMapping("/studentuser")
-    public String studentuserUrl(PageBean pageBean, Model model) {
+    public String studentuserUrl(Model model) {
 //        PageHelper.startPage(pageBean.getCurrent(), pageBean.getRowCount());
         model.addAttribute("departments", courseService.getAllDepartmentInfo());
-        model.addAttribute("students",userService.getAllStuInfo(pageBean));
+//        model.addAttribute("students",userService.getAllStuInfo(pageBean));
         return "admin/studentuser";
     }
     @RequestMapping(value ="/AllStudentUser")
     @ResponseBody
-    public PageBean listget(PageBean page) {
+    public PageBean AllStudentUser(PageBean page) {
         PageInfo<Student> pi = userService.getAllStuInfo(page);
         page.setCurrent(page.getCurrent());
         page.setRowCount(page.getRowCount());

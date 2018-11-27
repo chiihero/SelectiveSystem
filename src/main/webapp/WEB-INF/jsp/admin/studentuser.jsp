@@ -10,7 +10,7 @@
 <%@include file="adminIndex.jsp" %>
 <html>
 <%--分页--%>
-<link href="<%=basePath%>/css/bootgrid/jquery.bootgrid.css" rel="stylesheet">
+<link href="<%=basePath%>css/bootgrid/jquery.bootgrid.css" rel="stylesheet">
 <body>
 <div class="container">
     <div class="row">
@@ -22,13 +22,12 @@
         </div>
     </div>
     <hr>
-    <div class="ht-page" id="page"></div>
-    <select id="sdept">
-        <option id="AllDep" value="sdept" selected="selected">全部学生</option>
-        <c:forEach items="${departments}" var="department">
-            <option id="${department.dname}" value="sdept">${department.dname}</option>
-        </c:forEach>
-    </select>
+    <%--<select id="sdept">--%>
+        <%--<option id="AllDep" value="sdept" selected="selected">全部学生</option>--%>
+        <%--<c:forEach items="${departments}" var="department">--%>
+            <%--<option id="${department.dname}" value="sdept">${department.dname}</option>--%>
+        <%--</c:forEach>--%>
+    <%--</select>--%>
     <table id="grid-data" class="table table-condensed table-hover table-striped">
             <thead>
             <tr>
@@ -37,7 +36,7 @@
                 <th data-column-id="ssex">性别</th>
                 <th data-column-id="sage">年龄</th>
                 <th data-column-id="sdept">系别</th>
-                <%--<th data-column-id="sno">修改</th>--%>
+                <th data-column-id="sno">修改</th>
             </tr>
             </thead>
             <%--<tbody>--%>
@@ -49,9 +48,7 @@
                     <%--<td>${student.sage}</td>--%>
                     <%--<td>${student.sdept}</td>--%>
                     <%--<td>--%>
-                        <%--<button class="btn btn-info"--%>
-                            <%--onclick="window.location.href='<%=basePath%>admin/studentupdate?sno=${student.sno}'">修改--%>
-                        <%--</button>--%>
+                        <%--<button class="btn btn-info" onclick="window.location.href='<%=basePath%>admin/studentupdate?sno=${student.sno}'">修改</button>--%>
                     <%--</td>--%>
                 <%--</tr>--%>
             <%--</c:forEach>--%>
@@ -83,8 +80,7 @@
             formatters: {
                 "link": function(column, row)
                 {
-                    return "<button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + row.stuId + "\">编辑<span class=\"fa fa-pencil\"></span></button> " +
-                        "<button type=\"button\" class=\"btn btn-xs btn-default command-delete\" data-row-id=\"" + row.stuId + "\">删除<span class=\"fa fa-trash-o\"></span></button>";
+                    return "<button class=\"btn btn-info\" data-row-id=\"" + row.sno + "\" onclick=\"window.location.href='/admin/studentupdate?sno=" + row.sno + "'\">修改</button>";
                 }
             }
         });
