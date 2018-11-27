@@ -7,6 +7,8 @@ public class PageBean<T> {
     private String sdept;
     private int current = 1;//当前页
     private int rowCount = 10;//每页大小
+    private int total;//总行数
+    private List<Student> rows;
 
     public String getSdept() {
         return sdept;
@@ -31,4 +33,19 @@ public class PageBean<T> {
         this.rowCount = rowCount;
     }
 
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
+    }
+
+    public List<Student> getRows() {
+        return rows;
+    }
+
+    public void setRows(List<Student> rows) {
+        this.rows = rows;
+    }
 }

@@ -15,7 +15,7 @@ public interface StudentMapper {
 
     List<Student> selectAll(String sdept);
 
-    int selectAllCount(String sdept);
+//    int selectAllCount(String sdept);
 
 //    List<Student> selectAllList(PageBean page);
 

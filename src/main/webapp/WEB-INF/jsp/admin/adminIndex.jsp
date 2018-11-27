@@ -26,10 +26,7 @@
     <%--<link href="<%=basePath%>/css/bootstrap-select.min.css" rel="stylesheet">--%>
     <%--<link rel="stylesheet" href="<%=basePath%>/css/font-awesome.min.css">--%>
     <link href="<%=basePath%>/css/nindex.css" rel="stylesheet">
-    <%--分页--%>
-    <script src="<%=basePath%>/js/bootgrid/jquery.bootgrid.fa.js" type="text/javascript"></script>
-    <script src="<%=basePath%>/js/bootgrid/jquery.bootgrid.js" type="text/javascript"></script>
-    <link href="<%=basePath%>/css/bootgrid/jquery.bootgrid.css" rel="stylesheet">
+
 
 
 
@@ -94,7 +91,7 @@
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
-                    <a href="<%=basePath%>login/exit" class="nav-link" role="button">退出 </a>
+                    <a href="<%=basePath%>login/logout" class="nav-link" role="button">退出 </a>
                 </li>
             </ul>
         </div>

@@ -24,7 +24,7 @@ public interface UserService {
 
     List<Teacher> getAllTeaInfo();
 
-    int getStuCount(String sdept);
+//    int getStuCount(String sdept);
 
     Admin getAdminInfoById(String userno);
 

@@ -36,7 +36,6 @@ public class UserServiceImpl implements UserService {
         PageHelper.startPage(pageBean.getCurrent(), pageBean.getRowCount());
         List<Student> students = studentMapper.selectAll(pageBean.getSdept());
         PageInfo<Student> pi = new PageInfo<>(students);
-//        PageBean<Student> pi = new PageInfo<>(students);
         return pi;
     }
 
@@ -78,10 +77,10 @@ public class UserServiceImpl implements UserService {
         return teacherMapper.selectAll();
     }
 
-    @Override
-    public int getStuCount(String sdept) {
-        return studentMapper.selectAllCount(sdept);
-    }
+//    @Override
+//    public int getStuCount(String sdept) {
+//        return studentMapper.selectAllCount(sdept);
+//    }
 
     @Override
     public Admin getAdminInfoById(String userno) {

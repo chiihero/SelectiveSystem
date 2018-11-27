@@ -102,7 +102,7 @@ public class LoginController {
         return "redirect:login";
     }
 
-    @RequestMapping("exit")
+    @RequestMapping("/logout")
     public String exit(HttpServletRequest request) {
         request.getSession().invalidate();
         return "redirect:/login/index";

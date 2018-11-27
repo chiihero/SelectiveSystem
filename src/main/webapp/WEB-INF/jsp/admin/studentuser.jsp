@@ -9,6 +9,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="adminIndex.jsp" %>
 <html>
+<%--分页--%>
+<link href="<%=basePath%>/css/bootgrid/jquery.bootgrid.css" rel="stylesheet">
 <body>
 <div class="container">
     <div class="row">
@@ -27,41 +29,37 @@
             <option id="${department.dname}" value="sdept">${department.dname}</option>
         </c:forEach>
     </select>
-    <div id="grid-data" class="table table-condensed table-hover table-striped">
-        <table class="table">
+    <table id="grid-data" class="table table-condensed table-hover table-striped">
             <thead>
             <tr>
-                <th>学号</th>
-                <th>姓名</th>
-                <th>性别</th>
-                <th>年龄</th>
-                <th>系别</th>
-                <th>修改</th>
+                <th data-column-id="sno" data-identifier="true">学号</th>
+                <th data-column-id="sname">姓名</th>
+                <th data-column-id="ssex">性别</th>
+                <th data-column-id="sage">年龄</th>
+                <th data-column-id="sdept">系别</th>
+                <%--<th data-column-id="sno">修改</th>--%>
             </tr>
             </thead>
-            <tbody>
-            <c:forEach items="${students.list}" var="student">
-                <tr>
-                    <td>${student.sno}</td>
-                    <td>${student.sname}</td>
-                    <td>${student.ssex}</td>
-                    <td>${student.sage}</td>
-                    <td>${student.sdept}</td>
-                    <td>
-                            <%--<a href="<%=basePath%>admin/studentupdate?sno=${student.sno}">修改</a>--%>
-                        <button class="btn btn-info"
+            <%--<tbody>--%>
+            <%--<c:forEach items="${students.list}" var="student">--%>
+                <%--<tr>--%>
+                    <%--<td>${student.sno}</td>--%>
+                    <%--<td>${student.sname}</td>--%>
+                    <%--<td>${student.ssex}</td>--%>
+                    <%--<td>${student.sage}</td>--%>
+                    <%--<td>${student.sdept}</td>--%>
+                    <%--<td>--%>
+                        <%--<button class="btn btn-info"--%>
                             <%--onclick="window.location.href='<%=basePath%>admin/studentupdate?sno=${student.sno}'">修改--%>
-                        </button>
-
-                    </td>
-                    wd
-                </tr>
-            </c:forEach>
-            </tbody>
+                        <%--</button>--%>
+                    <%--</td>--%>
+                <%--</tr>--%>
+            <%--</c:forEach>--%>
+            <%--</tbody>--%>
         </table>
-    </div>
 </div>
-
+<%--<script src="<%=basePath%>/js/bootgrid/jquery.bootgrid.fa.js" type="text/javascript"></script>--%>
+<script src="<%=basePath%>/js/bootgrid/jquery.bootgrid.js" type="text/javascript"></script>
 <script typeof="text/javascript">
     $(document).ready(function () {
         $("select option[value='sdept']").click(function () {
@@ -74,7 +72,7 @@
         //
         $("#grid-data").bootgrid({
             ajax: true,
-            get: function ()
+            post: function ()
             {
                 /* To accumulate custom parameter with the request object */
                 return {
@@ -85,7 +83,8 @@
             formatters: {
                 "link": function(column, row)
                 {
-                    return "<a href=\"#\">" + column.id + ": " + row.id + "</a>";
+                    return "<button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + row.stuId + "\">编辑<span class=\"fa fa-pencil\"></span></button> " +
+                        "<button type=\"button\" class=\"btn btn-xs btn-default command-delete\" data-row-id=\"" + row.stuId + "\">删除<span class=\"fa fa-trash-o\"></span></button>";
                 }
             }
         });

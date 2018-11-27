@@ -66,7 +66,7 @@
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
-                    <a href="<%=basePath%>login/exit" class="nav-link" role="button">退出 </a>
+                    <a href="<%=basePath%>login/logout" class="nav-link" role="button">退出 </a>
                 </li>
             </ul>
         </div>

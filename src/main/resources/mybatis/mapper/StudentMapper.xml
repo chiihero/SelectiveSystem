@@ -23,15 +23,15 @@
             </if>
         </where>
     </select>
-    <select id="selectAllCount" resultType="int" parameterType="java.lang.String">
-        select Count(sno)
-        from student
-        <where>
-            <if test="_parameter != null">
-                sdept = #{_parameter}
-            </if>
-        </where>
-    </select>
+    <!--<select id="selectAllCount" resultType="int" parameterType="java.lang.String">-->
+        <!--select Count(sno)-->
+        <!--from student-->
+        <!--<where>-->
+            <!--<if test="_parameter != null">-->
+                <!--sdept = #{_parameter}-->
+            <!--</if>-->
+        <!--</where>-->
+    <!--</select>-->
     <!--<select id="selectAllList" resultMap="BaseResultMap" parameterType="com.chii.www.pojo.PageBeanBean">-->
         <!--select-->
         <!--<include refid="Base_Column_List"/>-->

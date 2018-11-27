@@ -26,11 +26,13 @@ dependencies {
     compile 'org.springframework:spring-webmvc:4.3.20.RELEASE'
     compile 'org.springframework:spring-aop:4.3.20.RELEASE'
     compile 'org.springframework:spring-context-support:4.3.20.RELEASE'
+    compile 'org.springframework:spring-orm:4.3.20.RELEASE'
+
     compile 'org.springframework:spring-test:4.3.20.RELEASE'
     //mybatis核心包
-    compile 'org.mybatis:mybatis:3.1.1'
+    compile 'org.mybatis:mybatis:3.2.2'
     //mybatis/spring包
-    compile 'org.mybatis:mybatis-spring:1.2.2'
+    compile 'org.mybatis:mybatis-spring:1.3.0'
     //java ee jar 包
     compile 'javax:javaee-api:7.0'
     //Mysql数据库链接jar包
@@ -39,6 +41,9 @@ dependencies {
 //    compile files('lib/ojdbc6.jar')
     //dbcp的jar包，用来在applicationContext.xml中配置数据库
     compile 'commons-dbcp:commons-dbcp:1.2.2'
+    //PageHelper数据库分页
+    compile group: 'com.github.pagehelper', name: 'pagehelper', version: '5.1.4'
+    compile group: 'com.github.jsqlparser', name: 'jsqlparser', version: '0.9.5'
     //JSTL标签类
     compile 'jstl:jstl:1.2'
     //日志文件管理包
@@ -71,9 +76,7 @@ dependencies {
     compile group: 'org.apache.poi', name: 'poi', version: '3.15'
     compile group: 'org.apache.poi', name: 'poi-ooxml-schemas', version: '3.15'
     compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.15'
-    //PageHelper数据库分页
-    compile group: 'com.github.pagehelper', name: 'pagehelper', version: '5.1.8'
-    compile group: 'com.github.jsqlparser', name: 'jsqlparser', version: '0.9.5'
+
 }
 //配置generator的mysql配置文件
 def getDbProperties = {
