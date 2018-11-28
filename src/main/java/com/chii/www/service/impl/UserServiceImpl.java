@@ -73,8 +73,11 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public List<Teacher> getAllTeaInfo() {
-        return teacherMapper.selectAll();
+    public PageInfo<Teacher> getAllTeaInfo(PageBean pageBean) {
+        PageHelper.startPage(pageBean.getCurrent(), pageBean.getRowCount());
+        List<Teacher> teacher = teacherMapper.selectAll();
+        PageInfo<Teacher> pi = new PageInfo<>(teacher);
+        return pi;
     }
 
 //    @Override

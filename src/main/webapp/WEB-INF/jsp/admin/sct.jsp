@@ -49,7 +49,7 @@
             "tno": Tno,
             "grade": score
         };
-        post("<%=basePath%>admin/scoreupdate", body)
+        post("<%=basePath%>/admin/scoreupdate", body)
     }
     function delete_sct(Sno, Cno, Tno) {
         var body = {
@@ -57,7 +57,7 @@
             "cno": Cno,
             "tno": Tno
         };
-        post("<%=basePath%>admin/sctDelete", body)
+        post("<%=basePath%>/admin/sctDelete", body)
     }
 
     function post(URL, PARAMS) {

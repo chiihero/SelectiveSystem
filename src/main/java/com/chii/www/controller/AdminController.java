@@ -28,20 +28,9 @@ public class AdminController {
         return "admin/adminIndex";
     }
 
-    @RequestMapping("/studentadd")
-    public String studentaddUrl(Model model) {
-//        final Long STARTTIME = 201802011001L;
-//        for (int i = 0; i < 100; i++) {
-//            String sno = String.valueOf((STARTTIME + i));
-//            userService.insertStuInfo(InfoAdd.getStudent(sno,"文学大院"));
-//        }
-        model.addAttribute("departments", courseService.getAllDepartmentInfo());
-        return "admin/studentadd";
-    }
 
     @RequestMapping("/studentuser")
     public String studentuserUrl(Model model) {
-//        PageHelper.startPage(pageBean.getCurrent(), pageBean.getRowCount());
         model.addAttribute("departments", courseService.getAllDepartmentInfo());
 //        model.addAttribute("students",userService.getAllStuInfo(pageBean));
         return "admin/studentuser";
@@ -49,44 +38,88 @@ public class AdminController {
     @RequestMapping(value ="/AllStudentUser")
     @ResponseBody
     public PageBean AllStudentUser(PageBean page) {
+        if(page.getSdept().equals("AllDep")) {
+            page.setSdept(null);
+        }
         PageInfo<Student> pi = userService.getAllStuInfo(page);
         page.setCurrent(page.getCurrent());
         page.setRowCount(page.getRowCount());
         page.setRows(pi.getList());
-        page.setTotal((int) pi.getTotal());
+        page.setTotal(pi.getTotal());
         return page;
-
     }
+//    @RequestMapping("/studentadd")
+//    public String studentaddUrl(Model model) {
+////        final Long STARTTIME = 201802011001L;
+////        for (int i = 0; i < 100; i++) {
+////            String sno = String.valueOf((STARTTIME + i));
+////            userService.insertStuInfo(InfoAdd.getStudent(sno,"文学大院"));
+////        }
+//        model.addAttribute("departments", courseService.getAllDepartmentInfo());
+//        return "admin/studentadd";
+//    }
+//    @RequestMapping("/studentupdate")
+//    public String studentupdateUrl(String sno, Model model) {
+//        System.out.println(sno);
+//        model.addAttribute("student", userService.getStuInfoById(sno));
+//        return "admin/studentupdate";
+//    }
 
-    @RequestMapping("/studentupdate")
-    public String studentupdateUrl(String sno, Model model) {
-        System.out.println(sno);
-        model.addAttribute("student", userService.getStuInfoById(sno));
+    @RequestMapping("/StudentInfo")
+    public String StudentInfoUrl(String sno, Model model) {
+        if (sno==null){
+            model.addAttribute("mode", "insert");
+        }else{
+            System.out.println(sno);
+            model.addAttribute("student", userService.getStuInfoById(sno));
+            model.addAttribute("mode", "update");
+        }
         model.addAttribute("departments", courseService.getAllDepartmentInfo());
-        return "admin/studentupdate";
-    }
-
-    @RequestMapping("/teacheradd")
-    public String teacheraddUrl(Model model) {
-        model.addAttribute("courses", courseService.getAllCourseInfo());
-        return "admin/teacheradd";
+        return "Info/StudentInfo";
     }
 
     @RequestMapping("/teacheruser")
     public String teacheruserUrl(Model model) {
-        model.addAttribute("teachers", userService.getAllTeaInfo());
-        model.addAttribute("courses", courseService.getAllCourseInfo());
+//        model.addAttribute("teachers", userService.getAllTeaInfo());
+//        model.addAttribute("courses", courseService.getAllCourseInfo());
         return "admin/teacheruser";
     }
 
-    @RequestMapping("/teacherupdate")
-    public String teacherupdateUrl(String tno, Model model) {
-        System.out.println(tno);
-        model.addAttribute("teacher", userService.getTeaInfoById(tno));
-        model.addAttribute("courses", courseService.getAllCourseInfo());
-        return "admin/teacherupdate";
+    @RequestMapping(value ="/AllTeacherUser")
+    @ResponseBody
+    public PageBean AllTeacherUser(PageBean page) {
+        PageInfo<Teacher> pi = userService.getAllTeaInfo(page);
+        page.setCurrent(page.getCurrent());
+        page.setRowCount(page.getRowCount());
+        page.setRows(pi.getList());
+        page.setTotal(pi.getTotal());
+        return page;
     }
+//    @RequestMapping("/teacheradd")
+//    public String teacheraddUrl(Model model) {
+//        model.addAttribute("courses", courseService.getAllCourseInfo());
+//        return "admin/teacheradd";
+//    }
+//    @RequestMapping("/teacherupdate")
+//    public String teacherupdateUrl(String tno, Model model) {
+//        System.out.println(tno);
+//        model.addAttribute("teacher", userService.getTeaInfoById(tno));
+//        model.addAttribute("courses", courseService.getAllCourseInfo());
+//        return "admin/teacherupdate";
+//    }
 
+    @RequestMapping("/TeacherInfo")
+    public String TeacherInfoUrl(String tno, Model model) {
+        if (tno==null){
+            model.addAttribute("mode", "insert");
+        }else{
+            System.out.println(tno);
+            model.addAttribute("teacher", userService.getTeaInfoById(tno));
+            model.addAttribute("mode", "update");
+        }
+        model.addAttribute("courses", courseService.getAllCourseInfo());
+        return "Info/TeacherInfo";
+    }
     @RequestMapping("/userimport")
     public String userimportUrl() {
         return "admin/userimport";
@@ -146,7 +179,7 @@ public class AdminController {
 
     @RequestMapping("/departmentadd")
     public String departmentaddUrl(Model model) {
-        model.addAttribute("teachers", userService.getAllTeaInfo());
+        model.addAttribute("teachers", userService.getAllTeaInfo(null));
         return "/admin/departmentadd";
     }
 

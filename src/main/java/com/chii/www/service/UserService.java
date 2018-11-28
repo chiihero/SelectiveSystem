@@ -18,13 +18,9 @@ public interface UserService {
 
     PageInfo<Student> getAllStuInfo(PageBean pageBean);
 
-//    List<Student> getAllStuInfoList(PageBean page);
-
     Teacher getTeaInfoById(String userno);
 
-    List<Teacher> getAllTeaInfo();
-
-//    int getStuCount(String sdept);
+    PageInfo<Teacher> getAllTeaInfo(PageBean pageBean);
 
     Admin getAdminInfoById(String userno);
 

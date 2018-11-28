@@ -1,57 +1,61 @@
 <%--
   Created by IntelliJ IDEA.
   User: 85387
-  Date: 2018/10/22
-  Time: 10:39
+  Date: 2018/9/28
+  Time: 9:20
   To change this template use File | Settings | File Templates.
 --%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
-<%@include file="adminIndex.jsp" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@include file="../admin/adminIndex.jsp" %>
 <html>
 
 <body>
 <div class="container">
-    <h5><b>当前位置</b>：用户管理 > 修改学生</h5>
+    <h5><b>当前位置</b>：用户管理 >
+        <c:if test="${mode=='insert'}">添加学生</c:if>
+        <c:if test="${mode=='update'}">修改学生</c:if>
+    </h5>
     <hr>
-    <div class="userinfo col-12">
-        <form id="userinfo" action="/student/update" method="post">
+    <div class="useradd col-12">
+        <form id="useradd" action="/student/insert" method="post">
             <input type="hidden" name="type" value="1">
-            <input type="hidden" name="change" value="1">
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">学号:</span>
                 </div>
-                <input type="text" class="form-control col-4" id="sno" name="sno" readonly="readonly"
-                       value="${student.sno}">
+                <input type="text" class="form-control col-4" placeholder="学号" id="sno" name="sno">
                 <a id="no_text" style="color: #c82333"></a>
             </div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">姓名:</span>
                 </div>
-                <input type="text" class="form-control col-4" id="sname" name="sname" value="${student.sname}">
+                <input type="text" class="form-control col-4" placeholder="姓名" id="sname" name="sname">
                 <a id="name_text" style="color: #c82333"></a>
             </div>
+
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">性别:</span>
                 </div>
-                <%--<input type="hidden" id="sex" name="sex" value="${student.ssex}">--%>
-                <select name="ssex">
+                <%--<input type="text" class="form-control col-4" placeholder="性别" id="sex" name="sex">--%>
+                <select name="ssex" title="性别">
                     <option value="男">男</option>
                     <option value="女">女</option>
                 </select>
                 <a id="sex_text" style="color: #c82333"></a>
+
             </div>
+
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">年龄:</span>
                 </div>
-                <input type="text" class="form-control col-4" id="sage" name="sage" value="${student.sage}"
-                       oninput="value=value.replace(/[^\d]/g,'')">
+                <input type="text" class="form-control col-4" placeholder="年龄" id="sage" name="sage" oninput="value=value.replace(/[^\d]/g,'')">
                 <a id="age_text" style="color: #c82333"></a>
+
             </div>
+
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">系别:</span>
@@ -63,27 +67,43 @@
                 </select>
                 <a id="sdept_text" style="color: #c82333"></a>
             </div>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">密码:</span>
+            <c:if test="${mode=='update'}">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">密码:</span>
+                    </div>
+                    <input type="text" class="form-control col-4" placeholder="密码" id="password" name="password">
                 </div>
-                <input type="text" class="form-control col-4" placeholder="密码" id="password" name="password">
-            </div>
+            </c:if>
             <div style="padding-top: 15px">
-                <button type="submit" class="btn btn-primary" onclick="return check_studentdata()">修改</button>
+                <button type="submit" class="btn btn-primary" onclick="return check_studentdata()">添加</button>
                 <button type="reset" class="btn btn-warning">重置</button>
+                <a class="btn btn-primary" onclick="history.back();">返回到上一页</a>
             </div>
         </form>
     </div>
 </div>
 <script>
     $(document).ready(function () {
-        var sex = '${student.ssex}';
-        var sdept = '${student.sdept}';
-        $("select option[value='" + sex + "']").attr("selected", true);
-        $("select option[value='" + sdept + "']").attr("selected", true);
+        if (${mode=='update'})
+        {
+            $("form").attr("action","/student/update");//修改form表单地址
+            $(":submit").text("修改");
 
+            ////////////////////添加个人信息////////////////////
+            var sno = $("#sno");
+            var sname = $("#sname");
+            var sage = $("#sage");
 
+            sno.attr("readonly","readonly");
+            sno.val("${student.sno}");
+            sname.val("${student.sname}");
+            select_true('${student.ssex}');
+            sage.val("${student.sage}");
+            select_true('${student.sdept}');
+            ////////////////////////////////////////////
+
+        }
     })
 </script>
 </body>

@@ -1,4 +1,9 @@
 ﻿//1
+//根据value选择选择框选项
+function select_true(value) {
+    $("select option[value='" + value + "']").attr("selected", true);
+}
+
 function check_studentdata() {
     var no = $('#sno');
     var name = $('#sname');

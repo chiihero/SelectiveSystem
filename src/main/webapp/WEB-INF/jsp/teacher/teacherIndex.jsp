@@ -39,7 +39,7 @@
     <%--}--%>
     <%--%>--%>
     <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-        <a class="navbar-brand" href="<%=basePath%>teacher/teacherIndex">首页</a>
+        <a class="navbar-brand" href="<%=basePath%>/teacher/teacherIndex">首页</a>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#collapsedNav">
             <span class="fa fa-align-justify"></span><%--待修改--%>
         </button>
@@ -51,24 +51,24 @@
                        aria-expanded="false">个人信息 <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li class="dropdown-item"><a
-                                href="<%=basePath%>teacher/changepasswd">密码修改</a></li>
+                                href="<%=basePath%>/teacher/changepasswd">密码修改</a></li>
                         <li class="dropdown-item"><a
-                                href="<%=basePath%>teacher/changeinfo">个人信息修改</a></li>
+                                href="<%=basePath%>/teacher/changeinfo">个人信息修改</a></li>
                     </ul>
                 </li>
                 <%--<li class="nav-item dropdown">--%>
                     <%--<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"--%>
                        <%--aria-haspopup="true" aria-expanded="false">课程管理 <span class="caret"></span></a>--%>
                     <%--<ul class="dropdown-menu">--%>
-                        <%--<li class="dropdown-item"><a href="<%=basePath%>teacher/courceadd">添加课程</a></li>--%>
-                        <%--<li class="dropdown-item"><a href="<%=basePath%>teacher/cource">课程管理</a></li>--%>
+                        <%--<li class="dropdown-item"><a href="<%=basePath%>/teacher/courceadd">添加课程</a></li>--%>
+                        <%--<li class="dropdown-item"><a href="<%=basePath%>/teacher/cource">课程管理</a></li>--%>
                     <%--</ul>--%>
                 <%--</li>--%>
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
                        aria-haspopup="true" aria-expanded="false">学生信息管理 <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li class="dropdown-item"><a href="<%=basePath%>teacher/studentuser">学生与成绩管理</a></li>
+                        <li class="dropdown-item"><a href="<%=basePath%>/teacher/studentuser">学生与成绩管理</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
