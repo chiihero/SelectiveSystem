@@ -5,8 +5,17 @@
   Time: 9:20
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="../admin/adminIndex.jsp" %>
+<%--默认admin用户--%>
+<c:set var="IndexUrl" value="../admin/adminIndex.jsp"/>
+<c:if test="${role=='student'}">
+    <c:set var="IndexUrl" value="../student/studentIndex.jsp"/>
+</c:if>
+<%--动态include--%>
+<jsp:include page="${IndexUrl}" flush="true"/>
+<%--<%@include file="../student/studentIndex.jsp" %>--%>
+
 <html>
 
 <body>
@@ -39,7 +48,7 @@
                     <span class="input-group-text">性别:</span>
                 </div>
                 <%--<input type="text" class="form-control col-4" placeholder="性别" id="sex" name="sex">--%>
-                <select name="ssex" title="性别">
+                <select id="ssex" name="ssex" title="性别">
                     <option value="男">男</option>
                     <option value="女">女</option>
                 </select>
@@ -60,14 +69,14 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text">系别:</span>
                 </div>
-                <select name="sdept">
+                <select id="sdept" name="sdept">
                     <c:forEach items="${departments}" var="department">
                         <option value="${department.dname}">${department.dname}</option>
                     </c:forEach>
                 </select>
                 <a id="sdept_text" style="color: #c82333"></a>
             </div>
-            <c:if test="${mode=='update'}">
+            <c:if test="${mode=='update'&& role=='admin'}">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text">密码:</span>
@@ -89,7 +98,6 @@
         {
             $("form").attr("action","/student/update");//修改form表单地址
             $(":submit").text("修改");
-
             ////////////////////添加个人信息////////////////////
             var sno = $("#sno");
             var sname = $("#sname");
@@ -102,7 +110,10 @@
             sage.val("${student.sage}");
             select_true('${student.sdept}');
             ////////////////////////////////////////////
-
+            //权限
+            if(${role=='student'}){
+                $("#sdept").attr("disabled",true);
+            }
         }
     })
 </script>

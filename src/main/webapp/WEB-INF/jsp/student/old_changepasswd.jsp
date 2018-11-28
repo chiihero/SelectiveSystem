@@ -6,16 +6,15 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="teacherIndex.jsp" %>
+<%@include file="studentIndex.jsp" %>
 <html>
 <div class="container">
     <h5><b>当前位置</b>：个人信息 > 密码修改</h5>
     <hr>
-    <div class="changepasswd">
-        <form action="/passwdUpdate" method="post">
+    <div class="changepassword">
+        <form action="/passwordUpdate" method="post">
             <input type="hidden" name="id" value=${sessionScope.username}>
-            <input type="hidden" name="type" value="2">
-
+            <input type="hidden" name="type" value="1">
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">旧密码:</span>
@@ -50,5 +49,4 @@
         </form>
     </div>
 </div>
-
 </html>

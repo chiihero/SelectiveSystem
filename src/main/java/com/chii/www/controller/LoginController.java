@@ -55,51 +55,49 @@ public class LoginController {
                     return "redirect:/admin/adminIndex";
                 default:
                     model.addAttribute("error", "请选择用户类型");
-
             }
         }
         System.out.println("error!!!!!!!!!!!!!!!!!!!!");
         return "redirect:/login";
     }
 
-    @RequestMapping("/passwdUpdate")
-    public String passwdUpdate(String userno, String old_password, String new_password, String type) {
-        String oldPad = old_password;
-        String getpass = old_password;
-        oldPad = SafeCode.PasswordHash(old_password, userno);
-        switch (type) {//根据用户类型转跳到不同view
+    @RequestMapping("/PasswordUpdate")
+    public String passwordUpdate(User user) {
+        String oldpassword,getpass;
+        oldpassword = SafeCode.PasswordHash(user.getPassword(), user.getUsername());
+        switch (user.getType()) {//根据用户类型转跳到不同view
             case "1":
-                getpass = userService.getStuInfoById(userno).getPassword();//获取数据库密码
-                if (oldPad.equals(getpass)) {//加密完成的密码与数据库密码对比
-                    String newPad = SafeCode.PasswordHash(new_password, userno);
+                getpass = userService.getStuInfoById(user.getUsername()).getPassword();//获取数据库密码
+                if (oldpassword.equals(getpass)) {//加密完成的密码与数据库密码对比
+                    String newPad = SafeCode.PasswordHash(user.getNewpassword(), user.getUsername());
                     Student student = new Student();
-                    student.setSno(userno);
+                    student.setSno(user.getUsername());
                     student.setPassword(newPad);
                     userService.updateStuLoginPass(student);
                 }
                 break;
             case "2":
-                getpass = userService.getTeaInfoById(userno).getPassword();//获取数据库密码
-                if (oldPad.equals(getpass)) {//加密完成的密码与数据库密码对比
-                    String newPad = SafeCode.PasswordHash(new_password, userno);
+                getpass = userService.getTeaInfoById(user.getUsername()).getPassword();//获取数据库密码
+                if (oldpassword.equals(getpass)) {//加密完成的密码与数据库密码对比
+                    String newPad = SafeCode.PasswordHash(user.getNewpassword(), user.getUsername());
                     Teacher teacher = new Teacher();
-                    teacher.setTno(userno);
+                    teacher.setTno(user.getUsername());
                     teacher.setPassword(newPad);
                     userService.updateTeaLoginPass(teacher);
                 }
                 break;
             case "3":
-                getpass = userService.getAdminInfoById(userno).getPassword();//获取数据库密码
-                if (oldPad.equals(getpass)) {//加密完成的密码与数据库密码对比
-                    String newPad = SafeCode.PasswordHash(new_password, userno);
+                getpass = userService.getAdminInfoById(user.getUsername()).getPassword();//获取数据库密码
+                if (oldpassword.equals(getpass)) {//加密完成的密码与数据库密码对比
+                    String newPad = SafeCode.PasswordHash(user.getNewpassword(), user.getUsername());
                     Admin admin = new Admin();
-                    admin.setAno(userno);
+                    admin.setAno(user.getUsername());
                     admin.setPassword(newPad);
                     userService.updateAdmLoginPass(admin);
                 }
                 break;
         }
-        return "redirect:login";
+        return "redirect:/login/index";
     }
 
     @RequestMapping("/logout")

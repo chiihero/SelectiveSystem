@@ -28,22 +28,35 @@ public class StudentController {
         return "student/studentIndex";
     }
 
-    @RequestMapping("/changeinfo")
-    public String changeinfoUrl(@ModelAttribute("msg") String msg,@ModelAttribute("username") String sno,Model model) {
-        if (!msg.isEmpty()) model.addAttribute("msg", msg);
+//    @RequestMapping("/changeinfo")
+//    public String changeinfoUrl(@ModelAttribute("msg") String msg,@ModelAttribute("username") String sno,Model model) {
+//        if (!msg.isEmpty()) model.addAttribute("msg", msg);
+//        System.out.println(sno);
+//        model.addAttribute("student", userService.getStuInfoById(sno));
+//        model.addAttribute("departments", courseService.getAllDepartmentInfo());
+//        return "student/changeinfo";
+//    }
+    @RequestMapping("/StudentInfo")
+    public String StudentInfoUrl(@ModelAttribute("username") String sno,Model model) {
         System.out.println(sno);
         model.addAttribute("student", userService.getStuInfoById(sno));
         model.addAttribute("departments", courseService.getAllDepartmentInfo());
-        return "student/changeinfo";
+        model.addAttribute("mode", "update");
+        model.addAttribute("role", "student");
+        return "Info/StudentInfo";
     }
-
-    @RequestMapping("/changepasswd")
-    public String changepasswdUrl(@ModelAttribute("username") String sno, Model model) {
-        System.out.println(sno);
-        model.addAttribute("userno", sno);
-        return "student/changepasswd";
+//    @RequestMapping("/changepassword")
+//    public String changepasswordUrl(@ModelAttribute("username") String sno, Model model) {
+//        System.out.println(sno);
+//        model.addAttribute("userno", sno);
+//        return "student/changepassword";
+//    }
+    @RequestMapping("/ChangePassword")
+    public String ChangePasswordUrl(@ModelAttribute("username") String tno, Model model) {
+        model.addAttribute("role", "student");
+        model.addAttribute("userno", tno);
+        return "Info/ChangePassword";
     }
-
     @RequestMapping("/course")
     public String courseUrl(Model model) {
         model.addAttribute("courselist", courseService.getAllInfo());

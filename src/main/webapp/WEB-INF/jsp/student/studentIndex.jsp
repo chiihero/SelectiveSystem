@@ -6,7 +6,7 @@
 <html>
 <%
     String path = request.getContextPath();
-    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path ;
 %>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -49,10 +49,10 @@
                        aria-haspopup="true" aria-expanded="false">个人信息 <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li class="dropdown-item"><a
-                                href="<%=basePath%>/student/changepasswd">密码修改</a>
+                                href="<%=basePath%>/student/ChangePassword">密码修改</a>
                         </li>
                         <li class="dropdown-item"><a
-                                href="<%=basePath%>/student/changeinfo">个人信息修改</a>
+                                href="<%=basePath%>/student/StudentInfo">个人信息修改</a>
                         </li>
                     </ul>
                 </li>
@@ -66,7 +66,7 @@
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
-                    <a href="<%=basePath%>login/logout" class="nav-link" role="button">退出 </a>
+                    <a href="<%=basePath%>/login/logout" class="nav-link" role="button">退出 </a>
                 </li>
             </ul>
         </div>

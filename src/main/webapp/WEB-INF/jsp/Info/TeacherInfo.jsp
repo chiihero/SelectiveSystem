@@ -5,9 +5,15 @@
   Time: 10:23
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="../admin/adminIndex.jsp" %>
-
+<%--默认admin用户--%>
+<c:set var="IndexUrl" value="../admin/adminIndex.jsp"/>
+<c:if test="${role=='teacher'}">
+    <c:set var="IndexUrl" value="../teacher/teacherIndex.jsp"/>
+</c:if>
+<%--动态include--%>
+<jsp:include page="${IndexUrl}" flush="true"/>
 <html>
 <head>
     <title></title>
@@ -56,7 +62,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text">学历:</span>
                 </div>
-                <select name="teb" title="学历">
+                <select id="teb" name="teb" title="学历">
                     <option value="学士">学士</option>
                     <option value="硕士">硕士</option>
                     <option value="博士">博士</option>
@@ -67,7 +73,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text">职称:</span>
                 </div>
-                <select name="tpt" title="职称">
+                <select id="tpt" name="tpt" title="职称">
                     <option value="助教">助教</option>
                     <option value="讲师">讲师</option>
                     <option value="副教授">副教授</option>
@@ -107,7 +113,7 @@
                     </c:forEach>
                 </select>
             </div>
-            <c:if test="${mode=='update'}">
+            <c:if test="${mode=='update'&& role=='admin'}}">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text">密码:</span>
@@ -149,6 +155,13 @@
             var cno3 = '${teacher.cno3}';
             $("#cno3 option[value='" + cno3 + "']").attr("selected", true);
             ////////////////////////////////////////////
+            //权限
+
+            if(${role=='teacher'}){
+                $("#teb").attr("disabled",true);
+                $("#tpt").attr("disabled",true);
+            }
+
         }
     });
 

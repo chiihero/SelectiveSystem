@@ -28,20 +28,33 @@ public class TeacherController {
         return "teacher/teacherIndex";
     }
 
-    @RequestMapping("/changeinfo")
-    public String changeinfoUrl(@ModelAttribute("msg") String msg,@ModelAttribute("username") String tno, Model model) {
-        if (!msg.isEmpty()) model.addAttribute("msg", msg);
-//        System.out.println(userno);
-        model.addAttribute("teacher", userService.getTeaInfoById(tno));
-        model.addAttribute("courses", courseService.getAllCourseInfo());
-        return "teacher/changeinfo";
-    }
-
-    @RequestMapping("/changepasswd")
-    public String changepasswdUrl(@ModelAttribute("username") String tno, Model model) {
-
+//    @RequestMapping("/changeinfo")
+//    public String changeinfoUrl(@ModelAttribute("msg") String msg,@ModelAttribute("username") String tno, Model model) {
+//        if (!msg.isEmpty()) model.addAttribute("msg", msg);
+////        System.out.println(userno);
+//        model.addAttribute("teacher", userService.getTeaInfoById(tno));
+//        model.addAttribute("courses", courseService.getAllCourseInfo());
+//        return "teacher/changeinfo";
+//    }
+@RequestMapping("/TeacherInfo")
+public String TeacherInfoUrl(@ModelAttribute("username") String tno, Model model) {
+    System.out.println(tno);
+    model.addAttribute("teacher", userService.getTeaInfoById(tno));
+    model.addAttribute("mode", "update");
+    model.addAttribute("role", "teacher");
+    model.addAttribute("courses", courseService.getAllCourseInfo());
+    return "Info/TeacherInfo";
+}
+//    @RequestMapping("/changepassword")
+//    public String changepasswordUrl(@ModelAttribute("username") String tno, Model model) {
+//        model.addAttribute("userno", tno);
+//        return "teacher/changepassword";
+//    }
+    @RequestMapping("/ChangePassword")
+    public String ChangePasswordUrl(@ModelAttribute("username") String tno, Model model) {
+        model.addAttribute("role", "teacher");
         model.addAttribute("userno", tno);
-        return "teacher/changepasswd";
+        return "Info/ChangePassword";
     }
 
     @RequestMapping("/studentuser")

@@ -4,6 +4,7 @@ public class User {
     private String username;
 
     private String password;
+    private String newpassword;
 
     private String type;
 
@@ -23,6 +24,13 @@ public class User {
         this.password = password == null ? null : password.trim();
     }
 
+    public String getNewpassword() {
+        return newpassword;
+    }
+
+    public void setNewpassword(String newpassword) {
+        this.newpassword = newpassword == null ? null : newpassword.trim();
+    }
     public String getType() {
         return type;
     }
