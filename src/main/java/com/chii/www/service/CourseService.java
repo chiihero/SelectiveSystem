@@ -1,9 +1,7 @@
 package com.chii.www.service;
 
-import com.chii.www.pojo.Course;
-import com.chii.www.pojo.CourseList;
-import com.chii.www.pojo.Department;
-import com.chii.www.pojo.Sct;
+import com.chii.www.pojo.*;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
@@ -19,6 +17,8 @@ public interface CourseService {
     List<Sct> getAllSctInfo();
 
     List<CourseList> getAllInfo();
+
+    PageInfo<CourseList> getAllCourseListInfo(PageBean pageBean);
 
     List<Sct> getSctInfoByTeaId(String userno);
 

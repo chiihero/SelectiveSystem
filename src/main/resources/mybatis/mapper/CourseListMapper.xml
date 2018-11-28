@@ -24,6 +24,8 @@
         teacher
         INNER JOIN course ON teacher.cno1 = teacher.cno1 OR teacher.cno2 = course.cno OR teacher.cno3 = course.cno
         LEFT JOIN sct ON teacher.tno = sct.tno AND course.cno = sct.cno
+        WHERE
+        course.cname <![CDATA[ <> ]]>'无'
         GROUP BY
         course.cname,
         teacher.tname,

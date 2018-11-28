@@ -23,7 +23,10 @@
     <!-- 新 Bootstrap4 核心 CSS 文件 -->
     <link rel="stylesheet" href="<%=basePath%>/css/bootstrap/bootstrap.min.css">
     <link href="<%=basePath%>/css/nindex.css" rel="stylesheet">
-
+    <%--分页--%>
+    <link href="<%=basePath%>/css/bootgrid/jquery.bootgrid.css" rel="stylesheet">
+    <script src="<%=basePath%>/js/bootgrid/jquery.bootgrid.fa.js" type="text/javascript"></script>
+    <script src="<%=basePath%>/js/bootgrid/jquery.bootgrid.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -31,12 +34,6 @@
     <div class="page-header">
         <h2>选课管理信息系统-${sessionScope.username}</h2>
     </div>
-
-    <%--<%--%>
-    <%--if (session.getAttribute("currentUser") == null) {--%>
-    <%--response.sendRedirect("../adminIndex");--%>
-    <%--}--%>
-    <%--%>--%>
     <nav class="navbar navbar-expand-md bg-dark navbar-dark">
         <a class="navbar-brand" href="<%=basePath%>/student/studentIndex">首页</a>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#collapsedNav">

@@ -1,15 +1,16 @@
 package com.chii.www.controller;
 
 import com.chii.www.Tool.SafeCode;
-import com.chii.www.pojo.Sct;
-import com.chii.www.pojo.Student;
+import com.chii.www.pojo.*;
 import com.chii.www.service.CourseService;
 import com.chii.www.service.UserService;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -58,11 +59,21 @@ public class StudentController {
         return "Info/ChangePassword";
     }
     @RequestMapping("/course")
-    public String courseUrl(Model model) {
+    public String courseUrl(@ModelAttribute("username") String sno,Model model) {
         model.addAttribute("courselist", courseService.getAllInfo());
+        model.addAttribute("scts", courseService.getSctInfoByStuId(sno));
         return "student/course";
     }
-
+    @RequestMapping(value ="/AllCourse")
+    @ResponseBody
+    public PageBean AllCourse(PageBean page) {
+        PageInfo<CourseList> pi = courseService.getAllCourseListInfo(page);
+        page.setCurrent(page.getCurrent());
+        page.setRowCount(page.getRowCount());
+        page.setRows(pi.getList());
+        page.setTotal(pi.getTotal());
+        return page;
+    }
     @RequestMapping("/score")
     public String scoreUrl(@ModelAttribute("username") String sno, Model model) {
         model.addAttribute("scts", courseService.getSctInfoByStuId(sno));

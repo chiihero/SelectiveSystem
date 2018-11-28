@@ -4,11 +4,10 @@ import com.chii.www.mapper.CourseListMapper;
 import com.chii.www.mapper.CourseMapper;
 import com.chii.www.mapper.DepartmentMapper;
 import com.chii.www.mapper.SctMapper;
-import com.chii.www.pojo.Course;
-import com.chii.www.pojo.CourseList;
-import com.chii.www.pojo.Department;
-import com.chii.www.pojo.Sct;
+import com.chii.www.pojo.*;
 import com.chii.www.service.CourseService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,6 +47,15 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public List<CourseList> getAllInfo() { return courseListMapper.selectAll(); }
+
+    @Override
+    public PageInfo<CourseList> getAllCourseListInfo(PageBean pageBean) {
+        PageHelper.startPage(pageBean.getCurrent(), pageBean.getRowCount());
+        List<CourseList> students = courseListMapper.selectAll();
+        PageInfo<CourseList> pi = new PageInfo<>(students);
+        return pi;
+
+    }
 
     public List<Sct> getSctInfoByTeaId(String userno) {
         return sctMapper.selectByTno(userno);
