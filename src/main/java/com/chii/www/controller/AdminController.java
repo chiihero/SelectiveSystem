@@ -195,7 +195,7 @@ public class AdminController {
 
     @RequestMapping("/departmentadd")
     public String departmentaddUrl(Model model) {
-        model.addAttribute("teachers", userService.getAllTeaInfo(null));
+//        model.addAttribute("teachers", userService.getAllTeaInfo(null));
         return "/admin/departmentadd";
     }
 
