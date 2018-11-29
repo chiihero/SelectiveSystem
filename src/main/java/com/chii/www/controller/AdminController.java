@@ -43,9 +43,6 @@ public class AdminController {
     @RequestMapping(value ="/AllStudentUser")
     @ResponseBody
     public PageBean AllStudentUser(PageBean page) {
-        if(page.getSdept().equals("AllDep")) {
-            page.setSdept(null);
-        }
         PageInfo<Student> pi = userService.getAllStuInfo(page);
         page.setCurrent(page.getCurrent());
         page.setRowCount(page.getRowCount());
@@ -79,8 +76,7 @@ public class AdminController {
             model.addAttribute("student", userService.getStuInfoById(sno));
             model.addAttribute("mode", "update");
         }
-//        model.addAttribute("role", "admin");
-        model.addAttribute("departments", courseService.getAllDepartmentInfo());
+//        model.addAttribute("departments", courseService.getAllDepartmentInfo());
         return "Info/StudentInfo";
     }
 
@@ -219,8 +215,11 @@ public class AdminController {
     @RequestMapping("/exportStu")
     public void export(HttpServletResponse response) throws Exception{
         InputStream is=userService.getInputStream();
-        response.setContentType("application/vnd.ms-excel;charset=UTF-8");
-        response.setHeader("contentDisposition", "attachment;filename=AllUsers.xls");
+        response.setContentType("application/vnd.ms-excel;charset=UTF-8");//设置浏览器以何种方式编码输入流
+        response.setCharacterEncoding("UTF-8");//设置输出流的编码方式
+        response.setHeader("Content-Disposition", "attachment;filename=student.xls");//设置content-disposition响应头控制浏览器以下载的形式打开文件
+        response.addHeader("Pargam", "no-cache");
+        response.addHeader("Cache-Control", "no-cache");
         ServletOutputStream output = response.getOutputStream();
         IOUtils.copy(is,output);
     }

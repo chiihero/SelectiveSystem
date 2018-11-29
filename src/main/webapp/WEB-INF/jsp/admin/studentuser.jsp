@@ -20,12 +20,12 @@
         </div>
     </div>
     <hr>
-    <select id="sdept">
-        <option id="AllDep" value="sdept" selected="selected">全部学生</option>
-        <c:forEach items="${departments}" var="department">
-            <option id="${department.dname}" value="sdept">${department.dname}</option>
-        </c:forEach>
-    </select>
+    <%--<select id="sdept">--%>
+        <%--<option id="AllDep" value="sdept" selected="selected">全部学生</option>--%>
+        <%--<c:forEach items="${departments}" var="department">--%>
+            <%--<option id="${department.dname}" value="sdept">${department.dname}</option>--%>
+        <%--</c:forEach>--%>
+    <%--</select>--%>
     <table id="grid-data" class="table table-condensed table-hover table-striped">
             <thead>
             <tr>
@@ -55,10 +55,10 @@
 </div>
 <script typeof="text/javascript">
     $(document).ready(function () {
-        var sdept_id="AllDep";
-        $("select option[value='sdept']").click(function () {
-            sdept_id = $(this).attr('id');
-        });
+        // var sdept_id="AllDep";
+        // $("select option[value='sdept']").click(function () {
+        //     sdept_id = $(this).attr('id');
+        // });
         //
         $("#grid-data").bootgrid({
             ajax: true,
@@ -66,7 +66,7 @@
             {
                 /* To accumulate custom parameter with the request object */
                 return {
-                        sdept:sdept_id
+                        // sdept:sdept_id
                         // id: "b0df282a-0d67-40e5-8558-c9e93b7befed"
                 };
             },

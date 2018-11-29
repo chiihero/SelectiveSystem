@@ -4,24 +4,19 @@ import java.util.List;
 
 public class PageBean<T> {
     //属性
-    private String sdept;
     private String searchPhrase;
     private int current = 1;//当前页
     private int rowCount = 10;//每页大小
     private long total;//总行数
     private List<Student> rows;
 
-    public String getSdept() {
-        return sdept;
-    }
-
-    public void setSdept(String sdept) {
-        this.sdept = sdept;
-    }
     public String getSearchPhrase() {
         return searchPhrase;
     }
     public void setSearchPhrase(String searchPhrase) {
+        if (searchPhrase.equals("")){
+            searchPhrase=null;
+        }
         this.searchPhrase = searchPhrase;
     }
     public int getCurrent() {

@@ -36,22 +36,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public PageInfo<Student> getAllStuInfo(PageBean pageBean) {
+
         PageHelper.startPage(pageBean.getCurrent(), pageBean.getRowCount());
-        List<Student> students = studentMapper.selectAll(pageBean.getSdept());
+        List<Student> students = studentMapper.selectAll(pageBean.getSearchPhrase());
         PageInfo<Student> pi = new PageInfo<>(students);
         return pi;
     }
-
-//    @Override
-//    public List<Student> getAllStuInfoList(PageBean page) {
-//        return studentMapper.selectAllList(page);
-//    }
 
     @Override
     public List<Student> getAllStuInfoByTeaId(String userno) {
         return studentMapper.selectAllByTeaKey(userno);
     }
-
 
     @Override
     public Teacher getTeaInfoById(String userno) {
@@ -66,7 +61,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateTeaLoginPass(Teacher teacher) {
         teacherMapper.updateByPrimaryKeySelective(teacher);
-
     }
 
     @Override
@@ -82,11 +76,6 @@ public class UserServiceImpl implements UserService {
         PageInfo<Teacher> pi = new PageInfo<>(teacher);
         return pi;
     }
-
-//    @Override
-//    public int getStuCount(String sdept) {
-//        return studentMapper.selectAllCount(sdept);
-//    }
 
     @Override
     public Admin getAdminInfoById(String userno) {

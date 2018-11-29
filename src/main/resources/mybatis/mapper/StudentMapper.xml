@@ -19,7 +19,7 @@
         from student
         <where>
             <if test="_parameter != null">
-                sdept = #{_parameter}
+                CONCAT(sno,sname,sdept) LIKE CONCAT('%',#{_parameter},'%')
             </if>
         </where>
     </select>

@@ -1,9 +1,6 @@
 package com.chii.www.mapper;
 
-import com.chii.www.pojo.PageBean;
 import com.chii.www.pojo.Student;
-import com.github.pagehelper.Page;
-
 import java.util.List;
 
 public interface StudentMapper {
@@ -13,11 +10,7 @@ public interface StudentMapper {
 
     int insertSelective(Student record);
 
-    List<Student> selectAll(String sdept);
-
-//    int selectAllCount(String sdept);
-
-//    List<Student> selectAllList(PageBean page);
+    List<Student> selectAll(String search);
 
     List<Student> selectAllByTeaKey(String tno);
 
