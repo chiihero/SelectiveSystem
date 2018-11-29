@@ -8,6 +8,7 @@ import com.chii.www.pojo.Teacher;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 
+import java.io.InputStream;
 import java.util.List;
 
 public interface UserService {
@@ -36,13 +37,13 @@ public interface UserService {
 
     void deleteStuInfo(String userno);
 
-
     void insertTeaInfo(Teacher teacher);
 
     void updateTeaInfo(Teacher teacher);
 
     void dateleTeaInfo(String userno);
 
+    InputStream getInputStream() throws Exception;
 
 
 }

@@ -4,11 +4,16 @@ import com.chii.www.pojo.*;
 import com.chii.www.service.CourseService;
 import com.chii.www.service.UserService;
 import com.github.pagehelper.PageInfo;
+import org.apache.commons.io.IOUtils;
 import org.apache.log4j.BasicConfigurator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+import java.io.InputStream;
 
 @Controller
 @RequestMapping("admin")
@@ -211,4 +216,13 @@ public class AdminController {
         courseService.deleteDepartmentInfo(cno);
         return "redirect:/admin/department";
     }
+    @RequestMapping("/exportStu")
+    public void export(HttpServletResponse response) throws Exception{
+        InputStream is=userService.getInputStream();
+        response.setContentType("application/vnd.ms-excel;charset=UTF-8");
+        response.setHeader("contentDisposition", "attachment;filename=AllUsers.xls");
+        ServletOutputStream output = response.getOutputStream();
+        IOUtils.copy(is,output);
+    }
+
 }

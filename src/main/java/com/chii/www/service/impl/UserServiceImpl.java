@@ -3,6 +3,7 @@ package com.chii.www.service.impl;
 import com.chii.www.mapper.AdminMapper;
 import com.chii.www.mapper.StudentMapper;
 import com.chii.www.mapper.TeacherMapper;
+import com.chii.www.poi.WriteExcel;
 import com.chii.www.pojo.Admin;
 import com.chii.www.pojo.PageBean;
 import com.chii.www.pojo.Student;
@@ -14,6 +15,8 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service("userService")
@@ -118,5 +121,21 @@ public class UserServiceImpl implements UserService {
     public void dateleTeaInfo(String userno) {
         teacherMapper.deleteByPrimaryKey(userno);
     }
-
+    public InputStream getInputStream() throws Exception {
+        String[] title=new String[]{"学号","姓名","年龄","专业"};
+        List<Student> plist=studentMapper.selectAll(null);
+        List<Object[]>  dataList = new ArrayList<Object[]>();
+        for (Student aPlist : plist) {
+            Object[] obj = new Object[4];
+            obj[0] = aPlist.getSno();
+            obj[1] = aPlist.getSname();
+            obj[2] = aPlist.getSage();
+            obj[3] = aPlist.getSdept();
+            dataList.add(obj);
+        }
+        WriteExcel ex = new WriteExcel(title, dataList);
+        InputStream in;
+        in = ex.export();
+        return in;
+    }
 }

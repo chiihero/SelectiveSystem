@@ -8,15 +8,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="adminIndex.jsp" %>
-<html>
 
-<body>
 <div class="container">
+
     <div class="row">
-        <div class="col-md-10">
-            <h5><b>当前位置</b>：用户管理 > 所有学生</h5>
-        </div>
-        <div class="col-md-2">
+        <div class="col-md-12">
+            <h2><b>当前位置</b>：用户管理 > 所有学生</h2>
+
+            <a class="btn btn-primary" href="/admin/exportStu">导出数据为excel</a>
             <button class="btn btn-info" onclick="window.location.href='<%=basePath%>/admin/StudentInfo'">添加学生</button>
         </div>
     </div>
@@ -54,7 +53,6 @@
             <%--</tbody>--%>
         </table>
 </div>
-
 <script typeof="text/javascript">
     $(document).ready(function () {
         var sdept_id="AllDep";
@@ -80,10 +78,6 @@
                 }
             }
         });
-
-
     });
-
 </script>
-</body>
-</html>
+
