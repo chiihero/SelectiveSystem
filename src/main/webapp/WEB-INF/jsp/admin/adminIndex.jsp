@@ -79,7 +79,7 @@
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
                        aria-haspopup="true" aria-expanded="false">学生信息管理 <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li class="dropdown-item"><a href="<%=basePath%>/admin/sct">学生选课与成绩管理</a></li>
+                        <li class="dropdown-item"><a href="<%=basePath%>/admin/score">学生选课与成绩管理</a></li>
                         <%--<li class="dropdown-item"><a href="<%=basePath%>/admin/score">学生成绩管理</a></li>--%>
                     </ul>
                 </li>

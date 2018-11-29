@@ -22,7 +22,11 @@ public class TeacherController {
     private UserService userService;
     @Autowired
     private CourseService courseService;
-
+    @ModelAttribute
+    private void addAttributes(Model model)
+    {
+        model.addAttribute("role", "teacher");
+    }
     @RequestMapping("/teacherIndex")
     public String teacherUrl() {
         return "teacher/teacherIndex";
@@ -41,7 +45,7 @@ public String TeacherInfoUrl(@ModelAttribute("username") String tno, Model model
     System.out.println(tno);
     model.addAttribute("teacher", userService.getTeaInfoById(tno));
     model.addAttribute("mode", "update");
-    model.addAttribute("role", "teacher");
+//    model.addAttribute("role", "teacher");
     model.addAttribute("courses", courseService.getAllCourseInfo());
     return "Info/TeacherInfo";
 }
@@ -52,7 +56,7 @@ public String TeacherInfoUrl(@ModelAttribute("username") String tno, Model model
 //    }
     @RequestMapping("/ChangePassword")
     public String ChangePasswordUrl(@ModelAttribute("username") String tno, Model model) {
-        model.addAttribute("role", "teacher");
+//        model.addAttribute("role", "teacher");
         model.addAttribute("userno", tno);
         return "Info/ChangePassword";
     }
@@ -76,7 +80,7 @@ public String TeacherInfoUrl(@ModelAttribute("username") String tno, Model model
         if (returnURL.contains("admin")){
             return "redirect:/admin/teacheruser";
         }else {
-            return "redirect:/teacher/changeinfo";
+            return "redirect:/teacher/TeacherInfo";
         }
     }
 

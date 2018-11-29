@@ -22,7 +22,6 @@
     <link href="<%=basePath%>/css/bootstrap/bootstrap.min.css" rel="stylesheet">
     <link href="<%=basePath%>/css/bootstrap/bootstrap-select.min.css" rel="stylesheet">
     <link href="<%=basePath%>/css/index.css" rel="stylesheet">
-    <link rel="stylesheet" href="<%=basePath%>/css/font-awesome.min.css">
 </head>
 <body>
 <!-- 两个输入框 -->

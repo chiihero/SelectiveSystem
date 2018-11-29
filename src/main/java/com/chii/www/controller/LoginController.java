@@ -100,9 +100,9 @@ public class LoginController {
         return "redirect:/login/index";
     }
 
-    @RequestMapping("/logout")
-    public String exit(HttpServletRequest request) {
-        request.getSession().invalidate();
-        return "redirect:/login/index";
-    }
+//    @RequestMapping("/logout")
+//    public String exit(HttpServletRequest request) {
+//        request.getSession().invalidate();
+//        return "redirect:/login/index";
+//    }
 }

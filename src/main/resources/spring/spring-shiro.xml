@@ -92,8 +92,8 @@
             <value>
                 /index.jsp = authc
                 /login/signIn = anon
-                /login/logout = anon
-                /login = logout
+                /login/logout = logout
+                /login/index = logout
                 <!--/admin/** = roles[admin]-->
                 <!--/teacher/** = roles[teacher]-->
                 <!--/student/** = roles[student]-->

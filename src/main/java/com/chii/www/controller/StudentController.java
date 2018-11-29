@@ -24,6 +24,12 @@ public class StudentController {
     private UserService userService;
     @Autowired
     private CourseService courseService;
+
+    @ModelAttribute
+    private void addAttributes(Model model)
+    {
+        model.addAttribute("role", "student");
+    }
     @RequestMapping("/studentIndex")
     public String studentUrl() {
         return "student/studentIndex";
@@ -43,7 +49,6 @@ public class StudentController {
         model.addAttribute("student", userService.getStuInfoById(sno));
         model.addAttribute("departments", courseService.getAllDepartmentInfo());
         model.addAttribute("mode", "update");
-        model.addAttribute("role", "student");
         return "Info/StudentInfo";
     }
 //    @RequestMapping("/changepassword")
@@ -54,14 +59,13 @@ public class StudentController {
 //    }
     @RequestMapping("/ChangePassword")
     public String ChangePasswordUrl(@ModelAttribute("username") String tno, Model model) {
-        model.addAttribute("role", "student");
         model.addAttribute("userno", tno);
         return "Info/ChangePassword";
     }
     @RequestMapping("/course")
     public String courseUrl(@ModelAttribute("username") String sno,Model model) {
-        model.addAttribute("courselist", courseService.getAllInfo());
-        model.addAttribute("scts", courseService.getSctInfoByStuId(sno));
+//        model.addAttribute("courselist", courseService.getAllInfo());
+//        model.addAttribute("scts", courseService.getSctInfoByStuId(sno));
         return "student/course";
     }
     @RequestMapping(value ="/AllCourse")

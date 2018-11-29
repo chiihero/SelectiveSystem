@@ -3,16 +3,12 @@ package com.chii.www.controller;
 import com.chii.www.pojo.*;
 import com.chii.www.service.CourseService;
 import com.chii.www.service.UserService;
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.apache.log4j.BasicConfigurator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("admin")
@@ -21,7 +17,11 @@ public class AdminController {
     private UserService userService;
     @Autowired
     private CourseService courseService;
-
+    @ModelAttribute
+    private void addAttributes(Model model)
+    {
+        model.addAttribute("role", "admin");
+    }
     @RequestMapping("/adminIndex")
     public String adminUrl() {
         BasicConfigurator.configure();
@@ -74,7 +74,7 @@ public class AdminController {
             model.addAttribute("student", userService.getStuInfoById(sno));
             model.addAttribute("mode", "update");
         }
-        model.addAttribute("role", "admin");
+//        model.addAttribute("role", "admin");
         model.addAttribute("departments", courseService.getAllDepartmentInfo());
         return "Info/StudentInfo";
     }
@@ -118,7 +118,7 @@ public class AdminController {
             model.addAttribute("teacher", userService.getTeaInfoById(tno));
             model.addAttribute("mode", "update");
         }
-        model.addAttribute("role", "admin");
+//        model.addAttribute("role", "admin");
         model.addAttribute("courses", courseService.getAllCourseInfo());
         return "Info/TeacherInfo";
     }
@@ -128,26 +128,40 @@ public class AdminController {
     }
 
     @RequestMapping("/scoreupdate")
-    public String scoreupdate(Sct sct, Model model) {
+    @ResponseBody
+    public int scoreupdate(Sct sct) {
         courseService.updateGradeInfo(sct);
-        return "redirect:/admin/score";
+//        return "redirect:/admin/score";
+        return sct.getGrade();
     }
 
     @RequestMapping("/scoredelete")
-    public String scoredeletee(Sct sct, Model model) {
+    @ResponseBody
+
+    public boolean scoredeletee(Sct sct) {
         courseService.deleteSctInfo(sct);
-        return "redirect:/admin/score";
+        return true;
     }
 
-    @RequestMapping("/sct")
+    @RequestMapping("/score")
     public String sctUrl(Model model) {
         model.addAttribute("scts", courseService.getAllSctInfo());
-        return "admin/sct";
+        return "admin/score";
+    }
+    @RequestMapping(value ="/AllScore")
+    @ResponseBody
+    public PageBean AllScore(PageBean page) {
+        PageInfo<Sct> pi = courseService.getAllSctInfoByPage(page);
+        page.setCurrent(page.getCurrent());
+        page.setRowCount(page.getRowCount());
+        page.setRows(pi.getList());
+        page.setTotal(pi.getTotal());
+        return page;
     }
     @RequestMapping("/sctDelete")
-    public String sctDelete(Sct sct ,Model model) {
+    public String sctDelete(Sct sct) {
         courseService.deleteSctInfo(sct);
-        return "redirect:/admin/sct";
+        return "redirect:/admin/score";
     }
     @RequestMapping("/course")
     public String courseUrl(Model model) {
