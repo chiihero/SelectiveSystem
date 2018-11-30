@@ -65,8 +65,11 @@ public class CourseServiceImpl implements CourseService {
 
     }
 
-    public List<Sct> getSctInfoByTeaId(String userno) {
-        return sctMapper.selectByTno(userno);
+    public PageInfo<Sct> getSctInfoByTeaId(PageBean pageBean) {
+        PageHelper.startPage(pageBean.getCurrent(), pageBean.getRowCount());
+        List<Sct> scts = sctMapper.selectByTno(pageBean);
+        PageInfo<Sct> pi = new PageInfo<>(scts);
+        return pi;
     }
 
     @Override

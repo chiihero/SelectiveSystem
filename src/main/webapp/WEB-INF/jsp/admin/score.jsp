@@ -74,7 +74,7 @@
                 "commands": function(column, row)
                 {
                     return "<input type=\"text\" class=\"layui-input\" id=\"" + row.sno + "_" + row.cno + "_" + row.tno +"\" value=\"\" style=\"width:50px; display: inline-block;\">"+
-                        "<button class=\"btn\" onclick=\"update_score(" + row.sno + "," + row.cno + "," + row.tno + ")\">评分\n";
+                        "<button class=\"btn btn-primary\" onclick=\"update_score(" + row.sno + "," + row.cno + "," + row.tno + ")\">评分\n";
                 }
             }
         });

@@ -1,15 +1,19 @@
 package com.chii.www.controller;
 
 import com.chii.www.Tool.SafeCode;
+import com.chii.www.pojo.PageBean;
 import com.chii.www.pojo.Sct;
+import com.chii.www.pojo.Student;
 import com.chii.www.pojo.Teacher;
 import com.chii.www.service.CourseService;
 import com.chii.www.service.UserService;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -62,12 +66,21 @@ public String TeacherInfoUrl(@ModelAttribute("username") String tno, Model model
     }
 
     @RequestMapping("/studentuser")
-    public String studentuserUrl(@ModelAttribute("username") String tno, Model model) {
-
-        model.addAttribute("students", courseService.getSctInfoByTeaId(tno));//待修改
+    public String studentuserUrl(Model model) {
+//        model.addAttribute("students", courseService.getSctInfoByTeaId(tno));//待修改
         return "teacher/studentuser";
     }
-
+    @RequestMapping(value ="/AllStudentUser")
+    @ResponseBody
+    public PageBean AllStudentUser(@ModelAttribute("username") String tno ,PageBean page) {
+        page.setKey(tno);
+        PageInfo<Sct> pi = courseService.getSctInfoByTeaId(page);
+        page.setCurrent(page.getCurrent());
+        page.setRowCount(page.getRowCount());
+        page.setRows(pi.getList());
+        page.setTotal(pi.getTotal());
+        return page;
+    }
     @RequestMapping("/update")
     public String teacherupdate(Teacher teacher, HttpServletRequest request, Model model) {
         //加密密码
@@ -94,11 +107,11 @@ public String TeacherInfoUrl(@ModelAttribute("username") String tno, Model model
         return "redirect:/admin/teacheradd";
     }
 
-    @RequestMapping("/scoreupdate")
-    public String scoreupdate(Sct sct, Model model) {
-        courseService.updateGradeInfo(sct);
-        return "redirect:/teacher/studentuser";
-    }
+//    @RequestMapping("/scoreupdate")
+//    public String scoreupdate(Sct sct, Model model) {
+//        courseService.updateGradeInfo(sct);
+//        return "redirect:/teacher/studentuser";
+//    }
 //    @RequestMapping("/delete")
 //    public String teacherdelete(String no){
 //        return "redirect:../Admin/teacheradd";

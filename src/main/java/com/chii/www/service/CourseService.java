@@ -22,7 +22,7 @@ public interface CourseService {
 
     PageInfo<CourseList> getAllCourseListInfo(PageBean pageBean);
 
-    List<Sct> getSctInfoByTeaId(String userno);
+    PageInfo<Sct> getSctInfoByTeaId(PageBean pageBean);
 
     List<Sct> getSctInfoByStuId(String userno);
 

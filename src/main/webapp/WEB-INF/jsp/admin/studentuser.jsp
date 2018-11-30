@@ -55,11 +55,6 @@
 </div>
 <script typeof="text/javascript">
     $(document).ready(function () {
-        // var sdept_id="AllDep";
-        // $("select option[value='sdept']").click(function () {
-        //     sdept_id = $(this).attr('id');
-        // });
-        //
         $("#grid-data").bootgrid({
             ajax: true,
             post: function ()

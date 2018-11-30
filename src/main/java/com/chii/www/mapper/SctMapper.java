@@ -1,6 +1,8 @@
 package com.chii.www.mapper;
 
+import com.chii.www.pojo.PageBean;
 import com.chii.www.pojo.Sct;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
@@ -16,7 +18,7 @@ public interface SctMapper {
 
     List<Sct> selectBySno(String userno);
 
-    List<Sct> selectByTno(String userno);
+    List<Sct> selectByTno(PageBean pageBean);
 
     Sct selectByPrimaryKey(Sct record);
 

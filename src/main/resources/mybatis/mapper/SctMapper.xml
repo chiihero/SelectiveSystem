@@ -28,13 +28,18 @@
         INNER JOIN teacher ON sct.tno = teacher.tno
         where student.sno = #{sno,jdbcType=CHAR}
     </select>
-    <select id="selectByTno" resultMap="BaseResultMap" parameterType="java.lang.String">
+    <select id="selectByTno" resultMap="BaseResultMap" parameterType="com.chii.www.pojo.PageBean">
         select
         <include refid="Base_Column_List"/>
         FROM student LEFT JOIN sct ON sct.sno = student.sno
         INNER JOIN Course ON sct.cno = Course.cno
         INNER JOIN teacher ON sct.tno = teacher.tno
-        where sct.tno = #{tno,jdbcType=CHAR}
+        <where>
+            sct.tno = #{key,jdbcType=CHAR}
+            <if test="searchPhrase != null">
+              AND CONCAT(student.sno,student.sname,Course.cname) LIKE CONCAT('%',#{searchPhrase},'%')
+            </if>
+        </where>
     </select>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.chii.www.pojo.Sct">
         select
