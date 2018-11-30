@@ -5,18 +5,16 @@
   Time: 10:23
   To change this template use File | Settings | File Templates.
 --%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%--默认admin用户--%>
-<c:set var="IndexUrl" value="../admin/adminIndex.jsp"/>
-<c:if test="${role=='teacher'}">
-    <c:set var="IndexUrl" value="../teacher/teacherIndex.jsp"/>
-</c:if>
-<%--动态include--%>
-<jsp:include page="${IndexUrl}" flush="true"/>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.*" %>
 <html>
 <head>
-    <title></title>
+    <%--默认admin用户--%>
+    <c:set var="IndexUrl" value="../admin/adminIndex.jsp"/>
+    <c:if test="${role=='teacher'}">
+        <c:set var="IndexUrl" value="../teacher/teacherIndex.jsp"/>
+    </c:if>
+    <%--动态include--%>
+    <jsp:include page="${IndexUrl}" flush="true"/>
 </head>
 <body>
 <div class="container">
@@ -129,7 +127,12 @@
         </form>
     </div>
 </div>
-<script>
+<%@include file="/baseJs.jspf" %>
+<script src="${basePath}/js/encrypt/md5.min.js" type="text/javascript"></script>
+<script src="${basePath}/js/encrypt/sha3.js" type="text/javascript"></script>
+<script src="${basePath}/js/checkinfo.js" type="text/javascript"></script>
+<script src="${basePath}/js/bootstrap/bootstrap-select.min.js" type="text/javascript"></script>
+<script type="text/javascript">
     $(document).ready(function () {
         if (${mode=='update'})
         {
@@ -156,17 +159,12 @@
             $("#cno3 option[value='" + cno3 + "']").attr("selected", true);
             ////////////////////////////////////////////
             //权限
-
             if(${role=='teacher'}){
                 $("#teb").attr("disabled",true);
                 $("#tpt").attr("disabled",true);
             }
-
         }
     });
-
-
-
 </script>
 </body>
 </html>

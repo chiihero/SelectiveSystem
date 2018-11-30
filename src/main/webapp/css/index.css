@@ -18,10 +18,6 @@ body {
     margin: 0;
 }
 
-.edit {
-    margin-top: 10px;
-}
-
 .textcolor {
     color: white;
 }
@@ -33,21 +29,10 @@ body {
 .form-group {
     margin-bottom: 5px;
 }
-
-#container {
-    float: none;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 10%;
+.container {
     text-align: center;
-    /*top: 0;*/
-    position: absolute;
-    left: 50%;
-    padding-bottom: 25px;
-    /*text-align: center;*/
+    margin-top: 10%;
 }
-
 #logo,
 #loginbox {
     max-width: 400px;
@@ -69,7 +54,9 @@ body {
     padding: 5px 20px 15px;
     border-radius: 0 0 30px 30px;
 }
-
+#loginbox .input-group,.form-group {
+    padding-top: 10px;
+}
 #loginbox form {
     width: 100%;
     height: 100%;
@@ -77,13 +64,11 @@ body {
     top: 5%;
     left: 0;
 }
-
 #loginbox form#loginform {
     z-index: 200;
     /*opacity: 0;*/
     /*display: none;*/
 }
-
 #loginbox form#registerform {
     z-index: 100;
     opacity: 0;

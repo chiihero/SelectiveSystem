@@ -76,7 +76,7 @@ public class AdminController {
             model.addAttribute("student", userService.getStuInfoById(sno));
             model.addAttribute("mode", "update");
         }
-//        model.addAttribute("departments", courseService.getAllDepartmentInfo());
+        model.addAttribute("departments", courseService.getAllDepartmentInfo());
         return "Info/StudentInfo";
     }
 

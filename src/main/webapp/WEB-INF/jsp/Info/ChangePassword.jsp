@@ -5,17 +5,18 @@
   Time: 22:07
   To change this template use File | Settings | File Templates.
 --%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.*" %>
+
+<html>
 <c:if test="${role=='student'}">
-    <c:set var="IndexUrl" value="../student/studentIndex.jsp"/>
+    <c:set var="IndexUrl" value="../student/nav.jsp"/>
 </c:if>
 <c:if test="${role=='teacher'}">
-    <c:set var="IndexUrl" value="../teacher/teacherIndex.jsp"/>
+    <c:set var="IndexUrl" value="../teacher/nav.jsp"/>
 </c:if>
 <%--动态include--%>
 <jsp:include page="${IndexUrl}" flush="true"/>
-<html>
+
 <div class="container">
     <h5><b>当前位置</b>：个人信息 > 密码修改</h5>
     <hr>
@@ -55,7 +56,12 @@
         </div>
     </form>
 </div>
-<script>
+<%@include file="/baseJs.jspf" %>
+<script src="${basePath}/js/encrypt/md5.min.js" type="text/javascript"></script>
+<script src="${basePath}/js/encrypt/sha3.js" type="text/javascript"></script>
+<script src="${basePath}/js/checkinfo.js" type="text/javascript"></script>
+<script src="${basePath}/js/bootstrap/bootstrap-select.min.js" type="text/javascript"></script>
+<script type="text/javascript">
     $(document).ready(function () {
         if(${role=='teacher'}){
             $("#type").val("2")

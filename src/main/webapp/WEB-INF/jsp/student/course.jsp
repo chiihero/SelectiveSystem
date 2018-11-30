@@ -5,7 +5,7 @@
   Time: 12:30
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.*" %>
 <%@ include file="studentIndex.jsp" %>
 <html>
 <div class="container">
@@ -111,7 +111,7 @@
             "cno": Cno,
             "tno": Tno
         };
-        post("<%=basePath%>/student/sctInsert", body)
+        post("${basePath}/student/sctInsert", body)
     }
     function post(URL, PARAMS) {
         var temp = document.createElement("form");

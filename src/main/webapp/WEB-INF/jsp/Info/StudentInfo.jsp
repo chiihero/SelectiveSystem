@@ -6,18 +6,16 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.*" %>
+
+<html>
 <%--默认admin用户--%>
-<c:set var="IndexUrl" value="../admin/adminIndex.jsp"/>
+<c:set var="IndexUrl" value="../admin/nav.jsp"/>
 <c:if test="${role=='student'}">
-    <c:set var="IndexUrl" value="../student/studentIndex.jsp"/>
+    <c:set var="IndexUrl" value="../student/nav.jsp"/>
 </c:if>
 <%--动态include--%>
 <jsp:include page="${IndexUrl}" flush="true"/>
-<%--<%@include file="../student/studentIndex.jsp" %>--%>
-
-<html>
-
 <body>
 <div class="container">
     <h5><b>当前位置</b>：用户管理 >
@@ -53,14 +51,13 @@
                     <option value="女">女</option>
                 </select>
                 <a id="sex_text" style="color: #c82333"></a>
-
             </div>
-
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">年龄:</span>
                 </div>
-                <input type="text" class="form-control col-4" placeholder="年龄" id="sage" name="sage" oninput="value=value.replace(/[^\d]/g,'')">
+                <input type="text" class="form-control col-4" placeholder="年龄" id="sage" name="sage"
+                       oninput="value=value.replace(/[^\d]/g,'')">
                 <a id="age_text" style="color: #c82333"></a>
 
             </div>
@@ -92,18 +89,22 @@
         </form>
     </div>
 </div>
+<%@include file="/baseJs.jspf" %>
+<script src="${basePath}/js/encrypt/md5.min.js" type="text/javascript"></script>
+<script src="${basePath}/js/encrypt/sha3.js" type="text/javascript"></script>
+<script src="${basePath}/js/checkinfo.js" type="text/javascript"></script>
+<script src="${basePath}/js/bootstrap/bootstrap-select.min.js" type="text/javascript"></script>
 <script>
     $(document).ready(function () {
-        if (${mode=='update'})
-        {
-            $("form").attr("action","/student/update");//修改form表单地址
+        if (${mode=='update'}) {
+            $("form").attr("action", "/student/update");//修改form表单地址
             $(":submit").text("修改");
             ////////////////////添加个人信息////////////////////
             var sno = $("#sno");
             var sname = $("#sname");
             var sage = $("#sage");
 
-            sno.attr("readonly","readonly");
+            sno.attr("readonly", "readonly");
             sno.val("${student.sno}");
             sname.val("${student.sname}");
             select_true('${student.ssex}');
@@ -111,8 +112,8 @@
             select_true('${student.sdept}');
             ////////////////////////////////////////////
             //权限
-            if(${role=='student'}){
-                $("#sdept").attr("disabled",true);
+            if (${role=='student'}) {
+                $("#sdept").attr("disabled", true);
             }
         }
     })

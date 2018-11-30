@@ -5,7 +5,7 @@
   Time: 12:04
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.*" %>
 <%@include file="teacherIndex.jsp" %>
 
 <html>
@@ -95,7 +95,7 @@
             "grade": score.value
         };
         //上传并且修改分数值不刷新页面
-        post("<%=basePath%>/admin/scoreupdate", body);
+        post("${basePath}/admin/scoreupdate", body);
         var parent = score.parentNode; // 父节点
         var previous = parent.previousSibling; // 上一个兄弟节点
         previous.innerHTML= score.value ;
