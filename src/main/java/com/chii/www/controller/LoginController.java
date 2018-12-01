@@ -62,7 +62,7 @@ public class LoginController {
                 model.addAttribute("message", "请选择用户类型");
         }
         System.out.println("error!!!!!!!!!!!!!!!!!!!!");
-        return "redirect:/login/index";
+        return "redirect:/login/logout";
     }
 
     @RequestMapping("/PasswordUpdate")

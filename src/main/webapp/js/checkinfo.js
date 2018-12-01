@@ -19,7 +19,6 @@
     new_pwd.val(encrypt(new_pwd.val()));
     old_pwd.val(encrypt(old_pwd.val()));
     new_agn_pwd.val(new_pwd.val());
-
 }
 
 //根据value选择选择框选项
@@ -90,13 +89,6 @@ function check_teacherdata() {
         }
     }
 }
-
-$(document).ready(function () {
-    $('#teacherChange').click(function () {
-
-    })
-});
-
 function check_age(age) {
     if (age === "") {
         // document.getElementById("age_text").innerText = "年龄不能为空";
@@ -169,4 +161,20 @@ function encrypt(encrypt_str) {
         alert(e.message)
     }
     return hex_md5(encrypt_str);
+}
+function post(URL, PARAMS) {
+    $.ajax({
+        url: URL,
+        aysnc: false,
+        type: "post",
+        contentType: "application/json; charset=utf-8",
+        data: PARAMS,
+        success: function (data) {
+            return data;
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("请求失败，消息：" + textStatus + "  " + errorThrown);
+            return false;
+        }
+    });
 }

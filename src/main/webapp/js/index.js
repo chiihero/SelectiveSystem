@@ -23,6 +23,7 @@
 $('#sub_login').click(function () {
     var username = $("#username");
     var password = $("#password");
+    var type = $("#type");
 
     if (check_username(username.val())) {
         return false;
@@ -30,10 +31,9 @@ $('#sub_login').click(function () {
     if (check_password(password.val())) {
         return false;
     }
-    console.time("测试加密速度: ");
+    $('#sub_login').attr("disabled","disabled");
     password.val(encrypt(password.val()));
-    console.timeEnd("测试加密速度: ");
-    console.log(password.val());
+
 });
 
 // $('#sub_register').click(function () {

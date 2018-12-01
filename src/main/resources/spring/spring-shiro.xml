@@ -59,7 +59,7 @@
     </bean>
     <!-- 会话Cookie模板 -->
     <bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
-        <constructor-arg value="sid"/>
+        <constructor-arg value="username"/>
         <property name="httpOnly" value="true"/>
         <property name="maxAge" value="180000"/>
     </bean>
@@ -77,6 +77,14 @@
         <property name="passwordParam" value="password"/>
         <property name="loginUrl" value="/index.jsp"/>
     </bean>
+    <!--并发登录控制-->
+    <!--<bean id="kickoutSessionControlFilter" class="com.chii.www.shiro.KickoutSessionControlFilter">-->
+        <!--<property name="cacheManager" ref="cacheManager"/>-->
+        <!--<property name="kickoutAfter" value="false"/>-->
+        <!--<property name="maxSession" value="2"/>-->
+        <!--<property name="kickoutUrl" value="/login/index"/>-->
+    <!--</bean>-->
+
     <!-- Shiro的Web过滤器 -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
@@ -86,14 +94,15 @@
         <property name="filters">
             <util:map>
                 <entry key="authc" value-ref="formAuthenticationFilter"/>
+                <!--<entry key="kickout" value-ref="kickoutSessionControlFilter"/>-->
             </util:map>
         </property>
         <property name="filterChainDefinitions">
             <value>
                 /index.jsp = authc
                 /login/logout = logout
+                <!--/login/index = logout-->
                 /login/** = anon
-
                 /admin/** = roles[admin]
                 /teacher/** = roles[teacher]
                 /student/** = roles[student]
@@ -101,7 +110,8 @@
                 /js/** = anon
                 /img/** = anon
                 /fonts/** = anon
-                /** anon
+                <!-- /** kickout,authc-->
+                /** authc
             </value>
         </property>
     </bean>

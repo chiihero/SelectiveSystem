@@ -106,7 +106,7 @@
 <script src="${basePath}/js/bootstrap/bootstrap.min.js" type="text/javascript"></script>
 <%--分页--%>
 <%--<script src="${basePath}/js/bootgrid/jquery.bootgrid.fa.js" type="text/javascript"></script>--%>
-<script src="${basePath}/js/bootgrid/jquery.bootgrid.js" type="text/javascript"></script>
+<script src="${basePath}/js/bootgrid/jquery.bootgrid.min.js" type="text/javascript"></script>
 <script typeof="text/javascript">
     $(document).ready(function () {
         $("#grid-data").bootgrid({

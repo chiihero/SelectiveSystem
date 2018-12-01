@@ -20,7 +20,7 @@
             </button>
             <a class="navbar-brand" href="${basePath}/student/studentIndex">首页</a>
         </div>
-        <div class="collapse navbar-collapse" id="collapsedNav">
+        <div class="collapse navbar-collapse" id="example-navbar-collapse">
             <ul class="nav navbar-nav nav-pills">
                 <li class="nav-item dropdown">
                     <a href=">#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
@@ -43,7 +43,9 @@
                         <li class="dropdown-item"><a href="${basePath}/student/course">选课查询</a></li>
                     </ul>
                 </li>
-                <li class="nav-item dropdown">
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="nav-item dropdown navbar-right">
                     <a href="${basePath}/login/logout" class="nav-link" role="button">退出 </a>
                 </li>
             </ul>

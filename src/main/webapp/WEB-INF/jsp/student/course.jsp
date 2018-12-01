@@ -38,7 +38,7 @@
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="${basePath}/js/bootstrap/bootstrap.min.js" type="text/javascript"></script>
 <%--分页--%>
-<script src="${basePath}/js/bootgrid/jquery.bootgrid.js" type="text/javascript"></script>
+<script src="${basePath}/js/bootgrid/jquery.bootgrid.min.js" type="text/javascript"></script>
 <script>
     $(document).ready(function () {
         var grid =$("#grid-data").bootgrid({

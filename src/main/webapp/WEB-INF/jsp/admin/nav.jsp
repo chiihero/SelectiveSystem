@@ -21,7 +21,7 @@
             <a class="navbar-brand" href="${basePath}/admin/adminIndex">首页</a>
         </div>
 
-        <div class="collapse navbar-collapse" id="collapsedNav">
+        <div class="collapse navbar-collapse" id="example-navbar-collapse">
             <ul class="nav navbar-nav nav-pills navbar-left">
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"

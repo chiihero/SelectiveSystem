@@ -34,7 +34,8 @@
 <script src="${basePath}/js/bootstrap/bootstrap.min.js" type="text/javascript"></script>
 <%--分页--%>
 <script src="${basePath}/js/bootgrid/jquery.bootgrid.fa.js" type="text/javascript"></script>
-<script src="${basePath}/js/bootgrid/jquery.bootgrid.js" type="text/javascript"></script>
+<script src="${basePath}/js/bootgrid/jquery.bootgrid.min.js" type="text/javascript"></script>
+<script src="${basePath}/js/checkinfo.js" type="text/javascript"></script>
 <script typeof="text/javascript">
     $(document).ready(function () {
         $("#grid-data").bootgrid({
@@ -79,23 +80,6 @@
         post("${basePath}/admin/sctDelete", body)
     }
 
-    function post(URL, PARAMS) {
-        $.ajax({
-            url: URL,
-            aysnc: false,
-            type: "get",
-            contentType: "application/json; charset=utf-8",
-            data: PARAMS,
-            success: function (data) {
-                return data;
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                alert("请求失败，消息：" + textStatus + "  " + errorThrown);
-                return false;
-            }
-        });
-
-    }
 </script>
 </body>
 </html>

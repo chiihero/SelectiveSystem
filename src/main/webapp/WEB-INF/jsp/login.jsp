@@ -21,7 +21,7 @@
     <div id="loginbox">
         <form id="loginform" action="/login/signIn" method="post">
             <div class="form-group">
-                <select name="type" class="selectpicker mb-4" data-style="btn-default">
+                <select id="type" name="type" class="selectpicker mb-4" data-style="btn-default">
                     <option value="1" selected="selected">学生登录</option>
                     <option value="2">教师登录</option>
                     <option value="3">管理人员登录</option>
@@ -89,11 +89,12 @@
                            placeholder="请确认密码"/>
                 </div>
             </div>
+            <h4>暂未开放</h4>
             <div class="form-check">
                 <div class="float-right">
                     <a href="#login" class="flip-link to-login grey">返回登录</a>
                 </div>
-                <button type="submit" class="btn btn-success btn-block" id="sub_register" value="修改密码">修改密码</button>
+                <button type="submit" class="btn btn-success btn-block" id="sub_register" value="修改密码" disabled>修改密码</button>
                 <input type="reset" class="btn btn-primary btn-block" value="重置"/>
             </div>
         </form>
@@ -108,8 +109,7 @@
 <script src="${basePath}/js/encrypt/md5.min.js" type="text/javascript"></script>
 <script src="${basePath}/js/encrypt/sha3.js" type="text/javascript"></script>
 <script src="${basePath}/js/checkinfo.js" type="text/javascript"></script>
-<script src="${basePath}/js/index.js" type="text/javascript" charset="uft-8">
-</script>
+<script src="${basePath}/js/index.js" type="text/javascript" charset="uft-8"></script>
 </body>
 
 </html>
