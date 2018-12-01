@@ -4,13 +4,25 @@
 <head>
     <!-- 新 Bootstrap 核心 CSS 文件 -->
     <link href="${basePath}/css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="${basePath}/css/bootgrid/jquery.bootgrid.min.css" rel="stylesheet">
+    <link href="${basePath}/css/tableexport/tableexport.min.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>选课管理信息系统</title>
 </head>
 <body>
 <%@include file="nav.jsp" %>
 <div class="container">
-    <h5><b>当前位置</b>：信息查询 > 成绩查询</h5>
+    <div class="row">
+        <div class="col-md-12">
+            <h5><b>当前位置</b>：信息查询 > 成绩查询</h5>
+            <%--<a class="btn btn-primary" href="/admin/exportStu">导出数据为excel</a>--%>
+            <caption class="btn-toolbar tableexport-caption" style="caption-side: bottom;">
+                <button type="button" id="xlsx" class="btn btn-default xlsx">Export to xlsx</button>
+                <button type="button" id="xls" class="btn btn-default xls">Export to xls</button>
+                <button type="button" id="csv" class="btn btn-default csv">Export to csv</button>
+            </caption>
+        </div>
+    </div>
     <hr>
     <table id="grid-data" class="table table-condensed table-hover table-striped">
         <thead>
@@ -36,6 +48,10 @@
 <script src="${basePath}/js/bootgrid/jquery.bootgrid.fa.js" type="text/javascript"></script>
 <script src="${basePath}/js/bootgrid/jquery.bootgrid.min.js" type="text/javascript"></script>
 <script src="${basePath}/js/checkinfo.js" type="text/javascript"></script>
+<%--报表--%>
+<script src="${basePath}/js/tableexport/FileSaver.min.js"></script>
+<script src="${basePath}/js/tableexport/tableExport.min.js"></script>
+<script src="${basePath}/js/tableexport/xlsx.core.min.js"></script>
 <script typeof="text/javascript">
     $(document).ready(function () {
         $("#grid-data").bootgrid({
@@ -49,8 +65,11 @@
             url: "/admin/AllScore",
             formatters: {
                 "commands": function (column, row) {
-                    return "<input type=\"text\" class=\"layui-input\" id=\"" + row.sno + "_" + row.cno + "_" + row.tno + "\" value=\"\" style=\"width:50px; display: inline-block;\">" +
+                    return "<input type=\"text\" class=\"layui-input\" id=\"" + row.sno + "_" + row.cno + "_" + row.tno + "\" value=\"\" style=\"max-width:50px; display: inline-block;\">" +
                         "<button class=\"btn btn-primary\" onclick=\"update_score(" + row.sno + "," + row.cno + "," + row.tno + ")\">评分\n";
+                },
+                "delete": function (column, row) {
+                    return "<button class=\"btn btn-danger\" onclick=\"delete_sct(" + row.sno + "," + row.cno + "," + row.tno + ")\">删除\n";
                 }
             }
         });
@@ -77,7 +96,8 @@
             "cno": Cno,
             "tno": Tno
         };
-        post("${basePath}/admin/sctDelete", body)
+        post("${basePath}/admin/sctDelete", body);
+        location.reload();
     }
 
 </script>

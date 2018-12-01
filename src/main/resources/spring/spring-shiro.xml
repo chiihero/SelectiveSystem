@@ -8,12 +8,12 @@
         <property name="authenticator" ref="authenticator"/>
         <property name="sessionManager" ref="sessionManager"/>
         <property name="cacheManager" ref="cacheManager"/>
-
         <property name="realms">
             <list>
-                <ref bean="adminRealm"/>
-                <ref bean="teacherRealm"/>
                 <ref bean="studentRealm"/>
+                <ref bean="teacherRealm"/>
+                <ref bean="adminRealm"/>
+
             </list>
         </property>
     </bean>
@@ -45,23 +45,27 @@
     </bean>
     <!-- 会话管理器 -->
     <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
-        <property name="globalSessionTimeout" value="1800000"/>
+        <!-- Shiro去掉URL中的JSESSIONID -->
+        <property name="sessionIdUrlRewritingEnabled" value="false" />
+        <property name="globalSessionTimeout" value="10000"/><!-- 毫秒 -->
         <property name="deleteInvalidSessions" value="true"/>
         <property name="sessionValidationSchedulerEnabled" value="true"/>
-        <property name="sessionValidationScheduler" ref="sessionValidationScheduler"/>
+        <!--<property name="sessionValidationScheduler" ref="sessionValidationScheduler"/>-->
         <property name="sessionIdCookieEnabled" value="true"/>
         <property name="sessionIdCookie" ref="sessionIdCookie"/>
     </bean>
     <!-- 会话验证调度器 -->
-    <bean id="sessionValidationScheduler" class="org.apache.shiro.session.mgt.quartz.QuartzSessionValidationScheduler">
-        <property name="sessionValidationInterval" value="1800000"/>
-        <property name="sessionManager" ref="sessionManager"/>
-    </bean>
+    <!--<bean id="sessionValidationScheduler" class="org.apache.shiro.session.mgt.quartz.QuartzSessionValidationScheduler">-->
+        <!--<property name="sessionValidationInterval" value="1800"/>-->
+        <!--<property name="sessionManager" ref="sessionManager"/>-->
+    <!--</bean>-->
     <!-- 会话Cookie模板 -->
     <bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
-        <constructor-arg value="username"/>
+        <constructor-arg value="name"/>
         <property name="httpOnly" value="true"/>
-        <property name="maxAge" value="180000"/>
+        <!--<property name="maxAge" value="180000"/>-->
+        <property name="maxAge" value="10000"/>
+
     </bean>
     <!-- Shiro生命周期处理器-->
     <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
@@ -84,7 +88,6 @@
         <!--<property name="maxSession" value="2"/>-->
         <!--<property name="kickoutUrl" value="/login/index"/>-->
     <!--</bean>-->
-
     <!-- Shiro的Web过滤器 -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>

@@ -12,7 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.InputStream;
 
 @Controller
@@ -23,16 +25,19 @@ public class AdminController {
     @Autowired
     private CourseService courseService;
     @ModelAttribute
-    private void addAttributes(Model model)
+    private String addAttributes(@ModelAttribute("username") String user, Model model)
     {
+        if (user == null)
+            return "login/index";
         model.addAttribute("role", "admin");
+        return null;
     }
+
     @RequestMapping("/adminIndex")
     public String adminUrl() {
         BasicConfigurator.configure();
         return "admin/adminIndex";
     }
-
 
     @RequestMapping("/studentuser")
     public String studentuserUrl(Model model) {

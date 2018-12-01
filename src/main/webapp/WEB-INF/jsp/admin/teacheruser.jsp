@@ -11,6 +11,8 @@
 <head>
     <!-- 新 Bootstrap 核心 CSS 文件 -->
     <link href="${basePath}/css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="${basePath}/css/bootgrid/jquery.bootgrid.min.css" rel="stylesheet">
+    <link href="${basePath}/css/tableexport/tableexport.min.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>选课管理信息系统</title>
 </head>
@@ -18,70 +20,17 @@
 <%@include file="nav.jsp" %>
 <div class="container">
     <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-12">
             <h5><b>当前位置</b>：用户管理 > 所有教师</h5>
-        </div>
-        <div class="col-md-2">
-            <button class="btn btn-info" onclick="window.location.href='${basePath}/admin/TeacherInfo'">添加教师</button>
+            <caption class="btn-toolbar tableexport-caption" style="caption-side: bottom;">
+                <button type="button" id="xlsx" class="btn btn-default xlsx">Export to xlsx</button>
+                <button type="button" id="xls" class="btn btn-default xls">Export to xls</button>
+                <button type="button" id="csv" class="btn btn-default csv">Export to csv</button>
+                <button class="btn btn-info" onclick="window.location.href='${basePath}/admin/TeacherInfo'">添加教师</button>
+            </caption>
         </div>
     </div>
     <hr>
-    <%--<div>--%>
-        <%--<table class="table">--%>
-            <%--<thead>--%>
-            <%--<tr>--%>
-                <%--<th>教工号</th>--%>
-                <%--<th>姓名</th>--%>
-                <%--<th>性别</th>--%>
-                <%--<th>年龄</th>--%>
-                <%--<th>学历</th>--%>
-                <%--<th>职称</th>--%>
-                <%--<th>主讲课程一</th>--%>
-                <%--<th>主讲课程二</th>--%>
-                <%--<th>主讲课程三</th>--%>
-                <%--<th>修改</th>--%>
-
-            <%--</tr>--%>
-            <%--</thead>--%>
-            <%--<tbody>--%>
-            <%--<c:forEach items="${teachers}" var="teacher">--%>
-                <%--<tr>--%>
-                    <%--<td>${teacher.tno}</td>--%>
-                    <%--<td>${teacher.tname}</td>--%>
-                    <%--<td>${teacher.tsex}</td>--%>
-                    <%--<td>${teacher.tage}</td>--%>
-                    <%--<td>${teacher.teb}</td>--%>
-                    <%--<td>${teacher.tpt}</td>--%>
-                    <%--<td>--%>
-                        <%--<c:forEach items="${courses}" var="course">--%>
-                            <%--<c:if test="${course.cno==teacher.cno1}">--%>
-                                <%--${course.cname}--%>
-                            <%--</c:if>--%>
-                        <%--</c:forEach>--%>
-                    <%--</td>--%>
-                    <%--<td>--%>
-                        <%--<c:forEach items="${courses}" var="course">--%>
-                            <%--<c:if test="${course.cno==teacher.cno2}">--%>
-                            <%--${course.cname}--%>
-                            <%--</c:if>--%>
-                        <%--</c:forEach>--%>
-                    <%--</td>--%>
-                    <%--<td>--%>
-                        <%--<c:forEach items="${courses}" var="course">--%>
-                            <%--<c:if test="${course.cno==teacher.cno3}">--%>
-                                <%--${course.cname}--%>
-                            <%--</c:if>--%>
-                        <%--</c:forEach>--%>
-                    <%--</td>--%>
-                    <%--<td>--%>
-                        <%--&lt;%&ndash;<a href="${basePath}/admin/teacherupdate?tno=${teacher.tno}">修改</a>&ndash;%&gt;--%>
-                        <%--<button class="btn btn-info" onclick="window.location.href='${basePath}/admin/teacherupdate?tno=${teacher.tno}'">修改</button>--%>
-                    <%--</td>--%>
-                <%--</tr>--%>
-            <%--</c:forEach>--%>
-            <%--</tbody>--%>
-        <%--</table>--%>
-    <%--</div>--%>
     <table id="grid-data" class="table table-condensed table-hover table-striped">
         <thead>
         <tr>
@@ -105,8 +54,12 @@
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="${basePath}/js/bootstrap/bootstrap.min.js" type="text/javascript"></script>
 <%--分页--%>
-<%--<script src="${basePath}/js/bootgrid/jquery.bootgrid.fa.js" type="text/javascript"></script>--%>
 <script src="${basePath}/js/bootgrid/jquery.bootgrid.min.js" type="text/javascript"></script>
+<script src="${basePath}/js/tableexport/FileSaver.min.js"></script>
+<script src="${basePath}/js/tableexport/tableExport.min.js"></script>
+<script src="${basePath}/js/tableexport/xlsx.core.min.js"></script>
+<script src="${basePath}/js/checkinfo.js"></script>
+
 <script typeof="text/javascript">
     $(document).ready(function () {
         $("#grid-data").bootgrid({

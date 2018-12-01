@@ -1,4 +1,36 @@
-﻿function changepassword() {
+﻿//报表下载按键
+$("#xlsx").click(function () {
+    var length = $("#grid-data thead tr th").length;
+    var i = $("tr").find("button").length;
+    if (i>0){//判断是否有按键
+        length = length -1;
+    }
+    $("#grid-data").tableExport({
+        type:'xlsx',
+        // fileName:'student',
+        ignoreColumn:[length],
+        bootstrap: true,
+    });
+});
+$("#xls").click(function ()  {
+    $("#grid-data").tableExport({
+        type:'excel',
+        // fileName:'student',
+        ignoreColumn:[length],
+        bootstrap: true,
+    });
+});
+$("#csv").click(function () {
+    $("#grid-data").tableExport({
+        type:'csv',
+        // fileName:'student',
+        ignoreColumn:[length],
+
+        bootstrap: true,
+    });
+});
+
+function changepassword() {
     var old_pwd = $("#password");
     var new_pwd = $("#newpassword");
     var new_agn_pwd = $("#new_password_again");
@@ -170,7 +202,8 @@ function post(URL, PARAMS) {
         contentType: "application/json; charset=utf-8",
         data: PARAMS,
         success: function (data) {
-            return data;
+            // return data;
+            return true;
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             alert("请求失败，消息：" + textStatus + "  " + errorThrown);

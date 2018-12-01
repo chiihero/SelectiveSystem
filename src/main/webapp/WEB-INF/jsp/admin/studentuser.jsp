@@ -52,10 +52,11 @@
 <script src="${basePath}/js/bootstrap/bootstrap.min.js" type="text/javascript"></script>
 <%--分页--%>
 <script src="${basePath}/js/bootgrid/jquery.bootgrid.min.js" type="text/javascript"></script>
+<%--报表--%>
 <script src="${basePath}/js/tableexport/FileSaver.min.js"></script>
 <script src="${basePath}/js/tableexport/tableExport.min.js"></script>
 <script src="${basePath}/js/tableexport/xlsx.core.min.js"></script>
-
+<script src="${basePath}/js/checkinfo.js"></script>
 <script typeof="text/javascript">
     $(document).ready(function () {
         $("#grid-data").bootgrid({
@@ -74,28 +75,5 @@
             }
         });
     });
-    $("#xlsx").click(function () {
-        $("#grid-data").tableExport({
-            type:'xlsx',
-            fileName:'student',
-            ignoreColumn:[5],
-            bootstrap: true,
-        });
-    });
-    $("#xls").click(function () {
-        $("#grid-data").tableExport({
-            type:'excel',
-            fileName:'student',
-            bootstrap: true,
-        });
-    });
-    $("#csv").click(function () {
-        $("#grid-data").tableExport({
-            type:'csv',
-            fileName:'student',
-            bootstrap: true,
-        });
-    });
-
 </script>
 </html>
