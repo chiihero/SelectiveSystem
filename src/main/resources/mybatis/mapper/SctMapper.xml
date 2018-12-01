@@ -11,7 +11,7 @@
         <result column="grade" property="grade" jdbcType="INTEGER"/>
     </resultMap>
     <sql id="Base_Column_List">
-        student.sno, student.sname, Course.cno, Course.cname, teacher.tno, teacher.tname, sct.grade
+        student.sno, student.sname, student.sdept, Course.cno, Course.cname, teacher.tno, teacher.tname, sct.grade
     </sql>
     <select id="selectAll" resultMap="BaseResultMap" parameterType="com.chii.www.pojo.Sct">
         select

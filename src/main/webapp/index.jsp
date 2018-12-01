@@ -27,7 +27,6 @@
                     <option value="2">教师登录</option>
                     <option value="3">管理人员登录</option>
                 </select>
-
             </div>
             <div class="form-group lg-3">
                 <!--账号:-->
@@ -35,8 +34,8 @@
                     <span class="input-group-addon">
                         <i class="glyphicon glyphicon-user"></i>
                     </span>
-                    <input type="text" class="form-control" id="username" name="username" placeholder="请输入学号"
-                           value="${sessionScope.username}">
+                        <input type="text" class="form-control" id="username" name="username" placeholder="请输入学号"
+                               <c:if test="${username!=null}">value="${username}"</c:if>>
                 </div>
                 <!-- 输入密码 -->
                 <div class="edit input-group">
@@ -48,11 +47,10 @@
             </div>
             <div class="form-check">
                 <div class="float-left">
-                    ${error}
+                    ${message}
                 </div>
                 <div class="float-left">
-                    <label><input type="checkbox" value="remember-me"></label>
-                    记住账号
+                    <label><input type="checkbox" value="remember-me"></label>记住账号
                 </div>
                 <div class="float-right">
                     <a href="#registerform" class="to-register grey">忘记密码?</a>

@@ -14,7 +14,6 @@
     <link href="${basePath}/css/bootgrid/jquery.bootgrid.min.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>选课管理信息系统</title>
-    <link href="${basePath}/css/nindex.css" rel="stylesheet">
 </head>
 <body>
 <%@include file="nav.jsp" %>
@@ -38,20 +37,6 @@
                 <th data-column-id="commands"  data-formatter="commands" data-sortable="false">修改</th>
             </tr>
             </thead>
-        <%--<tbody>--%>
-            <%--<c:forEach items="${students.list}" var="student">--%>
-                <%--<tr>--%>
-                    <%--<td>${student.sno}</td>--%>
-                    <%--<td>${student.sname}</td>--%>
-                    <%--<td>${student.ssex}</td>--%>
-                    <%--<td>${student.sage}</td>--%>
-                    <%--<td>${student.sdept}</td>--%>
-                    <%--<td>--%>
-                        <%--<button class="btn btn-info" onclick="window.location.href='${basePath}/admin/studentupdate?sno=${student.sno}'">修改</button>--%>
-                    <%--</td>--%>
-                <%--</tr>--%>
-            <%--</c:forEach>--%>
-            <%--</tbody>--%>
         </table>
 </div>
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->

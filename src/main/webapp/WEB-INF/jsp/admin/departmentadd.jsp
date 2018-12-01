@@ -11,10 +11,8 @@
 <head>
     <!-- 新 Bootstrap 核心 CSS 文件 -->
     <link href="${basePath}/css/bootstrap/bootstrap.min.css" rel="stylesheet">
-    <link href="${basePath}/css/bootstrap/bootstrap-select.min.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>选课管理信息系统</title>
-    <link href="${basePath}/css/nindex.css" rel="stylesheet">
 </head>
 <body>
 <%@include file="nav.jsp" %>
@@ -45,7 +43,7 @@
             <%--<div class="input-group-prepend">--%>
             <%--<span class="input-group-text">系主任:</span>--%>
             <%--</div>--%>
-            <%--<select id="dmanager" name="dmanager">--%>
+            <%--<select class="selectpicker mb-4" id="dmanager" name="dmanager">--%>
             <%--<c:forEach items="${teachers}" var="teacher">--%>
             <%--<option value="${teacher.tname}">${teacher.tname}</option>--%>
             <%--</c:forEach>--%>
@@ -66,6 +64,5 @@
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="${basePath}/js/bootstrap/bootstrap.min.js" type="text/javascript"></script>
 <script src="${basePath}/js/checkinfo.js" type="text/javascript"></script>
-<script src="${basePath}/js/bootstrap/bootstrap-select.min.js" type="text/javascript"></script>
 
 </html>

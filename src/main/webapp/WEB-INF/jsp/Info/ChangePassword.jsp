@@ -6,8 +6,18 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.*" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="basePath" value="${pageContext.request.contextPath}"/>
+<!DOCTYPE html>
 <html>
+<head>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link href="${basePath}/css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>选课管理信息系统</title>
+
+</head>
+<body>
 <c:if test="${role=='student'}">
     <c:set var="IndexUrl" value="../student/nav.jsp"/>
 </c:if>
@@ -56,11 +66,15 @@
         </div>
     </form>
 </div>
-<%@include file="/baseJs.jspf" %>
+</body>
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="${basePath}/js/jquery.min.js" type="text/javascript"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="${basePath}/js/bootstrap/bootstrap.min.js" type="text/javascript"></script>
 <script src="${basePath}/js/encrypt/md5.min.js" type="text/javascript"></script>
 <script src="${basePath}/js/encrypt/sha3.js" type="text/javascript"></script>
 <script src="${basePath}/js/checkinfo.js" type="text/javascript"></script>
-<script src="${basePath}/js/bootstrap/bootstrap-select.min.js" type="text/javascript"></script>
+
 <script type="text/javascript">
     $(document).ready(function () {
         if(${role=='teacher'}){

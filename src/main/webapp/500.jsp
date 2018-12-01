@@ -11,7 +11,7 @@
 <html lang="en">
 <%
     String path = request.getContextPath();
-    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path;
 %>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -106,14 +106,14 @@
         }
     </style>
     <script type="text/javascript">
-        var num = 6;
+        var num = 10;
 
         function redirect() {
             num--;
             document.getElementById("num").innerHTML = num;
             if (num < 0) {
                 document.getElementById("num").innerHTML = 0;
-                location.href = '<%=basePath%>/login';
+                location.href = '<%=basePath%>/login/index';
             }
         }
         setInterval("redirect()", 1000);

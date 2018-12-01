@@ -2,12 +2,10 @@ package com.chii.www.pojo;
 
 public class User {
     private String username;
-
     private String password;
     private String newpassword;
-
     private String type;
-
+    private String message;
     public String getUsername() {
         return username;
     }
@@ -37,5 +35,12 @@ public class User {
 
     public void setType(String type) {
         this.type = type == null ? null : type.trim();
+    }
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message == null ? null : message.trim();
     }
 }

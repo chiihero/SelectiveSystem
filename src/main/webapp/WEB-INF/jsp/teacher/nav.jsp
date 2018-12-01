@@ -18,7 +18,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="${basePath}/admin/adminIndex">首页</a>
+            <a class="navbar-brand" href="${basePath}/teacher/teacherIndex">首页</a>
         </div>
         <div class="collapse navbar-collapse" id="collapsedNav">
             <ul class="nav navbar-nav nav-pills">

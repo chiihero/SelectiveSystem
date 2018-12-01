@@ -7,8 +7,18 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.*" %>
-
+<c:set var="basePath" value="${pageContext.request.contextPath}"/>
+<!DOCTYPE html>
 <html>
+<head>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link href="${basePath}/css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="${basePath}/css/bootstrap/bootstrap-select.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>选课管理信息系统</title>
+
+</head>
+<body>
 <%--默认admin用户--%>
 <c:set var="IndexUrl" value="../admin/nav.jsp"/>
 <c:if test="${role=='student'}">
@@ -16,7 +26,7 @@
 </c:if>
 <%--动态include--%>
 <jsp:include page="${IndexUrl}" flush="true"/>
-<body>
+
 <div class="container">
     <h5><b>当前位置</b>：用户管理 >
         <c:if test="${mode=='insert'}">添加学生</c:if>
@@ -46,7 +56,7 @@
                     <span class="input-group-text">性别:</span>
                 </div>
                 <%--<input type="text" class="form-control col-4" placeholder="性别" id="sex" name="sex">--%>
-                <select id="ssex" name="ssex" title="性别">
+                <select id="ssex" name="ssex" class="selectpicker mb-4">
                     <option value="男">男</option>
                     <option value="女">女</option>
                 </select>
@@ -66,7 +76,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text">系别:</span>
                 </div>
-                <select id="sdept" name="sdept">
+                <select id="sdept" name="sdept" class="selectpicker mb-4">
                     <c:forEach items="${departments}" var="department">
                         <option value="${department.dname}">${department.dname}</option>
                     </c:forEach>
@@ -89,7 +99,10 @@
         </form>
     </div>
 </div>
-<%@include file="/baseJs.jspf" %>
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="${basePath}/js/jquery.min.js" type="text/javascript"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="${basePath}/js/bootstrap/bootstrap.min.js" type="text/javascript"></script>
 <script src="${basePath}/js/encrypt/md5.min.js" type="text/javascript"></script>
 <script src="${basePath}/js/encrypt/sha3.js" type="text/javascript"></script>
 <script src="${basePath}/js/checkinfo.js" type="text/javascript"></script>
@@ -115,6 +128,7 @@
             if (${role=='student'}) {
                 $("#sdept").attr("disabled", true);
             }
+            $('.selectpicker').selectpicker('refresh');
         }
     })
 </script>

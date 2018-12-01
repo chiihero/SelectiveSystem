@@ -6,7 +6,7 @@
     <link href="${basePath}/css/bootstrap/bootstrap.min.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>选课管理信息系统</title>
-    <link href="${basePath}/css/nindex.css" rel="stylesheet">
+
 </head>
 <body>
 <%@include file="nav.jsp" %>

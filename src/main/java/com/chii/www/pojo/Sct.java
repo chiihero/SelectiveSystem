@@ -7,6 +7,7 @@ public class Sct {
     private String cname;
     private String tno;
     private String tname;
+    private String sdept;
     private Integer grade;
 
     public String getSno() {
@@ -55,6 +56,14 @@ public class Sct {
 
     public String getTname() {
         return tname;
+    }
+
+    public String getSdept() {
+        return sdept;
+    }
+
+    public void setSdept(String sdept) {
+        this.sdept = sdept == null ? null : sdept.trim();
     }
 
     public Integer getGrade() {

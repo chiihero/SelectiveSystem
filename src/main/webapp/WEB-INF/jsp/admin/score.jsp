@@ -6,61 +6,23 @@
     <link href="${basePath}/css/bootstrap/bootstrap.min.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>选课管理信息系统</title>
-    <link href="${basePath}/css/nindex.css" rel="stylesheet">
 </head>
 <body>
 <%@include file="nav.jsp" %>
 <div class="container">
     <h5><b>当前位置</b>：信息查询 > 成绩查询</h5>
     <hr>
-    <%--<table class="table">--%>
-    <%--<thead>--%>
-    <%--<tr>--%>
-    <%--<th>学号</th>--%>
-    <%--<th>姓名</th>--%>
-    <%--<th>课程名</th>--%>
-    <%--<th>教师工号</th>--%>
-    <%--<th>教师</th>--%>
-    <%--<th>分数</th>--%>
-    <%--<th>修改</th>--%>
-    <%--<th>删除</th>--%>
-    <%--</tr>--%>
-    <%--</thead>--%>
-    <%--<tbody>--%>
-    <%--<c:forEach items="${scts}" var="sct">--%>
-    <%--<tr>--%>
-    <%--<td>${sct.sno}</td>--%>
-    <%--<td>${sct.sname}</td>--%>
-    <%--<td>${sct.cname}</td>--%>
-    <%--<td>${sct.tno}</td>--%>
-    <%--<td>${sct.tname}</td>--%>
-    <%--<td>${sct.grade}</td>--%>
-    <%--<td>--%>
-    <%--<input type="text" class="layui-input" id="${sct.sno}_${sct.cno}_${sct.tno}" value="" style="width:50px; display: inline-block;">--%>
-    <%--<button class="btn" onclick="update_score(${sct.sno},${sct.cno},${sct.tno})">评分--%>
-    <%--</button>--%>
-    <%--</td>--%>
-    <%--<th>--%>
-    <%--<button type="button" class="btn btn-primary" onclick="delete_sct(${sct.sno},${sct.cno},${sct.tno})">删除</button>--%>
-    <%--</th>--%>
-
-    <%--</tr>--%>
-    <%--</c:forEach>--%>
-    <%--</tbody>--%>
-    <%--</table>--%>
-
     <table id="grid-data" class="table table-condensed table-hover table-striped">
         <thead>
         <tr>
             <th data-column-id="sno" data-identifier="true">学号</th>
             <th data-column-id="sname">姓名</th>
+            <th data-column-id="sdept">学院</th>
             <th data-column-id="cname">课程名</th>
             <th data-column-id="tno">教师工号</th>
             <th data-column-id="tname">教师</th>
-
             <th data-column-id="grade">分数</th>
             <th data-column-id="commands" data-formatter="commands" data-sortable="false">修改</th>
-
             <th data-column-id="delete" data-formatter="delete" data-sortable="false">删除</th>
         </tr>
         </thead>

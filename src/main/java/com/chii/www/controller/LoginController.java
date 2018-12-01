@@ -13,11 +13,10 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("login")
@@ -27,43 +26,51 @@ public class LoginController {
     private UserService userService;
 
     @RequestMapping("/index")
-    public String Index() {
+    public String Index(User user, Model model) {
+        if (user.getUsername() != null)
+            model.addAttribute("username", user.getUsername());
+        if (user.getMessage() != null)
+            model.addAttribute("message", user.getMessage());
         return "../../index";
     }
 
     @RequestMapping(value = "/signIn", method = RequestMethod.POST)
     public String Login(User user, Model model) {
         Subject currentUser = SecurityUtils.getSubject();
+        System.out.println(currentUser.isAuthenticated());
         if (!currentUser.isAuthenticated()) {
             UsernamePasswordToken token = new UsernamePasswordToken(user.getUsername(), user.getPassword());
             token.setRememberMe(true);
             try {
-                System.out.println(token.hashCode());
+//                System.out.println(token.hashCode());
                 currentUser.login(token);
             } catch (AuthenticationException ae) {
                 System.out.println("登录失败: " + ae.getMessage());
-                model.addAttribute("error", "用户名或密码错误");
-                return "redirect:/login";
-            }
-            model.addAttribute("username", user.getUsername());
-            switch (user.getType()) {//根据用户类型转跳到不同view
-                case "1":
-                    return "redirect:/student/studentIndex";
-                case "2":
-                    return "redirect:/teacher/teacherIndex";
-                case "3":
-                    return "redirect:/admin/adminIndex";
-                default:
-                    model.addAttribute("error", "请选择用户类型");
+                model.addAttribute("message", "用户名或密码错误");
+                return "redirect:/login/index";
+            } finally {
+                System.out.println("登录成功: " + user.getUsername());
+                model.addAttribute("message", "");
             }
         }
+        model.addAttribute("username", user.getUsername());
+        switch (user.getType()) {//根据用户类型转跳到不同view
+            case "1":
+                return "redirect:/student/studentIndex";
+            case "2":
+                return "redirect:/teacher/teacherIndex";
+            case "3":
+                return "redirect:/admin/adminIndex";
+            default:
+                model.addAttribute("message", "请选择用户类型");
+        }
         System.out.println("error!!!!!!!!!!!!!!!!!!!!");
-        return "redirect:/login";
+        return "redirect:/login/index";
     }
 
     @RequestMapping("/PasswordUpdate")
     public String passwordUpdate(User user) {
-        String oldpassword,getpass;
+        String oldpassword, getpass;
         oldpassword = SafeCode.PasswordHash(user.getPassword(), user.getUsername());
         switch (user.getType()) {//根据用户类型转跳到不同view
             case "1":

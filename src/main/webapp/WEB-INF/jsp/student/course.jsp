@@ -6,51 +6,20 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.*" %>
-<%@ include file="studentIndex.jsp" %>
+<!DOCTYPE html>
 <html>
+<head>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link href="${basePath}/css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="${basePath}/css/bootgrid/jquery.bootgrid.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>选课管理信息系统</title>
+</head>
+<body>
+<%@include file="nav.jsp" %>
 <div class="container">
     <h5><b>当前位置</b>：信息查询 > 选课查询</h5>
     <hr>
-    <%--<table class="table">--%>
-        <%--<thead>--%>
-        <%--<tr>--%>
-            <%--<th>课程名</th>--%>
-            <%--<th>教师</th>--%>
-            <%--<th>最大人数</th>--%>
-            <%--<th>选择人数</th>--%>
-            <%--<th>选课</th>--%>
-        <%--</tr>--%>
-        <%--</thead>--%>
-        <%--<tbody>--%>
-        <%--<c:forEach items="${courselist}" var="course">--%>
-            <%--&lt;%&ndash;可以选课标记&ndash;%&gt;--%>
-            <%--<c:set var="sctbool" value="true"/>--%>
-            <%--&lt;%&ndash;无的课程不显示&ndash;%&gt;--%>
-            <%--<c:if test="${course.cname !='无'}">--%>
-                <%--<tr>--%>
-                    <%--<td>${course.cname}</td>--%>
-                    <%--<td>${course.tname}</td>--%>
-                    <%--<td>${course.cnum}</td>--%>
-                    <%--<td>${course.cnewnum}</td>--%>
-                    <%--<td>--%>
-                    <%--<c:forEach items="${scts}" var="score">--%>
-                        <%--<c:if test="${score.cno == course.cno}">--%>
-                            <%--<button class="btn btn-primary" disabled>已选</button>--%>
-                            <%--<c:set var="sctbool" value="false"/>--%>
-                        <%--</c:if>--%>
-                    <%--</c:forEach>--%>
-                    <%--<c:if test="${(course.cnum > course.cnewnum)&&sctbool=='true'}">--%>
-                        <%--<button class="btn btn-primary" onclick="update_score(${course.cno},${course.tno})">选课</button>--%>
-                    <%--</c:if>--%>
-                    <%--<c:if test="${(course.cnum <= course.cnewnum)&&sctbool=='true'}">--%>
-                        <%--<button class="btn btn-primary" disabled>选课人数已满</button>--%>
-                    <%--</c:if>--%>
-                    <%--</td>--%>
-                <%--</tr>--%>
-            <%--</c:if>--%>
-        <%--</c:forEach>--%>
-        <%--</tbody>--%>
-    <%--</table>--%>
     <table id="grid-data" class="table table-condensed table-hover table-striped">
         <thead>
         <tr>
@@ -63,6 +32,13 @@
         </thead>
     </table>
 </div>
+</body>
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="${basePath}/js/jquery.min.js" type="text/javascript"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="${basePath}/js/bootstrap/bootstrap.min.js" type="text/javascript"></script>
+<%--分页--%>
+<script src="${basePath}/js/bootgrid/jquery.bootgrid.js" type="text/javascript"></script>
 <script>
     $(document).ready(function () {
         var grid =$("#grid-data").bootgrid({

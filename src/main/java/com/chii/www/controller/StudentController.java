@@ -94,9 +94,11 @@ public class StudentController {
 
     @RequestMapping("/update")
     public String studentupdate(Student student, HttpServletRequest request, Model model) {
-        //加密密码
-        String password = SafeCode.PasswordHash(student.getPassword(),student.getSno());
-        student.setPassword(password);
+        if (student.getPassword() != null) {
+            //加密密码
+            String password = SafeCode.PasswordHash(student.getPassword(), student.getSno());
+            student.setPassword(password);
+        }
         userService.updateStuInfo(student);
         String returnURL = request.getHeader("Referer");
         System.out.println(returnURL);
