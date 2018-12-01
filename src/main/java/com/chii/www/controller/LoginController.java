@@ -15,9 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 @Controller
 @RequestMapping("login")
 @SessionAttributes({"username"})//放到Session属性列表中，以便这个属性可以跨请求访问
@@ -31,7 +28,7 @@ public class LoginController {
             model.addAttribute("username", user.getUsername());
         if (user.getMessage() != null)
             model.addAttribute("message", user.getMessage());
-        return "../../index";
+        return "login";
     }
 
     @RequestMapping(value = "/signIn", method = RequestMethod.POST)

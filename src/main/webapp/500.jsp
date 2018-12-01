@@ -122,7 +122,7 @@
 
 <body onLoad="redirect();">
 <div class="whole">
-    <img src="<%=basePath%>/img/500view.jpg"/>
+    <img src="<%=basePath%>/img/500view.png"/>
     <div class="mask"></div>
 </div>
 <div class="b">

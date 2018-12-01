@@ -91,10 +91,9 @@
         <property name="filterChainDefinitions">
             <value>
                 /index.jsp = authc
-                /login/signIn = anon
-                /login/index = anon
-                / = logout
                 /login/logout = logout
+                /login/** = anon
+
                 /admin/** = roles[admin]
                 /teacher/** = roles[teacher]
                 /student/** = roles[student]
