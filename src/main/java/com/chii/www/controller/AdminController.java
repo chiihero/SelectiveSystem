@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.ejb.Init;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
@@ -24,18 +25,18 @@ public class AdminController {
     private UserService userService;
     @Autowired
     private CourseService courseService;
+
     @ModelAttribute
-    private String addAttributes(@ModelAttribute("username") String user, Model model)
+    private void addAttributes(Model model)
     {
-        if (user == null)
-            return "login/index";
         model.addAttribute("role", "admin");
-        return null;
     }
 
     @RequestMapping("/adminIndex")
-    public String adminUrl() {
+    public String adminUrl(@ModelAttribute("username") String user) {
         BasicConfigurator.configure();
+        if (user.equals(""))
+            return "redirect:/login/logout";
         return "admin/adminIndex";
     }
 

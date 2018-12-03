@@ -25,6 +25,7 @@ public class StudentController {
     @Autowired
     private CourseService courseService;
 
+
     @ModelAttribute
     private void addAttributes(Model model)
     {

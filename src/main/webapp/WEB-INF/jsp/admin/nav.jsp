@@ -31,7 +31,7 @@
                         <%--<li class="dropdown-item"><a href="${basePath}/admin/teacheradd">添加教师</a></li>--%>
                         <li class="dropdown-item"><a href="${basePath}/admin/studentuser">所有学生</a></li>
                         <li class="dropdown-item"><a href="${basePath}/admin/teacheruser">所有教师</a></li>
-                        <li class="dropdown-item"><a href="${basePath}/admin/userimport">用户批量导入</a></li>
+                        <%--<li class="dropdown-item"><a href="${basePath}/admin/userimport">用户批量导入</a></li>--%>
                     </ul>
                 </li>
                 <%--<li class="nav-item dropdown">--%>

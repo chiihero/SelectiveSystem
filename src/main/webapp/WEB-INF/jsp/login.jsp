@@ -46,10 +46,11 @@
             </div>
             <div class="form-check">
                 <div class="float-left">
+                    <c:if test="${not empty param.kickout}">您被踢出登录。</c:if>
                     ${message}
                 </div>
                 <div class="float-left">
-                    <label><input type="checkbox" value="remember-me"></label>记住账号
+                    <label><input type="checkbox" name="rememberMe" value="true"></label>自动登录
                 </div>
                 <div class="float-right">
                     <a href="#registerform" class="to-register grey">忘记密码?</a>

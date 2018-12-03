@@ -15,6 +15,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 @RequestMapping("login")
 @SessionAttributes({"username"})//放到Session属性列表中，以便这个属性可以跨请求访问
@@ -104,9 +106,9 @@ public class LoginController {
         return "redirect:/login/index";
     }
 
-//    @RequestMapping("/logout")
-//    public String exit(HttpServletRequest request) {
+    @RequestMapping("/logout")
+    public String exit(HttpServletRequest request) {
 //        request.getSession().invalidate();
-//        return "redirect:/login/index";
-//    }
+        return "/login/logout";
+    }
 }
