@@ -24,7 +24,6 @@
         <button type="button" id="xlsx" class="btn btn-default xlsx">Export to xlsx</button>
         <button type="button" id="xls" class="btn btn-default xls">Export to xls</button>
         <button type="button" id="csv" class="btn btn-default csv">Export to csv</button>
-        <button class="btn btn-info" onclick="window.location.href='${basePath}/admin/StudentInfo'">添加学生</button>
     </caption>
     <table class="table table-condensed">
         <thead>
