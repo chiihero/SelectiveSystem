@@ -38,6 +38,8 @@ public class PageBean<T> {
     }
 
     public void setRowCount(int rowCount) {
+        if (rowCount == -1)
+            rowCount = 0;
         this.rowCount = rowCount;
     }
 

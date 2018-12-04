@@ -44,11 +44,11 @@
 
 <body onLoad="redirect();">
 <div class="whole">
-    <img src="<%=basePath%>/img/404view.png"/>
+    <img src="<%=basePath%>/img/error/404view.png"/>
     <div class="mask"></div>
 </div>
 <div class="b">
-    <img src="<%=basePath%>/img/404.png" class="center"/>
+    <img src="<%=basePath%>/img/error/404.png" class="center"/>
     <p>
         抱歉，您访问的页面被外星人掳走了...<br>
         <span id="num"></span>秒后自动跳转到主页

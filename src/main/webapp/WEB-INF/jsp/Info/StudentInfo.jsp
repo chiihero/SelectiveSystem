@@ -16,7 +16,11 @@
     <link href="${basePath}/css/bootstrap/bootstrap-select.min.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>选课管理信息系统</title>
-
+    <style>
+        .input-group{
+            margin-top: 12px;
+        }
+    </style>
 </head>
 <body>
 <%--默认admin用户--%>
@@ -33,27 +37,27 @@
         <c:if test="${mode=='update'}">修改学生</c:if>
     </h5>
     <hr>
-    <div class="useradd col-12">
+    <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3 col-sm-offset-4">
         <form id="useradd" action="/student/insert" method="post">
             <input type="hidden" name="type" value="1">
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">学号:</span>
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-user"></span>
                 </div>
                 <input type="text" class="form-control col-4" placeholder="学号" id="sno" name="sno">
                 <a id="no_text" style="color: #c82333"></a>
             </div>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">姓名:</span>
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-pencil"></span>
                 </div>
                 <input type="text" class="form-control col-4" placeholder="姓名" id="sname" name="sname">
                 <a id="name_text" style="color: #c82333"></a>
             </div>
 
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">性别:</span>
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-heart-empty"></span>
                 </div>
                 <%--<input type="text" class="form-control col-4" placeholder="性别" id="sex" name="sex">--%>
                 <select id="ssex" name="ssex" class="selectpicker mb-4">
@@ -62,9 +66,9 @@
                 </select>
                 <a id="sex_text" style="color: #c82333"></a>
             </div>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">年龄:</span>
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-time"></span>
                 </div>
                 <input type="text" class="form-control col-4" placeholder="年龄" id="sage" name="sage"
                        oninput="value=value.replace(/[^\d]/g,'')">
@@ -72,9 +76,9 @@
 
             </div>
 
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">系别:</span>
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-book"></span>
                 </div>
                 <select id="sdept" name="sdept" class="selectpicker mb-4">
                     <c:forEach items="${departments}" var="department">
@@ -84,9 +88,9 @@
                 <a id="sdept_text" style="color: #c82333"></a>
             </div>
             <c:if test="${mode=='update'&& role=='admin'}">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">密码:</span>
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-lock"></span>
                     </div>
                     <input type="text" class="form-control col-4" placeholder="密码" id="password" name="password">
                 </div>

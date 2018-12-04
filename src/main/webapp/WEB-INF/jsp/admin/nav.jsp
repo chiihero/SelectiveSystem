@@ -65,11 +65,20 @@
                         <li class="dropdown-item"><a href="${basePath}/admin/department">院系管理</a></li>
                     </ul>
                 </li>
+                <li class="nav-item">
+                    <a href="${basePath}/admin/help" class="nav-link" role="button"
+                       aria-haspopup="true" aria-expanded="false">帮助 </a>
+
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li class="nav-item dropdown navbar-right">
+                <li class="nav-item dropdown">
+                    <a class="nav-link">${sessionScope.username}</a>
+                </li>
+                <li class="nav-item dropdown">
                     <a href="${basePath}/login/logout" class="nav-link" role="button">退出 </a>
                 </li>
+
             </ul>
         </div>
     </div>

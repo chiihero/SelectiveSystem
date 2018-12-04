@@ -43,7 +43,7 @@
 
 <body onLoad="redirect();">
 <div class="whole">
-    <img src="<%=basePath%>/img/401.png" />
+    <img src="<%=basePath%>/img/error/401.png" />
     <div class="mask"></div>
 </div>
 <div class="b">

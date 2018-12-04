@@ -42,7 +42,7 @@
     <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
         <!-- Shiro去掉URL中的JSESSIONID -->
         <property name="sessionIdUrlRewritingEnabled" value="false" />
-        <property name="globalSessionTimeout" value="10000"/><!-- 毫秒 -->
+        <property name="globalSessionTimeout" value="1800000"/><!-- 毫秒 -->
         <property name="deleteInvalidSessions" value="true"/>
         <property name="sessionValidationSchedulerEnabled" value="true"/>
         <property name="sessionValidationScheduler" ref="sessionValidationScheduler"/>
@@ -53,7 +53,7 @@
 
     <!-- 会话验证调度器 -->
     <bean id="sessionValidationScheduler" class="org.apache.shiro.session.mgt.quartz.QuartzSessionValidationScheduler">
-        <property name="sessionValidationInterval" value="10000"/>
+        <property name="sessionValidationInterval" value="1800000"/>
         <property name="sessionManager" ref="sessionManager"/>
     </bean>
     <!-- 会话Cookie模板 -->
@@ -106,7 +106,6 @@
                 <ref bean="studentRealm"/>
                 <ref bean="teacherRealm"/>
                 <ref bean="adminRealm"/>
-
             </list>
         </property>
     </bean>

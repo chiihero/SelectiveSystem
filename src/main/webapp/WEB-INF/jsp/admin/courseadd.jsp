@@ -13,49 +13,55 @@
     <link href="${basePath}/css/bootstrap/bootstrap.min.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>选课管理信息系统</title>
-
+    <style>
+        .input-group{
+            margin-top: 12px;
+        }
+    </style>
 </head>
 <body>
 <%@include file="nav.jsp" %>
 <div class="container">
     <h5><b>当前位置</b>：课程管理 > 添加课程</h5>
     <hr>
-    <form action="/admin/courseInsert" method="post">
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text">课程号:</span>
+    <div class="col-sm-5 col-sm-offset-4">
+        <form action="/admin/courseInsert" method="post">
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-book"></span>
+                </div>
+                <input type="text" class="form-control" placeholder="课程号" id="cno" name="cno">
             </div>
-            <input type="text" class="form-control col-4" placeholder="课程号" id="cno" name="cno">
-        </div>
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text">课程号:</span>
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-book"></span>
+                </div>
+                <input type="text" class="form-control" placeholder="课程名称" id="cname" name="cname">
             </div>
-            <input type="text" class="form-control col-4" placeholder="课程号" id="cname" name="cname">
-        </div>
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text">先行课编号:</span>
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-book"></span>
+                </div>
+                <input type="text" class="form-control" placeholder="先行课编号" id="cpno" name="cpno">
             </div>
-            <input type="text" class="form-control col-4" placeholder="先行课编号" id="cpno" name="cpno">
-        </div>
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text">最大人数:</span>
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-stats"></span>
+                </div>
+                <input type="text" class="form-control" placeholder="最大人数" id="cnum" name="cnum">
             </div>
-            <input type="text" class="form-control col-4" placeholder="最大人数" id="cnum" name="cnum">
-        </div>
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text">学分:</span>
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-education"></span>
+                </div>
+                <input type="text" class="form-control" placeholder="学分" id="ccredit" name="ccredit">
             </div>
-            <input type="text" class="form-control col-4" placeholder="学分" id="ccredit" name="ccredit">
-        </div>
-        <div style="padding-top: 15px">
-            <button type="submit" class="btn btn-primary">添加</button>
-            <button type="reset" class="btn btn-warning">重置</button>
-        </div>
-    </form>
+            <div style="padding-top: 15px">
+                <button type="submit" class="btn btn-primary">添加</button>
+                <button type="reset" class="btn btn-warning">重置</button>
+            </div>
+        </form>
+    </div>
 </div>
 </body>
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->

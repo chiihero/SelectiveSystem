@@ -122,11 +122,11 @@
 
 <body onLoad="redirect();">
 <div class="whole">
-    <img src="<%=basePath%>/img/500view.png"/>
+    <img src="<%=basePath%>/img/error/500view.png"/>
     <div class="mask"></div>
 </div>
 <div class="b">
-    <img src="<%=basePath%>/img/500.png" class="center"/>
+    <img src="<%=basePath%>/img/error/500.png" class="center"/>
     <p>
         抱歉...好像出现了奇怪的问题...<br>
         <span id="num"></span>秒后自动跳转到主页

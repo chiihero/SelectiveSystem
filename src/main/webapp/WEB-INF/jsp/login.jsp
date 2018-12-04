@@ -13,6 +13,10 @@
 </head>
 <body>
 <!-- 两个输入框 -->
+<div id="background" class="wall"></div>
+<div id="midground" class="wall"></div>
+<div id="foreground" class="wall"></div>
+<div id="top" class="wall"></div>
 <div class="container">
     <div id="logo">
         <h1 class="textcolor text-center">选课系统</h1>

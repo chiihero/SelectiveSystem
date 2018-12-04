@@ -13,35 +13,40 @@
     <link href="${basePath}/css/bootstrap/bootstrap.min.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>选课管理信息系统</title>
+    <style>
+        .input-group{
+            margin-top: 12px;
+        }
+    </style>
 </head>
 <body>
 <%@include file="nav.jsp" %>
 <div class="container">
     <h5><b>当前位置</b>：院系管理 > 增加院系</h5>
     <hr>
-    <div class="col-12">
+    <div class="col-sm-5 col-sm-offset-4">
         <form id="addinfo" action="/admin/departmentInsert" method="post">
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">系编号:</span>
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-book"></span>
                 </div>
-                <input type="text" class="form-control col-4" placeholder="系编号" id="dno" name="dno">
+                <input type="text" class="form-control" placeholder="系编号" id="dno" name="dno">
             </div>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">系名:</span>
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-book"></span>
                 </div>
-                <input type="text" class="form-control col-4" placeholder="系名" id="dname" name="dname">
+                <input type="text" class="form-control" placeholder="系名" id="dname" name="dname">
             </div>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">系主任:</span>
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-user"></span>
                 </div>
-                <input type="text" class="form-control col-4" placeholder="系主任" id="dmanager" name="dmanager">
+                <input type="text" class="form-control" placeholder="系主任" id="dmanager" name="dmanager">
             </div>
-            <%--<div class="input-group mb-3">--%>
-            <%--<div class="input-group-prepend">--%>
-            <%--<span class="input-group-text">系主任:</span>--%>
+            <%--<div class="input-group">--%>
+            <%--<div class="input-group-addon">--%>
+            <%--<span class="glyphicon glyphicon-book">系主任:</span>--%>
             <%--</div>--%>
             <%--<select class="selectpicker mb-4" id="dmanager" name="dmanager">--%>
             <%--<c:forEach items="${teachers}" var="teacher">--%>

@@ -15,7 +15,11 @@
     <link href="${basePath}/css/bootstrap/bootstrap.min.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>选课管理信息系统</title>
-
+    <style>
+        .input-group{
+            margin-top: 12px;
+        }
+    </style>
 </head>
 <body>
 <c:if test="${role=='student'}">
@@ -30,30 +34,31 @@
 <div class="container">
     <h5><b>当前位置</b>：个人信息 > 密码修改</h5>
     <hr>
-        <form action="${pageContext.request.contextPath}/login/PasswordUpdate" method="post">
+    <div class="col-sm-5 col-sm-offset-4">
+    <form action="${basePath}/login/PasswordUpdate" method="post">
         <input type="hidden" name="username" value=${sessionScope.username}>
         <input type="hidden" id="type" name="type" value="1">
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text">旧密码:</span>
+        <div class="input-groupaddon">
+            <div class="input-group-addon">
+                <span class="glyphicon glyphicon-lock">旧密码:</span>
             </div>
-            <input type="password" class="form-control col-4" placeholder="旧密码" id="password"
+            <input type="password" class="form-control" placeholder="旧密码" id="password"
                    name="password">
             <a id="old_password_text" style="color: #c82333"></a>
         </div>
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text">新密码:</span>
+        <div class="input-groupaddon">
+            <div class="input-group-addon">
+                <span class="glyphicon glyphicon-lock">新密码:</span>
             </div>
-            <input type="password" class="form-control col-4" placeholder="请输入8~24位新密码" id="newpassword"
+            <input type="password" class="form-control" placeholder="请输入8~24位新密码" id="newpassword"
                    name="newpassword">
             <a id="new_password_text" style="color: #c82333"></a>
         </div>
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text">确认新密码:</span>
+        <div class="input-groupaddon">
+            <div class="input-group-addon">
+                <span class="glyphicon glyphicon-lock">确认新密码:</span>
             </div>
-            <input type="password" class="form-control col-4" placeholder="请输入8~24位密码确认新密码" id="new_password_again"
+            <input type="password" class="form-control" placeholder="请输入8~24位密码确认新密码" id="new_password_again"
                    name="new_password_again">
             <a id="new_passwords_text" style="color: #c82333"></a>
         </div>
@@ -61,10 +66,13 @@
             ${info}
         </div>
         <div style="padding-top: 15px">
-            <button id="ChangePassword" type="submit" class="btn btn-primary" onclick="return changepassword()">修改</button>
+            <button id="ChangePassword" type="submit" class="btn btn-primary" onclick="return changepassword()">修改
+            </button>
             <button type="reset" class="btn btn-warning">重置</button>
         </div>
     </form>
+    </div>
+
 </div>
 </body>
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
@@ -77,10 +85,10 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        if(${role=='teacher'}){
+        if (${role=='teacher'}) {
             $("#type").val("2")
         }
-        if(${role=='admin'}){
+        if (${role=='admin'}) {
             $("#type").val("3")
         }
     });

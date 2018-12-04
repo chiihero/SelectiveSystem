@@ -20,6 +20,7 @@ import java.io.InputStream;
 
 @Controller
 @RequestMapping("admin")
+@SessionAttributes({"username"})//放到Session属性列表中，以便这个属性可以跨请求访问
 public class AdminController {
     @Autowired
     private UserService userService;
@@ -36,7 +37,8 @@ public class AdminController {
     public String adminUrl(@ModelAttribute("username") String user) {
         BasicConfigurator.configure();
         if (user.equals(""))
-            return "redirect:/login/logout";
+            System.out.println("hhhhhh");
+//            return "redirect:/login/logout";
         return "admin/adminIndex";
     }
 
@@ -213,9 +215,9 @@ public class AdminController {
     }
 
     @RequestMapping("/departmentDelete")
-    public String departmentDelete(String cno, Model model) {
+    public String departmentDelete(String dno, Model model) {
 //        System.out.println(cno);
-        courseService.deleteDepartmentInfo(cno);
+        courseService.deleteDepartmentInfo(dno);
         return "redirect:/admin/department";
     }
     @RequestMapping("/exportStu")
@@ -229,5 +231,8 @@ public class AdminController {
         ServletOutputStream output = response.getOutputStream();
         IOUtils.copy(is,output);
     }
-
+    @RequestMapping("/help")
+    public String helpUrl(Model model) {
+        return "/admin/help";
+    }
 }

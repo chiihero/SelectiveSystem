@@ -16,7 +16,11 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>选课管理信息系统</title>
-
+    <style>
+        .input-group{
+            margin-top: 12px;
+        }
+    </style>
 </head>
 <body>
 <%--默认admin用户--%>
@@ -33,25 +37,25 @@
         <c:if test="${mode=='update'}">修改教师</c:if>
     </h5>
     <hr>
-    <div class="useradd col-4">
+    <div class="col-xs-10 col-sm-5 col-md-3  col-sm-offset-4">
         <form id="TeacherUseradd" action="/teacher/insert" method="post">
-            <div class="input-group mb-3 ">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">教工号:</span>
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-user"></span>
                 </div>
                 <input type="text" class="form-control" placeholder="教工号" id="tno" name="tno">
             </div>
 
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">姓名:</span>
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-pencil"></span>
                 </div>
                 <input type="text" class="form-control" placeholder="姓名" id="tname" name="tname">
             </div>
 
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">性别:</span>
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-heart-empty"></span>
                 </div>
                 <select name="tsex" class="selectpicker mb-4">
                     <option value="男">男</option>
@@ -59,16 +63,16 @@
                 </select>
             </div>
 
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">年龄:</span>
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-time"</span>
                 </div>
                 <input type="text" class="form-control" placeholder="年龄" id="tage" name="tage"
                        oninput="value=value.replace(/[^\d]/g,'')">
             </div>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">学历:</span>
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-book"></span>
                 </div>
                 <select id="teb" name="teb" class="selectpicker mb-4">
                     <option value="学士">学士</option>
@@ -77,9 +81,9 @@
                 </select>
             </div>
 
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">职称:</span>
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-briefcase"></span>
                 </div>
                 <select id="tpt" name="tpt" class="selectpicker mb-4">
                     <option value="助教">助教</option>
@@ -89,9 +93,9 @@
                 </select>
             </div>
 
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">主讲课程一:</span>
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-menu-hamburger"></span>
                 </div>
                 <select id="cno1" name="cno1" class="selectpicker mb-4">
                     <c:forEach items="${courses}" var="course">
@@ -100,9 +104,9 @@
                 </select>
             </div>
 
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">主讲课程二:</span>
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-menu-hamburger"></span>
                 </div>
                 <select id="cno2" name="cno2" class="selectpicker mb-4">
                     <c:forEach items="${courses}" var="course">
@@ -111,9 +115,9 @@
                 </select>
             </div>
 
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">主讲课程三:</span>
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-menu-hamburger"></span>
                 </div>
                 <select id="cno3" name="cno3" class="selectpicker mb-4">
                     <c:forEach items="${courses}" var="course">
@@ -122,9 +126,9 @@
                 </select>
             </div>
             <c:if test="${mode=='update'&& role=='admin'}}">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">密码:</span>
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-lock">密码:</span>
                     </div>
                     <input type="text" class="form-control col-4" placeholder="密码" id="password" name="password">
                 </div>
