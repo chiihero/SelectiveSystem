@@ -41,6 +41,10 @@
                         <li class="dropdown-item"><a href="${basePath}/teacher/studentuser">学生与成绩管理</a></li>
                     </ul>
                 </li>
+                <li class="nav-item">
+                    <a href="${basePath}/teacher/help" class="nav-link" role="button"
+                       aria-haspopup="true" aria-expanded="false">帮助 </a>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="nav-item dropdown navbar-right">

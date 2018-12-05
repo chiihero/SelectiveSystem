@@ -23,7 +23,7 @@
         <div class="collapse navbar-collapse" id="example-navbar-collapse">
             <ul class="nav navbar-nav nav-pills">
                 <li class="nav-item dropdown">
-                    <a href=">#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
                        aria-haspopup="true" aria-expanded="false">个人信息 <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li class="dropdown-item"><a
@@ -42,6 +42,10 @@
                         </li>
                         <li class="dropdown-item"><a href="${basePath}/student/course">选课查询</a></li>
                     </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="${basePath}/student/help" class="nav-link" role="button"
+                       aria-haspopup="true" aria-expanded="false">帮助</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">

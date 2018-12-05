@@ -68,7 +68,6 @@
                 <li class="nav-item">
                     <a href="${basePath}/admin/help" class="nav-link" role="button"
                        aria-haspopup="true" aria-expanded="false">帮助 </a>
-
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">

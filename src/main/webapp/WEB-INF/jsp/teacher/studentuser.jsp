@@ -12,6 +12,7 @@
     <!-- 新 Bootstrap 核心 CSS 文件 -->
     <link href="${basePath}/css/bootstrap/bootstrap.min.css" rel="stylesheet">
     <link href="${basePath}/css/bootgrid/jquery.bootgrid.min.css" rel="stylesheet">
+    <link href="${basePath}/css/tableexport/tableexport.min.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>选课管理信息系统</title>
 
@@ -21,20 +22,24 @@
 <div class="container">
     <h5><b>当前位置</b>：用户管理 > 学生与分数</h5>
     <hr>
+    <caption class="btn-toolbar tableexport-caption" style="caption-side: bottom;">
+        <button type="button" id="xlsx" class="btn btn-default xlsx">Export to xlsx</button>
+        <button type="button" id="xls" class="btn btn-default xls">Export to xls</button>
+        <button type="button" id="csv" class="btn btn-default csv">Export to csv</button>
+    </caption>
     <div>
-            <table id="grid-data" class="table table-condensed table-hover table-striped">
-                <thead>
-                <tr>
-                    <th data-column-id="sno" data-identifier="true">学号</th>
-                    <th data-column-id="sname">姓名</th>
-                    <th data-column-id="sdept">学院</th>
-
-                    <th data-column-id="cname">课程名</th>
-                    <th data-column-id="grade">分数</th>
-                    <th data-column-id="commands"  data-formatter="commands" data-sortable="false">修改</th>
-                </tr>
-                </thead>
-            </table>
+        <table id="grid-data" class="table table-condensed table-hover table-striped">
+            <thead>
+            <tr>
+                <th data-column-id="sno" data-identifier="true">学号</th>
+                <th data-column-id="sname">姓名</th>
+                <th data-column-id="sdept">学院</th>
+                <th data-column-id="cname">课程名</th>
+                <th data-column-id="grade">分数</th>
+                <th data-column-id="commands" data-formatter="commands" data-sortable="false">修改</th>
+            </tr>
+            </thead>
+        </table>
     </div>
 </div>
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
@@ -43,12 +48,16 @@
 <script src="${basePath}/js/bootstrap/bootstrap.min.js" type="text/javascript"></script>
 <%--分页--%>
 <script src="${basePath}/js/bootgrid/jquery.bootgrid.min.js" type="text/javascript"></script>
+<%--报表--%>
+<script src="${basePath}/js/tableexport/FileSaver.min.js"></script>
+<script src="${basePath}/js/tableexport/tableExport.min.js"></script>
+<script src="${basePath}/js/tableexport/xlsx.core.min.js"></script>
+<script src="${basePath}/js/checkinfo.js"></script>
 <script typeof="text/javascript">
     $(document).ready(function () {
         $("#grid-data").bootgrid({
             ajax: true,
-            post: function ()
-            {
+            post: function () {
                 /* To accumulate custom parameter with the request object */
                 return {
                     // sdept:sdept_id
@@ -57,19 +66,19 @@
             },
             url: "/teacher/AllStudentUser",
             formatters: {
-                "commands": function(column, row)
-                {
+                "commands": function (column, row) {
                     var grade = row.grade;
-                    if (row.grade==null){
-                        return "<input type=\"text\" class=\"layui-input\" id=\"" + row.sno + "_" + row.cno + "_" + row.tno +"\" value=\"\" style=\"width:80px; display: inline-block;\">"+
+                    if (row.grade == null) {
+                        return "<input type=\"text\" class=\"layui-input\" id=\"" + row.sno + "_" + row.cno + "_" + row.tno + "\" value=\"\" style=\"width:80px; display: inline-block;\">" +
                             "<button class=\"btn btn-primary\" onclick=\"update_score(" + row.sno + "," + row.cno + "," + row.tno + ")\">评分";
-                    }else {
+                    } else {
                         return "<button class=\"btn\" disabled>已经评分";
                     }
                 }
             }
         });
     });
+
     function update_score(Sno, Cno, Tno) {
         var score = document.getElementById(Sno + "_" + Cno + "_" + Tno);
         var body = {
@@ -82,13 +91,13 @@
         post("${basePath}/admin/scoreupdate", body);
         var parent = score.parentNode; // 父节点
         var previous = parent.previousSibling; // 上一个兄弟节点
-        previous.innerHTML= score.value ;
+        previous.innerHTML = score.value;
     }
 
     function post(URL, PARAMS) {
         $.ajax({
             url: URL,
-            aysnc:false,
+            aysnc: false,
             type: "get",
             contentType: "application/json; charset=utf-8",
             data: PARAMS,

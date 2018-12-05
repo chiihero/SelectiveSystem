@@ -121,4 +121,8 @@ public class StudentController {
         model.addAttribute("msg","插入成功");
         return "redirect:/admin/studentadd";
     }
+    @RequestMapping("/help")
+    public String helpUrl(Model model) {
+        return "/student/help";
+    }
 }

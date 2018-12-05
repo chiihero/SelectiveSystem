@@ -97,7 +97,7 @@ public class TeacherController {
         return "redirect:/admin/teacheradd";
     }
 
-//    @RequestMapping("/scoreupdate")
+    //    @RequestMapping("/scoreupdate")
 //    public String scoreupdate(Sct sct, Model model) {
 //        courseService.updateGradeInfo(sct);
 //        return "redirect:/teacher/studentuser";
@@ -106,4 +106,8 @@ public class TeacherController {
 //    public String teacherdelete(String no){
 //        return "redirect:../Admin/teacheradd";
 //    }
+    @RequestMapping("/help")
+    public String helpUrl(Model model) {
+        return "/teacher/help";
+    }
 }

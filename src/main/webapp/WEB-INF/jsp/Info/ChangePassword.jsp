@@ -24,6 +24,8 @@
 <body>
 <c:if test="${role=='student'}">
     <c:set var="IndexUrl" value="../student/nav.jsp"/>
+    <c:set var="type" value="../student/nav.jsp"/>
+
 </c:if>
 <c:if test="${role=='teacher'}">
     <c:set var="IndexUrl" value="../teacher/nav.jsp"/>
@@ -38,25 +40,25 @@
     <form action="${basePath}/login/PasswordUpdate" method="post">
         <input type="hidden" name="username" value=${sessionScope.username}>
         <input type="hidden" id="type" name="type" value="1">
-        <div class="input-groupaddon">
+        <div class="input-group">
             <div class="input-group-addon">
-                <span class="glyphicon glyphicon-lock">旧密码:</span>
+                <a>旧密码:</a>
             </div>
             <input type="password" class="form-control" placeholder="旧密码" id="password"
                    name="password">
             <a id="old_password_text" style="color: #c82333"></a>
         </div>
-        <div class="input-groupaddon">
+        <div class="input-group">
             <div class="input-group-addon">
-                <span class="glyphicon glyphicon-lock">新密码:</span>
+                <a>新密码:</a>
             </div>
             <input type="password" class="form-control" placeholder="请输入8~24位新密码" id="newpassword"
                    name="newpassword">
             <a id="new_password_text" style="color: #c82333"></a>
         </div>
-        <div class="input-groupaddon">
+        <div class="input-group">
             <div class="input-group-addon">
-                <span class="glyphicon glyphicon-lock">确认新密码:</span>
+                <a>确认新密码:</a>
             </div>
             <input type="password" class="form-control" placeholder="请输入8~24位密码确认新密码" id="new_password_again"
                    name="new_password_again">
