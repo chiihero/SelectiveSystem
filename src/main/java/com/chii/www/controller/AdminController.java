@@ -28,27 +28,31 @@ public class AdminController {
     private CourseService courseService;
 
     @ModelAttribute
-    private void addAttributes(Model model)
-    {
+    private void addAttributes(Model model) {
         model.addAttribute("role", "admin");
     }
 
     @RequestMapping("/adminIndex")
     public String adminUrl(@ModelAttribute("username") String user) {
         BasicConfigurator.configure();
-        if (user.equals(""))
-            System.out.println("hhhhhh");
+//        if (user.equals(""))
+//            System.out.println("hhhhhh");
 //            return "redirect:/login/logout";
         return "admin/adminIndex";
     }
 
     @RequestMapping("/studentuser")
     public String studentuserUrl(Model model) {
-        model.addAttribute("departments", courseService.getAllDepartmentInfo());
-//        model.addAttribute("students",userService.getAllStuInfo(pageBean));
+//        final Long STARTTIME = 201802011001L;
+//        for (int i = 0; i < 100; i++) {
+//            String sno = String.valueOf((STARTTIME + i));
+//            userService.insertStuInfo(InfoAdd.getStudent(sno, "文学大院"));
+//        }
+//        model.addAttribute("departments", courseService.getAllDepartmentInfo());
         return "admin/studentuser";
     }
-    @RequestMapping(value ="/AllStudentUser")
+
+    @RequestMapping(value = "/AllStudentUser")
     @ResponseBody
     public PageBean AllStudentUser(PageBean page) {
         PageInfo<Student> pi = userService.getAllStuInfo(page);
@@ -58,28 +62,12 @@ public class AdminController {
         page.setTotal(pi.getTotal());
         return page;
     }
-//    @RequestMapping("/studentadd")
-//    public String studentaddUrl(Model model) {
-////        final Long STARTTIME = 201802011001L;
-////        for (int i = 0; i < 100; i++) {
-////            String sno = String.valueOf((STARTTIME + i));
-////            userService.insertStuInfo(InfoAdd.getStudent(sno,"文学大院"));
-////        }
-//        model.addAttribute("departments", courseService.getAllDepartmentInfo());
-//        return "admin/studentadd";
-//    }
-//    @RequestMapping("/studentupdate")
-//    public String studentupdateUrl(String sno, Model model) {
-//        System.out.println(sno);
-//        model.addAttribute("student", userService.getStuInfoById(sno));
-//        return "admin/studentupdate";
-//    }
 
     @RequestMapping("/StudentInfo")
     public String StudentInfoUrl(String sno, Model model) {
-        if (sno==null){
+        if (sno == null) {
             model.addAttribute("mode", "insert");
-        }else{
+        } else {
             System.out.println(sno);
             model.addAttribute("student", userService.getStuInfoById(sno));
             model.addAttribute("mode", "update");
@@ -95,7 +83,7 @@ public class AdminController {
         return "admin/teacheruser";
     }
 
-    @RequestMapping(value ="/AllTeacherUser")
+    @RequestMapping(value = "/AllTeacherUser")
     @ResponseBody
     public PageBean AllTeacherUser(PageBean page) {
         PageInfo<Teacher> pi = userService.getAllTeaInfo(page);
@@ -105,32 +93,20 @@ public class AdminController {
         page.setTotal(pi.getTotal());
         return page;
     }
-//    @RequestMapping("/teacheradd")
-//    public String teacheraddUrl(Model model) {
-//        model.addAttribute("courses", courseService.getAllCourseInfo());
-//        return "admin/teacheradd";
-//    }
-//    @RequestMapping("/teacherupdate")
-//    public String teacherupdateUrl(String tno, Model model) {
-//        System.out.println(tno);
-//        model.addAttribute("teacher", userService.getTeaInfoById(tno));
-//        model.addAttribute("courses", courseService.getAllCourseInfo());
-//        return "admin/teacherupdate";
-//    }
 
     @RequestMapping("/TeacherInfo")
     public String TeacherInfoUrl(String tno, Model model) {
-        if (tno==null){
+        if (tno == null) {
             model.addAttribute("mode", "insert");
-        }else{
+        } else {
             System.out.println(tno);
             model.addAttribute("teacher", userService.getTeaInfoById(tno));
             model.addAttribute("mode", "update");
         }
-//        model.addAttribute("role", "admin");
         model.addAttribute("courses", courseService.getAllCourseInfo());
         return "Info/TeacherInfo";
     }
+
     @RequestMapping("/userimport")
     public String userimportUrl() {
         return "admin/userimport";
@@ -154,10 +130,10 @@ public class AdminController {
 
     @RequestMapping("/score")
     public String sctUrl(Model model) {
-        model.addAttribute("scts", courseService.getAllSctInfo());
         return "admin/score";
     }
-    @RequestMapping(value ="/AllScore")
+
+    @RequestMapping(value = "/AllScore")
     @ResponseBody
     public PageBean AllScore(PageBean page) {
         PageInfo<Sct> pi = courseService.getAllSctInfoByPage(page);
@@ -167,11 +143,13 @@ public class AdminController {
         page.setTotal(pi.getTotal());
         return page;
     }
+
     @RequestMapping("/sctDelete")
     public String sctDelete(Sct sct) {
         courseService.deleteSctInfo(sct);
         return "redirect:/admin/score";
     }
+
     @RequestMapping("/course")
     public String courseUrl(Model model) {
         model.addAttribute("courses", courseService.getAllCourseInfo());
@@ -220,17 +198,19 @@ public class AdminController {
         courseService.deleteDepartmentInfo(dno);
         return "redirect:/admin/department";
     }
+
     @RequestMapping("/exportStu")
-    public void export(HttpServletResponse response) throws Exception{
-        InputStream is=userService.getInputStream();
+    public void export(HttpServletResponse response) throws Exception {
+        InputStream is = userService.getInputStream();
         response.setContentType("application/vnd.ms-excel;charset=UTF-8");//设置浏览器以何种方式编码输入流
         response.setCharacterEncoding("UTF-8");//设置输出流的编码方式
         response.setHeader("Content-Disposition", "attachment;filename=student.xls");//设置content-disposition响应头控制浏览器以下载的形式打开文件
         response.addHeader("Pargam", "no-cache");
         response.addHeader("Cache-Control", "no-cache");
         ServletOutputStream output = response.getOutputStream();
-        IOUtils.copy(is,output);
+        IOUtils.copy(is, output);
     }
+
     @RequestMapping("/help")
     public String helpUrl(Model model) {
         return "/admin/help";

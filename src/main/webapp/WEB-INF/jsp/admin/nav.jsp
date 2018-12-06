@@ -72,7 +72,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="nav-item dropdown">
-                    <a class="nav-link">${sessionScope.username}</a>
+                    <a class="nav-link">${sessionScope.name}</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a href="${basePath}/login/logout" class="nav-link" role="button">退出 </a>

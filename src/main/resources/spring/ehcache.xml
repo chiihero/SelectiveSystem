@@ -4,8 +4,8 @@
     <defaultCache
             maxElementsInMemory="10000"
             eternal="false"
-            timeToIdleSeconds="120"
-            timeToLiveSeconds="120"
+            timeToIdleSeconds="1800"
+            timeToLiveSeconds="0"
             overflowToDisk="false"
             diskPersistent="false"
             diskExpiryThreadIntervalSeconds="120"
@@ -14,7 +14,7 @@
     <cache name="passwordRetryCache"
            maxEntriesLocalHeap="2000"
            eternal="false"
-           timeToIdleSeconds="360"
+           timeToIdleSeconds="1800"
            timeToLiveSeconds="0"
            overflowToDisk="false"
            statistics="true">
@@ -23,7 +23,7 @@
     <cache name="shiro-kickout-session"
            maxEntriesLocalHeap="2000"
            eternal="false"
-           timeToIdleSeconds="3600"
+           timeToIdleSeconds="1800"
            timeToLiveSeconds="0"
            overflowToDisk="false"
            statistics="true">

@@ -40,21 +40,16 @@ public class CourseServiceImpl implements CourseService {
     }
 
 
-    @Override
-    public List<Sct> getAllSctInfo() {
-        return sctMapper.selectAll();
-    }
 
     @Override
     public PageInfo<Sct> getAllSctInfoByPage(PageBean pageBean) {
         PageHelper.startPage(pageBean.getCurrent(), pageBean.getRowCount());
-        List<Sct> scts = sctMapper.selectAll();
+        List<Sct> scts = sctMapper.selectAll(pageBean.getSearchPhrase());
         PageInfo<Sct> pi = new PageInfo<>(scts);
         return pi;
     }
 
-    @Override
-    public List<CourseList> getAllInfo() { return courseListMapper.selectAll(); }
+
 
     @Override
     public PageInfo<CourseList> getAllCourseListInfo(PageBean pageBean) {

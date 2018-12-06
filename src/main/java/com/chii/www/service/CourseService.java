@@ -14,11 +14,8 @@ public interface CourseService {
 
     List<CourseList> getAllSelectCourse();
 
-    List<Sct> getAllSctInfo();
+
     PageInfo<Sct> getAllSctInfoByPage(PageBean pageBean);
-
-
-    List<CourseList> getAllInfo();
 
     PageInfo<CourseList> getAllCourseListInfo(PageBean pageBean);
 

@@ -9,7 +9,7 @@
     <!-- 新 Bootstrap 核心 CSS 文件 -->
     <link href="${basePath}/css/bootstrap/bootstrap.min.css" rel="stylesheet">
     <link href="${basePath}/css/bootstrap/bootstrap-select.min.css" rel="stylesheet">
-    <link href="${basePath}/css/index.css" rel="stylesheet">
+    <link href="${basePath}/css/index.min.css" rel="stylesheet">
 </head>
 <body>
 <!-- 两个输入框 -->
@@ -37,8 +37,8 @@
                     <span class="input-group-addon">
                         <i class="glyphicon glyphicon-user"></i>
                     </span>
-                        <input type="text" class="form-control" id="username" name="username" placeholder="请输入学号"
-                               <c:if test="${username!=null}">value="${username}"</c:if>>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="请输入学号"
+                           <c:if test="${username!=null}">value="${username}"</c:if>>
                 </div>
                 <!-- 输入密码 -->
                 <div class="edit input-group">
@@ -99,7 +99,8 @@
                 <div class="float-right">
                     <a href="#login" class="flip-link to-login grey">返回登录</a>
                 </div>
-                <button type="submit" class="btn btn-success btn-block" id="sub_register" value="修改密码" disabled>修改密码</button>
+                <button type="submit" class="btn btn-success btn-block" id="sub_register" value="修改密码" disabled>修改密码
+                </button>
                 <input type="reset" class="btn btn-primary btn-block" value="重置"/>
             </div>
         </form>
@@ -113,7 +114,7 @@
 <script src="${basePath}/js/bootstrap/bootstrap-select.min.js" type="text/javascript"></script>
 <script src="${basePath}/js/encrypt/md5.min.js" type="text/javascript"></script>
 <script src="${basePath}/js/encrypt/sha3.js" type="text/javascript"></script>
-<script src="${basePath}/js/checkinfo.js" type="text/javascript"></script>
+<script src="${basePath}/js/checkinfo.min.js" type="text/javascript"></script>
 <script src="${basePath}/js/index.js" type="text/javascript" charset="uft-8"></script>
 </body>
 

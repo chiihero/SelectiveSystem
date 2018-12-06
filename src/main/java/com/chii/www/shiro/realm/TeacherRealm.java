@@ -20,6 +20,7 @@ import java.util.Set;
 public class TeacherRealm extends AuthorizingRealm {
     @Autowired
     UserService userService;
+
     /**
      * Retrieves authentication data from an implementation-specific datasource (RDBMS, LDAP, etc) for the given
      * authentication token.
@@ -38,20 +39,20 @@ public class TeacherRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-        System.out.println("Teacher doGetAuthenticationInfo: " +token);
+        System.out.println("Teacher doGetAuthenticationInfo: " + token);
         UsernamePasswordToken upToken = (UsernamePasswordToken) token;
 
         String username = upToken.getUsername();
         Teacher teacher = userService.getTeaInfoById(username);
-        if (teacher ==null){
+        if (teacher == null) {
             throw new UnknownAccountException("没找到帐号");
         }
         Object principal = teacher.getTno();
         Object credentials = teacher.getPassword();
-        String realmName =getName();
+        String realmName = getName();
         ByteSource credentialsSalt = ByteSource.Util.bytes(teacher.getTno());
-        SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(principal,credentials,credentialsSalt,realmName);
-        System.out.println("Teacher SimpleAuthenticationInfo: " +info);
+        SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(principal, credentials, credentialsSalt, realmName);
+        System.out.println("Teacher SimpleAuthenticationInfo: " + info);
 
         return info;
     }
@@ -71,7 +72,7 @@ public class TeacherRealm extends AuthorizingRealm {
         if (principals == null) {
             throw new AuthorizationException("PrincipalCollection method argument cannot be null.");
         }
-        String username = (String)principals.getPrimaryPrincipal();
+        String username = (String) principals.getPrimaryPrincipal();
         Teacher teacher = userService.getTeaInfoById(username);
         Set<String> roles = new HashSet<>();
         if (teacher != null) {

@@ -15,7 +15,6 @@
     <link href="${basePath}/css/tableexport/tableexport.min.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>选课管理信息系统</title>
-
 </head>
 <body>
 <%@include file="nav.jsp" %>
@@ -52,7 +51,7 @@
 <script src="${basePath}/js/tableexport/FileSaver.min.js"></script>
 <script src="${basePath}/js/tableexport/tableExport.min.js"></script>
 <script src="${basePath}/js/tableexport/xlsx.core.min.js"></script>
-<script src="${basePath}/js/checkinfo.js"></script>
+<script src="${basePath}/js/checkinfo.min.js" type="text/javascript"></script>
 <script typeof="text/javascript">
     $(document).ready(function () {
         $("#grid-data").bootgrid({
@@ -88,28 +87,14 @@
             "grade": score.value
         };
         //上传并且修改分数值不刷新页面
-        post("${basePath}/admin/scoreupdate", body);
+        post("${basePath}/teacher/scoreupdate", "get", body);
         var parent = score.parentNode; // 父节点
         var previous = parent.previousSibling; // 上一个兄弟节点
-        previous.innerHTML = score.value;
+        previous.innerHTML = score.value;//修改分数的数字
+        parent.innerHTML = "<button class=\"btn\" disabled>已经评分";
+
     }
 
-    function post(URL, PARAMS) {
-        $.ajax({
-            url: URL,
-            aysnc: false,
-            type: "get",
-            contentType: "application/json; charset=utf-8",
-            data: PARAMS,
-            success: function (data) {
-                return data;
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                alert("请求失败，消息：" + textStatus + "  " + errorThrown);
-                return false;
-            }
-        });
-    }
 </script>
 </body>
 </html>

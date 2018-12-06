@@ -13,12 +13,17 @@
     <sql id="Base_Column_List">
         student.sno, student.sname, student.sdept, Course.cno, Course.cname, teacher.tno, teacher.tname, sct.grade
     </sql>
-    <select id="selectAll" resultMap="BaseResultMap" parameterType="com.chii.www.pojo.Sct">
+    <select id="selectAll" resultMap="BaseResultMap" parameterType="java.lang.String">
         select
         <include refid="Base_Column_List"/>
         FROM student LEFT JOIN sct ON sct.sno = student.sno
         INNER JOIN course ON sct.cno = course.cno
         INNER JOIN teacher ON sct.tno = teacher.tno
+        <where>
+            <if test="_parameter != null">
+                CONCAT(<include refid="Base_Column_List"/>) LIKE CONCAT('%',#{_parameter},'%')
+            </if>
+        </where>
     </select>
     <select id="selectBySno" resultMap="BaseResultMap" parameterType="java.lang.String">
         select

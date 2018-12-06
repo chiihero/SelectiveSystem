@@ -24,19 +24,20 @@
         <button type="button" id="xls" class="btn btn-default xls">Export to xls</button>
         <button type="button" id="csv" class="btn btn-default csv">Export to csv</button>
     </caption>
-        <table class="table table-condensed">
-            <thead>
-            <tr>
-                <th>课程号</th>
-                <th>课程号</th>
-                <th>先行课编号</th>
-                <th>最大人数</th>
-                <th>学分</th>
-                <th>删除</th>
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach items="${courses}" var="course">
+    <table class="table table-condensed">
+        <thead>
+        <tr>
+            <th>课程号</th>
+            <th>课程号</th>
+            <th>先行课编号</th>
+            <th>最大人数</th>
+            <th>学分</th>
+            <th>删除</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach items="${courses}" var="course">
+            <c:if test="${course.cname !='无'}">
                 <tr>
                     <td>${course.cno}</td>
                     <td>${course.cname}</td>
@@ -46,9 +47,10 @@
                     <td><a href="${basePath}/admin/courseDelete?cno=${course.cno}" class="btn btn-danger">删除</a>
                     </td>
                 </tr>
-            </c:forEach>
-            </tbody>
-        </table>
+            </c:if>
+        </c:forEach>
+        </tbody>
+    </table>
 
 </div>
 </body>
@@ -60,5 +62,5 @@
 <script src="${basePath}/js/tableexport/FileSaver.min.js"></script>
 <script src="${basePath}/js/tableexport/tableExport.min.js"></script>
 <script src="${basePath}/js/tableexport/xlsx.core.min.js"></script>
-<script src="${basePath}/js/checkinfo.js"></script>
+<script src="${basePath}/js/checkinfo.min.js" type="text/javascript"></script>
 </html>

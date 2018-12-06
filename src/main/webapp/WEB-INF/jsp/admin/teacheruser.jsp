@@ -26,7 +26,8 @@
                 <button type="button" id="xlsx" class="btn btn-default xlsx">Export to xlsx</button>
                 <button type="button" id="xls" class="btn btn-default xls">Export to xls</button>
                 <button type="button" id="csv" class="btn btn-default csv">Export to csv</button>
-                <button class="btn btn-info" onclick="window.location.href='${basePath}/admin/TeacherInfo'">添加教师</button>
+                <button class="btn btn-info" onclick="window.location.href='${basePath}/admin/TeacherInfo'">添加教师
+                </button>
             </caption>
         </div>
     </div>
@@ -43,7 +44,7 @@
             <th data-column-id="cno1">主讲课程一</th>
             <th data-column-id="cno2">主讲课程二</th>
             <th data-column-id="cno3">主讲课程三</th>
-            <th data-column-id="commands"  data-formatter="commands" data-sortable="false">修改</th>
+            <th data-column-id="commands" data-formatter="commands" data-sortable="false">修改</th>
         </tr>
         </thead>
     </table>
@@ -58,14 +59,13 @@
 <script src="${basePath}/js/tableexport/FileSaver.min.js"></script>
 <script src="${basePath}/js/tableexport/tableExport.min.js"></script>
 <script src="${basePath}/js/tableexport/xlsx.core.min.js"></script>
-<script src="${basePath}/js/checkinfo.js"></script>
+<script src="${basePath}/js/checkinfo.min.js" type="text/javascript"></script>
 
 <script typeof="text/javascript">
     $(document).ready(function () {
         $("#grid-data").bootgrid({
             ajax: true,
-            post: function ()
-            {
+            post: function () {
                 /* To accumulate custom parameter with the request object */
                 return {
                     id: "b0df282a-0d67-40e5-8558-c9e93b7befed"
@@ -73,8 +73,7 @@
             },
             url: "/admin/AllTeacherUser",
             formatters: {
-                "commands": function(column, row)
-                {
+                "commands": function (column, row) {
                     return "<button type=\"button\"  class=\"btn btn-info\" data-row-id=\"" + row.tno + "\" onclick=\"window.location.href='/admin/TeacherInfo?tno=" + row.tno + "'\"><span class=\"fa fa-pencil\"></span>修改</button>";
                 }
             }

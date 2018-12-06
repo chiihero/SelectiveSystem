@@ -1,11 +1,13 @@
 ﻿//报表下载按键
 $("#xlsx").click(function () {
-    var length = $("#grid-data thead tr th").length;
-    var i = $("tr").find("button").length;
-    if (i>0){//判断是否有按键
+    var length = $(".table thead tr th").length;
+    var button_num = $("tr").find("button").length;
+    var a_num = $("tr").find("a").length;
+
+    if (button_num>0 || a_num>0 ){//判断是否有按键
         length = length -1;
     }
-    $("#grid-data").tableExport({
+    $(".table").tableExport({
         type:'xlsx',
         // fileName:'student',
         ignoreColumn:[length],
@@ -13,7 +15,7 @@ $("#xlsx").click(function () {
     });
 });
 $("#xls").click(function ()  {
-    $("#grid-data").tableExport({
+    $(".table").tableExport({
         type:'excel',
         // fileName:'student',
         ignoreColumn:[length],
@@ -21,11 +23,10 @@ $("#xls").click(function ()  {
     });
 });
 $("#csv").click(function () {
-    $("#grid-data").tableExport({
+    $(".table").tableExport({
         type:'csv',
         // fileName:'student',
         ignoreColumn:[length],
-
         bootstrap: true,
     });
 });
@@ -194,11 +195,11 @@ function encrypt(encrypt_str) {
     }
     return hex_md5(encrypt_str);
 }
-function post(URL, PARAMS) {
+function post(URL,TYPE,PARAMS) {
     $.ajax({
         url: URL,
         aysnc: false,
-        type: "post",
+        type: TYPE,
         contentType: "application/json; charset=utf-8",
         data: PARAMS,
         success: function (data) {

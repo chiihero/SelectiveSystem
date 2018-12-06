@@ -14,7 +14,7 @@ public interface SctMapper {
 
     int insertSelective(Sct record);
 
-    List<Sct> selectAll();
+    List<Sct> selectAll(String search);
 
     List<Sct> selectBySno(String userno);
 

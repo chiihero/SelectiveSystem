@@ -72,7 +72,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public PageInfo<Teacher> getAllTeaInfo(PageBean pageBean) {
         PageHelper.startPage(pageBean.getCurrent(), pageBean.getRowCount());
-        List<Teacher> teacher = teacherMapper.selectAll();
+        List<Teacher> teacher = teacherMapper.selectAll(pageBean.getSearchPhrase());
         PageInfo<Teacher> pi = new PageInfo<>(teacher);
         return pi;
     }
@@ -101,6 +101,7 @@ public class UserServiceImpl implements UserService {
     public void deleteStuInfo(String userno) {
         studentMapper.deleteByPrimaryKey(userno);
     }
+
     @Override
     public void updateTeaInfo(Teacher teacher) {
         teacherMapper.updateByPrimaryKeySelective(teacher);
@@ -110,10 +111,11 @@ public class UserServiceImpl implements UserService {
     public void dateleTeaInfo(String userno) {
         teacherMapper.deleteByPrimaryKey(userno);
     }
+
     public InputStream getInputStream() throws Exception {
-        String[] title=new String[]{"学号","姓名","年龄","专业"};
-        List<Student> plist=studentMapper.selectAll(null);
-        List<Object[]>  dataList = new ArrayList<Object[]>();
+        String[] title = new String[]{"学号", "姓名", "年龄", "专业"};
+        List<Student> plist = studentMapper.selectAll(null);
+        List<Object[]> dataList = new ArrayList<Object[]>();
         for (Student aPlist : plist) {
             Object[] obj = new Object[4];
             obj[0] = aPlist.getSno();

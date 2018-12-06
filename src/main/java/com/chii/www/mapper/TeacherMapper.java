@@ -13,7 +13,7 @@ public interface TeacherMapper {
 
     Teacher selectByPrimaryKey(String tno);
 
-    List<Teacher> selectAll();
+    List<Teacher> selectAll(String search);
 
     int updateByPrimaryKeySelective(Teacher record);
 

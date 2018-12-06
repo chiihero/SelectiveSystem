@@ -27,49 +27,37 @@ public class StudentController {
 
 
     @ModelAttribute
-    private void addAttributes(Model model)
-    {
+    private void addAttributes(Model model) {
         model.addAttribute("role", "student");
     }
+
     @RequestMapping("/studentIndex")
     public String studentUrl() {
         return "student/studentIndex";
     }
 
-//    @RequestMapping("/changeinfo")
-//    public String changeinfoUrl(@ModelAttribute("msg") String msg,@ModelAttribute("username") String sno,Model model) {
-//        if (!msg.isEmpty()) model.addAttribute("msg", msg);
-//        System.out.println(sno);
-//        model.addAttribute("student", userService.getStuInfoById(sno));
-//        model.addAttribute("departments", courseService.getAllDepartmentInfo());
-//        return "student/changeinfo";
-//    }
     @RequestMapping("/StudentInfo")
-    public String StudentInfoUrl(@ModelAttribute("username") String sno,Model model) {
+    public String StudentInfoUrl(@ModelAttribute("username") String sno, Model model) {
         System.out.println(sno);
         model.addAttribute("student", userService.getStuInfoById(sno));
         model.addAttribute("departments", courseService.getAllDepartmentInfo());
         model.addAttribute("mode", "update");
         return "Info/StudentInfo";
     }
-//    @RequestMapping("/changepassword")
-//    public String changepasswordUrl(@ModelAttribute("username") String sno, Model model) {
-//        System.out.println(sno);
-//        model.addAttribute("userno", sno);
-//        return "student/changepassword";
-//    }
+
+    //    }
     @RequestMapping("/ChangePassword")
     public String ChangePasswordUrl(@ModelAttribute("username") String tno, Model model) {
         model.addAttribute("userno", tno);
         return "Info/ChangePassword";
     }
+
     @RequestMapping("/course")
-    public String courseUrl(@ModelAttribute("username") String sno,Model model) {
-//        model.addAttribute("courselist", courseService.getAllInfo());
-//        model.addAttribute("scts", courseService.getSctInfoByStuId(sno));
+    public String courseUrl(@ModelAttribute("username") String sno, Model model) {
         return "student/course";
     }
-    @RequestMapping(value ="/AllCourse")
+
+    @RequestMapping(value = "/AllCourse")
     @ResponseBody
     public PageBean AllCourse(PageBean page) {
         PageInfo<CourseList> pi = courseService.getAllCourseListInfo(page);
@@ -79,6 +67,7 @@ public class StudentController {
         page.setTotal(pi.getTotal());
         return page;
     }
+
     @RequestMapping("/score")
     public String scoreUrl(@ModelAttribute("username") String sno, Model model) {
         model.addAttribute("scts", courseService.getSctInfoByStuId(sno));
@@ -86,7 +75,7 @@ public class StudentController {
     }
 
     @RequestMapping("/sctInsert")
-    public String sctInsert( Sct sct) {
+    public String sctInsert(Sct sct) {
         System.out.println(sct.getSno());
 
         courseService.insertSctInfo(sct);
@@ -104,23 +93,23 @@ public class StudentController {
         String returnURL = request.getHeader("Referer");
         System.out.println(returnURL);
         model.addAttribute("msg", "更新成功！");
-        if (returnURL.contains("admin")){
+        if (returnURL.contains("admin")) {
             return "redirect:/admin/studentuser";
-        }else {
-            return "redirect:/student/changeinfo";
+        } else {
+            return "redirect:/student/StudentInfo";
         }
-
     }
 
     @RequestMapping("/insert")
     public String studentinsert(Student student, Model model) {
         //加入默认密码
-        String password = SafeCode.PasswordHash("c6274012383f2674afbff44a332a8896",student.getSno());
+        String password = SafeCode.PasswordHash("c6274012383f2674afbff44a332a8896", student.getSno());
         student.setPassword(password);
         userService.insertStuInfo(student);
-        model.addAttribute("msg","插入成功");
-        return "redirect:/admin/studentadd";
+        model.addAttribute("msg", "插入成功");
+        return "redirect:/admin/studentuser";
     }
+
     @RequestMapping("/help")
     public String helpUrl(Model model) {
         return "/student/help";

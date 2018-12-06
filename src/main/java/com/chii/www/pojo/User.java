@@ -6,6 +6,7 @@ public class User {
     private String newpassword;
     private String type;
     private String message;
+
     public String getUsername() {
         return username;
     }
@@ -29,6 +30,7 @@ public class User {
     public void setNewpassword(String newpassword) {
         this.newpassword = newpassword == null ? null : newpassword.trim();
     }
+
     public String getType() {
         return type;
     }
@@ -36,6 +38,7 @@ public class User {
     public void setType(String type) {
         this.type = type == null ? null : type.trim();
     }
+
     public String getMessage() {
         return message;
     }

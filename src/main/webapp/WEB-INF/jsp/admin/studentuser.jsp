@@ -27,13 +27,13 @@
                 <button type="button" id="xlsx" class="btn btn-default xlsx">Export to xlsx</button>
                 <button type="button" id="xls" class="btn btn-default xls">Export to xls</button>
                 <button type="button" id="csv" class="btn btn-default csv">Export to csv</button>
-                <button class="btn btn-info" onclick="window.location.href='${basePath}/admin/StudentInfo'">添加学生</button>
+                <button class="btn btn-info" onclick="window.location.href='${basePath}/admin/StudentInfo'">添加学生
+                </button>
             </caption>
         </div>
     </div>
     <hr>
     <table id="grid-data" class="table table-condensed table-hover table-striped">
-
         <thead>
         <tr>
             <th data-column-id="sno" data-identifier="true">学号</th>
@@ -56,7 +56,7 @@
 <script src="${basePath}/js/tableexport/FileSaver.min.js"></script>
 <script src="${basePath}/js/tableexport/tableExport.min.js"></script>
 <script src="${basePath}/js/tableexport/xlsx.core.min.js"></script>
-<script src="${basePath}/js/checkinfo.js"></script>
+<script src="${basePath}/js/checkinfo.min.js" type="text/javascript"></script>
 <script typeof="text/javascript">
     $(document).ready(function () {
         $("#grid-data").bootgrid({

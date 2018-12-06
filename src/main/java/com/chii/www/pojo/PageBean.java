@@ -14,21 +14,26 @@ public class PageBean<T> {
     public String getKey() {
         return key;
     }
+
     public void setKey(String key) {
         this.key = key;
     }
+
     public String getSearchPhrase() {
         return searchPhrase;
     }
+
     public void setSearchPhrase(String searchPhrase) {
-        if (searchPhrase.equals("")){
-            searchPhrase=null;
+        if (searchPhrase.equals("")) {
+            searchPhrase = null;
         }
         this.searchPhrase = searchPhrase;
     }
+
     public int getCurrent() {
         return current;
     }
+
     public void setCurrent(int current) {
         this.current = current;
     }

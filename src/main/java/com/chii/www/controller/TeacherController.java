@@ -69,6 +69,19 @@ public class TeacherController {
         return page;
     }
 
+    @RequestMapping("/scoreupdate")
+    @ResponseBody
+    public int scoreupdate(Sct sct) {
+        courseService.updateGradeInfo(sct);
+//        return "redirect:/admin/score";
+        return sct.getGrade();
+    }
+
+    @RequestMapping("/help")
+    public String helpUrl(Model model) {
+        return "/teacher/help";
+    }
+
     @RequestMapping("/update")
     public String teacherupdate(Teacher teacher, HttpServletRequest request, Model model) {
         //加密密码
@@ -94,20 +107,8 @@ public class TeacherController {
         teacher.setPassword(password);
         userService.insertTeaInfo(teacher);
         model.addAttribute("msg", "插入成功");
-        return "redirect:/admin/teacheradd";
+        return "redirect:/admin/teacheruser";
     }
 
-    //    @RequestMapping("/scoreupdate")
-//    public String scoreupdate(Sct sct, Model model) {
-//        courseService.updateGradeInfo(sct);
-//        return "redirect:/teacher/studentuser";
-//    }
-//    @RequestMapping("/delete")
-//    public String teacherdelete(String no){
-//        return "redirect:../Admin/teacheradd";
-//    }
-    @RequestMapping("/help")
-    public String helpUrl(Model model) {
-        return "/teacher/help";
-    }
+
 }

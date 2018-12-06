@@ -47,7 +47,7 @@
 <%--分页--%>
 <script src="${basePath}/js/bootgrid/jquery.bootgrid.fa.js" type="text/javascript"></script>
 <script src="${basePath}/js/bootgrid/jquery.bootgrid.min.js" type="text/javascript"></script>
-<script src="${basePath}/js/checkinfo.js" type="text/javascript"></script>
+<script src="${basePath}/js/checkinfo.min.js" type="text/javascript"></script>
 <%--报表--%>
 <script src="${basePath}/js/tableexport/FileSaver.min.js"></script>
 <script src="${basePath}/js/tableexport/tableExport.min.js"></script>
@@ -84,7 +84,7 @@
             "grade": score.value
         };
         //上传并且修改分数值不刷新页面
-        post("${basePath}/admin/scoreupdate", body);
+        post("${basePath}/admin/scoreupdate", "get", body);
         var parent = score.parentNode; // 父节点
         var previous = parent.previousSibling; // 上一个兄弟节点
         previous.innerHTML = score.value;
@@ -96,7 +96,7 @@
             "cno": Cno,
             "tno": Tno
         };
-        post("${basePath}/admin/sctDelete", body);
+        post("${basePath}/admin/sctDelete", "get", body);
         location.reload();
     }
 

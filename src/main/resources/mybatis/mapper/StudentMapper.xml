@@ -19,31 +19,11 @@
         from student
         <where>
             <if test="_parameter != null">
-                CONCAT(sno,sname,sdept) LIKE CONCAT('%',#{_parameter},'%')
+                CONCAT(sno, sname, ssex, sage, sdept) LIKE CONCAT('%',#{_parameter},'%')
             </if>
         </where>
     </select>
-    <!--<select id="selectAllCount" resultType="int" parameterType="java.lang.String">-->
-        <!--select Count(sno)-->
-        <!--from student-->
-        <!--<where>-->
-            <!--<if test="_parameter != null">-->
-                <!--sdept = #{_parameter}-->
-            <!--</if>-->
-        <!--</where>-->
-    <!--</select>-->
-    <!--<select id="selectAllList" resultMap="BaseResultMap" parameterType="com.chii.www.pojo.PageBeanBean">-->
-        <!--select-->
-        <!--<include refid="Base_Column_List"/>-->
-        <!--from student-->
-        <!--<where>-->
-            <!--<if test="sdept != null">-->
-                <!--sdept = #{sdept,jdbcType=VARCHAR}-->
-            <!--</if>-->
-        <!--</where>-->
-        <!--ORDER BY sno ASC-->
-        <!--limit #{current,jdbcType=INTEGER},#{rowCount,jdbcType=INTEGER}-->
-    <!--</select>-->
+
     <select id="selectAllByTeaKey" resultMap="BaseResultMap" parameterType="java.lang.String">
         select student.sno, student.sname, student.ssex, student.sage, student.sdept
         from student

@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("login")
-@SessionAttributes({"username"})//放到Session属性列表中，以便这个属性可以跨请求访问
+@SessionAttributes({"username", "name"})//放到Session属性列表中，以便这个属性可以跨请求访问
 public class LoginController {
     @Autowired
     private UserService userService;
@@ -55,10 +55,13 @@ public class LoginController {
         model.addAttribute("username", user.getUsername());
         switch (user.getType()) {//根据用户类型转跳到不同view
             case "1":
+                model.addAttribute("name", userService.getStuInfoById(user.getUsername()).getSname());
                 return "redirect:/student/studentIndex";
             case "2":
+                model.addAttribute("name", userService.getTeaInfoById(user.getUsername()).getTname());
                 return "redirect:/teacher/teacherIndex";
             case "3":
+                model.addAttribute("name", userService.getAdminInfoById(user.getUsername()).getAname());
                 return "redirect:/admin/adminIndex";
             default:
                 model.addAttribute("message", "请选择用户类型");

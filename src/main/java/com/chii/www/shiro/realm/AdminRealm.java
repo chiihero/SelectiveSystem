@@ -21,6 +21,7 @@ import java.util.Set;
 public class AdminRealm extends AuthorizingRealm {
     @Autowired
     UserService userService;
+
     /**
      * Retrieves authentication data from an implementation-specific datasource (RDBMS, LDAP, etc) for the given
      * authentication token.
@@ -39,12 +40,12 @@ public class AdminRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-        System.out.println("Admin doGetAuthenticationInfo: " +token);
+        System.out.println("Admin doGetAuthenticationInfo: " + token);
         UsernamePasswordToken upToken = (UsernamePasswordToken) token;
 
         String username = upToken.getUsername();
         Admin admin = userService.getAdminInfoById(username);
-        if (admin ==null){
+        if (admin == null) {
             throw new UnknownAccountException("没找到帐号");
         }
         //交给AuthenticatingRealm使用CredentialsMatcher进行密码匹配
@@ -54,7 +55,7 @@ public class AdminRealm extends AuthorizingRealm {
                 ByteSource.Util.bytes(admin.getAno()),//credentialsSalt,
                 getName()//realmName
         );
-        System.out.println("admin SimpleAuthenticationInfo: " +info);
+        System.out.println("admin SimpleAuthenticationInfo: " + info);
 
         return info;
     }
@@ -75,7 +76,7 @@ public class AdminRealm extends AuthorizingRealm {
         if (principals == null) {
             throw new AuthorizationException("PrincipalCollection method argument cannot be null.");
         }
-        String username = (String)principals.getPrimaryPrincipal();
+        String username = (String) principals.getPrimaryPrincipal();
         Admin admin = userService.getAdminInfoById(username);
         Set<String> roles = new HashSet<>();
         if (admin != null) {

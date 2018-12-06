@@ -19,6 +19,7 @@ import java.util.Set;
 public class StudentRealm extends AuthorizingRealm {
     @Autowired
     UserService userService;
+
     /**
      * Retrieves authentication data from an implementation-specific datasource (RDBMS, LDAP, etc) for the given
      * authentication token.
@@ -37,35 +38,37 @@ public class StudentRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-        System.out.println("Student doGetAuthenticationInfo: " +token);
+        System.out.println("Student doGetAuthenticationInfo: " + token);
         UsernamePasswordToken upToken = (UsernamePasswordToken) token;
 
         String username = upToken.getUsername();
         Student student = userService.getStuInfoById(username);
-        if (student ==null){
+        if (student == null) {
             throw new UnknownAccountException("没找到帐号");
         }
         Object principal = student.getSno();
         Object credentials = student.getPassword();
-        String realmName =getName();
+        String realmName = getName();
         ByteSource credentialsSalt = ByteSource.Util.bytes(student.getSno());
-        SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(principal,credentials,credentialsSalt,realmName);
-        System.out.println("Student SimpleAuthenticationInfo: " +info);
+        SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(principal, credentials, credentialsSalt, realmName);
+        System.out.println("Student SimpleAuthenticationInfo: " + info);
 
         return info;
     }
+
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         System.out.println("开始student权限授权(进行权限验证!!)");
         if (principals == null) {
             throw new AuthorizationException("PrincipalCollection method argument cannot be null.");
         }
-        String username = (String)principals.getPrimaryPrincipal();
+        String username = (String) principals.getPrimaryPrincipal();
         Student student = userService.getStuInfoById(username);
         Set<String> roles = new HashSet<>();
         if (student != null) {
             roles.add("student");
         }
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo(roles);
-        return info;    }
+        return info;
+    }
 }

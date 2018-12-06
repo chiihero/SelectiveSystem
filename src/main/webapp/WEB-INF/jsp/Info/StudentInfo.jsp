@@ -17,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>选课管理信息系统</title>
     <style>
-        .input-group{
+        .input-group {
             margin-top: 12px;
         }
     </style>
@@ -109,7 +109,7 @@
 <script src="${basePath}/js/bootstrap/bootstrap.min.js" type="text/javascript"></script>
 <script src="${basePath}/js/encrypt/md5.min.js" type="text/javascript"></script>
 <script src="${basePath}/js/encrypt/sha3.js" type="text/javascript"></script>
-<script src="${basePath}/js/checkinfo.js" type="text/javascript"></script>
+<script src="${basePath}/js/checkinfo.min.js" type="text/javascript"></script>
 <script src="${basePath}/js/bootstrap/bootstrap-select.min.js" type="text/javascript"></script>
 <script>
     $(document).ready(function () {

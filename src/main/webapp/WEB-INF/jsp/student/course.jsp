@@ -27,7 +27,7 @@
             <th data-column-id="tname">教师</th>
             <th data-column-id="cnum">最大人数</th>
             <th data-column-id="cnewnum">选择人数</th>
-            <th data-column-id="commands"  data-formatter="commands" data-sortable="false">选课</th>
+            <th data-column-id="commands" data-formatter="commands" data-sortable="false">选课</th>
         </tr>
         </thead>
     </table>
@@ -41,10 +41,9 @@
 <script src="${basePath}/js/bootgrid/jquery.bootgrid.min.js" type="text/javascript"></script>
 <script>
     $(document).ready(function () {
-        var grid =$("#grid-data").bootgrid({
+        var grid = $("#grid-data").bootgrid({
             ajax: true,
-            post: function ()
-            {
+            post: function () {
                 /* To accumulate custom parameter with the request object */
                 return {
                     // id: "b0df282a-0d67-40e5-8558-c9e93b7befed"
@@ -52,31 +51,30 @@
             },
             url: "/student/AllCourse",
             formatters: {
-                "commands": function(column, row)
-                {
+                "commands": function (column, row) {
                     // 判断学生已经选课
                     <c:forEach items="${scts}" var="score">
-                        <c:set var="sctcno" value="${score.cno}"/>
-                        if(${sctcno} == row.cno){
-                            return "<button type=\"button\" class=\"btn\" data-row-id=\"" + row.cno + "\" disabled=\"true\">已选</button>";
-                        }
+                    <c:set var="sctcno" value="${score.cno}"/>
+                    if (${sctcno} == row.cno
+                )
+                    {
+                        return "<button type=\"button\" class=\"btn\" data-row-id=\"" + row.cno + "\" disabled=\"true\">已选</button>";
+                    }
                     </c:forEach>
                     // 判断选课人数已满
                     if (row.cnewnum >= row.cnum) {
                         return "<button type=\"button\" class=\"btn\" data-row-id=\"" + row.cno + "\" disabled=\"true\">选课人数已满</button>";
-                    }else {
+                    } else {
                         return "<button type=\"button\" class=\"btn btn-info\" data-row-id=\"" + row.cno + "\" value=\"" + row.tno + "\">选课</button>";
                     }
                 }
             }
-        }).on("loaded.rs.jquery.bootgrid", function()
-        {
+        }).on("loaded.rs.jquery.bootgrid", function () {
             /* Executes after data is loaded and rendered */
             // alert("hhhhh")
-            grid.find(".btn-info").on("click", function(e)
-            {
+            grid.find(".btn-info").on("click", function (e) {
                 // alert("You pressed edit on row:" + $(this).data("row-id") +"  "+ $(this).val());
-                update_score($(this).data("row-id"),$(this).val())
+                update_score($(this).data("row-id"), $(this).val())
             }).end()
         });
     });
@@ -89,6 +87,7 @@
         };
         post("${basePath}/student/sctInsert", body)
     }
+
     function post(URL, PARAMS) {
         var temp = document.createElement("form");
         temp.action = URL;

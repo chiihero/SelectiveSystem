@@ -14,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>选课管理信息系统</title>
     <style>
-        .input-group{
+        .input-group {
             margin-top: 12px;
         }
     </style>

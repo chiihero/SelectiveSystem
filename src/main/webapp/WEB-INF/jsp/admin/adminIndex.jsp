@@ -14,6 +14,24 @@
     <div class="container">
         <h2 class="text-center">课管理信息系统-${sessionScope.username}</h2>
     </div>
+    <%--<%--%>
+        <%--//session--%>
+        <%--//获取session创建的时间--%>
+        <%--Date createTime = new Date(session.getCreationTime());--%>
+        <%--//获取最后访问页面的时间--%>
+        <%--Date lastAccessTime = new Date(session.getLastAccessedTime());--%>
+        <%--int maxAccessTime = session.getMaxInactiveInterval();--%>
+    <%--%>--%>
+    <%--<ul disabled="">--%>
+        <%--<li>id</li>--%>
+        <%--<li><% out.print(session.getId()); %></li>--%>
+        <%--<li>创建时间</li>--%>
+        <%--<li><% out.print(createTime); %></li>--%>
+        <%--<li>最后访问时间</li>--%>
+        <%--<li><% out.print(lastAccessTime); %></li>--%>
+        <%--<li>最大访问间隔时间</li>--%>
+        <%--<li><% out.print(maxAccessTime); %>秒</li>--%>
+    <%--</ul>--%>
 </div>
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
 <script src="${basePath}/js/jquery.min.js" type="text/javascript"></script>
