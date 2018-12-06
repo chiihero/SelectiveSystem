@@ -33,6 +33,7 @@
         </div>
     </div>
     <hr>
+
     <table id="grid-data" class="table table-condensed table-hover table-striped">
         <thead>
         <tr>
