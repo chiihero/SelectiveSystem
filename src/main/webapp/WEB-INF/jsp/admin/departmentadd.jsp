@@ -22,7 +22,7 @@
 <body>
 <%@include file="nav.jsp" %>
 <div class="container">
-    <h5><b>当前位置</b>：院系管理 > 增加院系</h5>
+    <h2><b>当前位置</b>：院系管理 > 增加院系</h2>
     <hr>
     <div class="col-sm-5 col-sm-offset-4">
         <form id="addinfo" action="/admin/departmentInsert" method="post">

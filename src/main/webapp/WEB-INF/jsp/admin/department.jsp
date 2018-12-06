@@ -18,13 +18,17 @@
 <body>
 <%@include file="nav.jsp" %>
 <div class="container">
-    <h5><b>当前位置</b>：院系管理 > 院系管理</h5>
+    <div class="row">
+        <div class="col-md-12">
+            <h2><b>当前位置</b>：院系管理 > 院系管理</h2>
+            <caption class="btn-toolbar tableexport-caption" style="caption-side: bottom;">
+                <button type="button" id="xlsx" class="btn btn-default xlsx">Export to xlsx</button>
+                <button type="button" id="xls" class="btn btn-default xls">Export to xls</button>
+                <button type="button" id="csv" class="btn btn-default csv">Export to csv</button>
+            </caption>
+        </div>
+    </div>
     <hr>
-    <caption class="btn-toolbar tableexport-caption" style="caption-side: bottom;">
-        <button type="button" id="xlsx" class="btn btn-default xlsx">Export to xlsx</button>
-        <button type="button" id="xls" class="btn btn-default xls">Export to xls</button>
-        <button type="button" id="csv" class="btn btn-default csv">Export to csv</button>
-    </caption>
     <table class="table table-condensed">
         <thead>
         <tr>

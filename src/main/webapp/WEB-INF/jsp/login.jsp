@@ -108,14 +108,14 @@
 </div>
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
 <script src="${basePath}/js/jquery.min.js" type="text/javascript"></script>
-<script src="${basePath}/js/popper.js" type="text/javascript"></script>
+<%--<script src="${basePath}/js/popper.js" type="text/javascript"></script>--%>
 <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
 <script src="${basePath}/js/bootstrap/bootstrap.min.js" type="text/javascript"></script>
 <script src="${basePath}/js/bootstrap/bootstrap-select.min.js" type="text/javascript"></script>
 <script src="${basePath}/js/encrypt/md5.min.js" type="text/javascript"></script>
-<script src="${basePath}/js/encrypt/sha3.js" type="text/javascript"></script>
+<script src="${basePath}/js/encrypt/sha3.min.js" type="text/javascript"></script>
 <script src="${basePath}/js/checkinfo.min.js" type="text/javascript"></script>
-<script src="${basePath}/js/index.js" type="text/javascript" charset="uft-8"></script>
+<script src="${basePath}/js/index.min.js" type="text/javascript" charset="uft-8"></script>
 </body>
 
 </html>

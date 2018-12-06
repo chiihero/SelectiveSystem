@@ -21,7 +21,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h5><b>当前位置</b>：用户管理 > 所有教师</h5>
+            <h2><b>当前位置</b>：用户管理 > 所有教师</h2>
             <caption class="btn-toolbar tableexport-caption" style="caption-side: bottom;">
                 <button type="button" id="xlsx" class="btn btn-default xlsx">Export to xlsx</button>
                 <button type="button" id="xls" class="btn btn-default xls">Export to xls</button>

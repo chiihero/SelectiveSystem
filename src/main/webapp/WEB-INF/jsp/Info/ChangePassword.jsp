@@ -36,7 +36,7 @@
 <jsp:include page="${IndexUrl}" flush="true"/>
 
 <div class="container">
-    <h5><b>当前位置</b>：个人信息 > 密码修改</h5>
+    <h2><b>当前位置</b>：个人信息 > 密码修改</h2>
     <hr>
     <div class="col-sm-5 col-sm-offset-4">
         <form action="${basePath}/login/PasswordUpdate" method="post">
@@ -84,7 +84,7 @@
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="${basePath}/js/bootstrap/bootstrap.min.js" type="text/javascript"></script>
 <script src="${basePath}/js/encrypt/md5.min.js" type="text/javascript"></script>
-<script src="${basePath}/js/encrypt/sha3.js" type="text/javascript"></script>
+<script src="${basePath}/js/encrypt/sha3.min.js" type="text/javascript"></script>
 <script src="${basePath}/js/checkinfo.min.js" type="text/javascript"></script>
 
 <script type="text/javascript">

@@ -12,7 +12,7 @@
 <body>
 <%@include file="nav.jsp" %>
 <div class="container">
-    <h5><b>当前位置</b>：信息查询 > 成绩查询</h5>
+    <h2><b>当前位置</b>：信息查询 > 成绩查询</h2>
     <hr>
     <caption class="btn-toolbar tableexport-caption" style="caption-side: bottom;">
         <button type="button" id="xlsx" class="btn btn-default xlsx">Export to xlsx</button>

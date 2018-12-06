@@ -35,6 +35,7 @@ body {
 }
 #logo,
 #loginbox {
+    z-index: 100;
     max-width: 400px;
     margin-left: auto;
     margin-right: auto;

@@ -18,7 +18,7 @@
 <body>
 <%@include file="nav.jsp" %>
 <div class="container">
-    <h5><b>当前位置</b>：信息查询 > 选课查询</h5>
+    <h2><b>当前位置</b>：信息查询 > 选课查询</h2>
     <hr>
     <table id="grid-data" class="table table-condensed table-hover table-striped">
         <thead>

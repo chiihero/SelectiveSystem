@@ -22,7 +22,7 @@
 <body>
 <%@include file="nav.jsp" %>
 <div class="container">
-    <h5><b>当前位置</b>：课程管理 > 添加课程</h5>
+    <h2><b>当前位置</b>：课程管理 > 添加课程</h2>
     <hr>
     <div class="col-sm-5 col-sm-offset-4">
         <form action="/admin/courseInsert" method="post">

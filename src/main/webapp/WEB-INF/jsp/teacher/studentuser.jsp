@@ -19,7 +19,7 @@
 <body>
 <%@include file="nav.jsp" %>
 <div class="container">
-    <h5><b>当前位置</b>：用户管理 > 学生与分数</h5>
+    <h2><b>当前位置</b>：用户管理 > 学生与分数</h2>
     <hr>
     <caption class="btn-toolbar tableexport-caption" style="caption-side: bottom;">
         <button type="button" id="xlsx" class="btn btn-default xlsx">Export to xlsx</button>

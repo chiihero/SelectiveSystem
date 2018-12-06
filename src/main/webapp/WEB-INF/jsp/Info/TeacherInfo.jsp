@@ -32,10 +32,10 @@
 <jsp:include page="${IndexUrl}" flush="true"/>
 
 <div class="container">
-    <h5><b>当前位置</b>：用户管理 >
+    <h2><b>当前位置</b>：用户管理 >
         <c:if test="${mode=='insert'}">添加教师</c:if>
         <c:if test="${mode=='update'}">修改教师</c:if>
-    </h5>
+    </h2>
     <hr>
     <div class="col-xs-10 col-sm-5 col-md-3  col-sm-offset-4">
         <form id="TeacherUseradd" action="/teacher/insert" method="post">
@@ -146,7 +146,7 @@
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="${basePath}/js/bootstrap/bootstrap.min.js" type="text/javascript"></script>
 <script src="${basePath}/js/encrypt/md5.min.js" type="text/javascript"></script>
-<script src="${basePath}/js/encrypt/sha3.js" type="text/javascript"></script>
+<script src="${basePath}/js/encrypt/sha3.min.js" type="text/javascript"></script>
 <script src="${basePath}/js/checkinfo.min.js" type="text/javascript"></script>
 <script src="${basePath}/js/bootstrap/bootstrap-select.min.js" type="text/javascript"></script>
 <script type="text/javascript">
