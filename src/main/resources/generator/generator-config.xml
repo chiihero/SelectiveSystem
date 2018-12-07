@@ -41,7 +41,7 @@
         <table tableName="%" enableCountByExample="false"
                enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false">
-            <generatedKey column="epa_id" sqlStatement="Mysql" identity="true"/>
+            <generatedKey column="epa_id" sqlStatement="Oracle" identity="true"/>
         </table>
     </context>
 </generatorConfiguration>

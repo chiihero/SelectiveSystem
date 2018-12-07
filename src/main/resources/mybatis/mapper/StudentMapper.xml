@@ -2,125 +2,125 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.chii.www.mapper.StudentMapper">
     <resultMap id="BaseResultMap" type="com.chii.www.pojo.Student">
-        <id column="sno" property="sno" jdbcType="CHAR"/>
-        <result column="sname" property="sname" jdbcType="VARCHAR"/>
-        <result column="ssex" property="ssex" jdbcType="CHAR"/>
-        <result column="sage" property="sage" jdbcType="INTEGER"/>
-        <result column="sdept" property="sdept" jdbcType="VARCHAR"/>
-        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <id column="sno" property="sno"/>
+        <result column="sname" property="sname" />
+        <result column="ssex" property="ssex"/>
+        <result column="sage" property="sage" />
+        <result column="sdept" property="sdept" />
+        <result column="password" property="password" />
 
     </resultMap>
     <sql id="Base_Column_List">
-        sno, sname, ssex, sage, sdept, password
+        "sno", "sname", "ssex", "sage", "sdept", "password"
     </sql>
     <select id="selectAll" resultMap="BaseResultMap" parameterType="java.lang.String">
         select
         <include refid="Base_Column_List"/>
-        from student
+        from "student"
         <where>
             <if test="_parameter != null">
-                CONCAT(sno, sname, ssex, sage, sdept) LIKE CONCAT('%',#{_parameter},'%')
+                CONCAT("sno", "sname", "ssex", "sage", "sdept") LIKE CONCAT('%',#{_parameter},'%')
             </if>
         </where>
     </select>
 
     <select id="selectAllByTeaKey" resultMap="BaseResultMap" parameterType="java.lang.String">
-        select student.sno, student.sname, student.ssex, student.sage, student.sdept
-        from student
-        INNER JOIN sct ON student.sno = sct.sno
-        where sct.tno = #{tno,jdbcType=CHAR}
+        select "student"."sno", "student"."sname", "student"."ssex", "student"."sage", "student"."sdept"
+        from "student"
+        INNER JOIN "sct" ON "student"."sno" = "sct"."sno"
+        where "sct"."tno" = #{tno}
     </select>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
         select
         <include refid="Base_Column_List"/>
-        from student
-        where sno = #{sno,jdbcType=CHAR}
+        from "student"
+        where "sno" = #{sno}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
         delete
-        from student
-        where sno = #{sno,jdbcType=CHAR}
+        from "student"
+        where "sno" = #{sno}
     </delete>
     <insert id="insert" parameterType="com.chii.www.pojo.Student">
-        insert into student (sno, sname, ssex, sage, sdept,password)
-        values (#{sno,jdbcType=CHAR},
-                #{sname,jdbcType=VARCHAR},
-                #{ssex,jdbcType=CHAR},
-                #{sage,jdbcType=INTEGER},
-                #{sdept,jdbcType=VARCHAR},
-                #{password,jdbcType=VARCHAR})
+        insert into "student" ("sno", "sname", "ssex", "sage", "sdept","password")
+        values (#{sno},
+                #{sname},
+                #{ssex},
+                #{sage"},
+                #{sdept},
+                #{password})
     </insert>
     <insert id="insertSelective" parameterType="com.chii.www.pojo.Student">
-        insert into student
+        insert into "student"
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="sno != null">
-                sno,
+                "sno",
             </if>
             <if test="sname != null">
-                sname,
+                "sname",
             </if>
             <if test="ssex != null">
-                ssex,
+                "ssex",
             </if>
             <if test="sage != null">
-                sage,
+                "sage",
             </if>
             <if test="sdept != null">
-                sdept,
+                "sdept",
             </if>
             <if test="password != null">
-                password,
+                "password",
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="sno != null">
-                #{sno,jdbcType=CHAR},
+                #{sno},
             </if>
             <if test="sname != null">
-                #{sname,jdbcType=VARCHAR},
+                #{sname},
             </if>
             <if test="ssex != null">
-                #{ssex,jdbcType=CHAR},
+                #{ssex},
             </if>
             <if test="sage != null">
-                #{sage,jdbcType=INTEGER},
+                #{sage"},
             </if>
             <if test="sdept != null">
-                #{sdept,jdbcType=VARCHAR},
+                #{sdept},
             </if>
             <if test="password != null">
-                #{password,jdbcType=VARCHAR},
+                #{password},
             </if>
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.chii.www.pojo.Student">
-        update student
+        update "student"
         <set>
             <if test="sname != null">
-                sname = #{sname,jdbcType=VARCHAR},
+                "sname" = #{sname},
             </if>
             <if test="ssex != null">
-                ssex = #{ssex,jdbcType=CHAR},
+                "ssex" = #{ssex},
             </if>
             <if test="sage != null">
-                sage = #{sage,jdbcType=INTEGER},
+                "sage" = #{sage"},
             </if>
             <if test="sdept != null">
-                sdept = #{sdept,jdbcType=VARCHAR},
+                "sdept" = #{sdept},
             </if>
             <if test="password != null">
-                password = #{password,jdbcType=VARCHAR}
+                "password" = #{password}
             </if>
         </set>
-        where sno = #{sno,jdbcType=CHAR}
+        where "sno" = #{sno}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.chii.www.pojo.Student">
-        update student
-        set sname = #{sname,jdbcType=VARCHAR},
-            ssex  = #{ssex,jdbcType=CHAR},
-            sage  = #{sage,jdbcType=INTEGER},
-            sdept = #{sdept,jdbcType=VARCHAR},
-            password = #{password,jdbcType=VARCHAR}
-        where sno = #{sno,jdbcType=CHAR}
+        update "student"
+        set "sname" = #{sname},
+            "ssex"  = #{ssex},
+            "sage"  = #{sage"},
+            "sdept" = #{sdept},
+            "password" = #{password}
+        where "sno" = #{sno}
     </update>
 </mapper>

@@ -2,23 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.chii.www.mapper.SctMapper">
     <resultMap id="BaseResultMap" type="com.chii.www.pojo.Sct">
-        <id column="sno" property="sno" jdbcType="CHAR"/>
-        <id column="sname" property="sname" jdbcType="CHAR"/>
-        <id column="cno" property="cno" jdbcType="CHAR"/>
-        <id column="cname" property="cname" jdbcType="CHAR"/>
-        <id column="tno" property="tno" jdbcType="CHAR"/>
-        <id column="tname" property="tname" jdbcType="CHAR"/>
-        <result column="grade" property="grade" jdbcType="INTEGER"/>
+        <id column="sno" property="sno"/>
+        <id column="sname" property="sname"/>
+        <id column="cno" property="cno"/>
+        <id column="cname" property="cname"/>
+        <id column="tno" property="tno"/>
+        <id column="tname" property="tname"/>
+        <result column="grade" property="grade" />
     </resultMap>
     <sql id="Base_Column_List">
-        student.sno, student.sname, student.sdept, Course.cno, Course.cname, teacher.tno, teacher.tname, sct.grade
+        "student"."sno", "student"."sname", "student"."sdept", "course"."cno", "course"."cname", "teacher"."tno", "teacher"."tname", "sct"."grade"
     </sql>
     <select id="selectAll" resultMap="BaseResultMap" parameterType="java.lang.String">
         select
         <include refid="Base_Column_List"/>
-        FROM student LEFT JOIN sct ON sct.sno = student.sno
-        INNER JOIN course ON sct.cno = course.cno
-        INNER JOIN teacher ON sct.tno = teacher.tno
+        FROM "student" LEFT JOIN "sct" ON "sct"."sno" = "student"."sno"
+        INNER JOIN "course" ON "sct"."cno" = "course"."cno"
+        INNER JOIN "teacher" ON "sct"."tno" = "teacher"."tno"
         <where>
             <if test="_parameter != null">
                 CONCAT(<include refid="Base_Column_List"/>) LIKE CONCAT('%',#{_parameter},'%')
@@ -28,92 +28,92 @@
     <select id="selectBySno" resultMap="BaseResultMap" parameterType="java.lang.String">
         select
         <include refid="Base_Column_List"/>
-        FROM student LEFT JOIN sct ON sct.sno = student.sno
-        INNER JOIN Course ON sct.cno = Course.cno
-        INNER JOIN teacher ON sct.tno = teacher.tno
-        where student.sno = #{sno,jdbcType=CHAR}
+        FROM "student" LEFT JOIN "sct" ON "sct"."sno" = "student"."sno"
+        INNER JOIN "course" ON "sct"."cno" = "course"."cno"
+        INNER JOIN "teacher" ON "sct"."tno" = "teacher"."tno"
+        where "student"."sno" = #{sno}
     </select>
     <select id="selectByTno" resultMap="BaseResultMap" parameterType="com.chii.www.pojo.PageBean">
         select
         <include refid="Base_Column_List"/>
-        FROM student LEFT JOIN sct ON sct.sno = student.sno
-        INNER JOIN Course ON sct.cno = Course.cno
-        INNER JOIN teacher ON sct.tno = teacher.tno
+        FROM "student" LEFT JOIN "sct" ON "sct"."sno" = "student"."sno"
+        INNER JOIN "course" ON "sct"."cno" = "course"."cno"
+        INNER JOIN "teacher" ON "sct"."tno" = "teacher"."tno"
         <where>
-            sct.tno = #{key,jdbcType=CHAR}
+            "sct"."tno" = #{key}
             <if test="searchPhrase != null">
-              AND CONCAT(student.sno,student.sname,Course.cname) LIKE CONCAT('%',#{searchPhrase},'%')
+              AND CONCAT("student"."sno","student"."sname","course"."cname") LIKE CONCAT('%',#{searchPhrase},'%')
             </if>
         </where>
     </select>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.chii.www.pojo.Sct">
         select
         <include refid="Base_Column_List"/>
-        FROM student LEFT JOIN sct ON sct.sno = student.sno
-        INNER JOIN Course ON sct.cno = Course.cno
-        INNER JOIN teacher ON sct.tno = teacher.tno
-        where sno = #{sno,jdbcType=CHAR}
-        and cno = #{cno,jdbcType=CHAR}
-        and tno = #{tno,jdbcType=CHAR}
+        FROM "student" LEFT JOIN "sct" ON "sct"."sno" = "student"."sno"
+        INNER JOIN "course" ON "sct"."cno" = "course"."cno"
+        INNER JOIN "teacher" ON "sct"."tno" = "teacher"."tno"
+        where "sno" = #{sno}
+        and "cno" = #{cno}
+        and "tno" = #{tno}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="com.chii.www.pojo.Sct">
         delete
-        from sct
-        where sno = #{sno,jdbcType=CHAR}
-          and cno = #{cno,jdbcType=CHAR}
-          and tno = #{tno,jdbcType=CHAR}
+        from "sct"
+        where "sno" = #{sno}
+          and "cno" = #{cno}
+          and "tno" = #{tno}
     </delete>
     <insert id="insert" parameterType="com.chii.www.pojo.Sct">
-        insert into sct (sno, cno, tno, grade)
-        values (#{sno,jdbcType=CHAR}, #{cno,jdbcType=CHAR}, #{tno,jdbcType=CHAR}, #{grade,jdbcType=INTEGER})
+        insert into "sct" ("sno", "cno", "tno", "grade")
+        values (#{sno}, #{cno}, #{tno}, #{grade"})
     </insert>
     <insert id="insertSelective" parameterType="com.chii.www.pojo.Sct">
-        insert into sct
+        insert into "sct"
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="sno != null">
-                sno,
+                "sno",
             </if>
             <if test="cno != null">
-                cno,
+                "cno",
             </if>
             <if test="tno != null">
-                tno,
+                "tno",
             </if>
             <if test="grade != null">
-                grade,
+                "grade",
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="sno != null">
-                #{sno,jdbcType=CHAR},
+                #{sno},
             </if>
             <if test="cno != null">
-                #{cno,jdbcType=CHAR},
+                #{cno},
             </if>
             <if test="tno != null">
-                #{tno,jdbcType=CHAR},
+                #{tno},
             </if>
             <if test="grade != null">
-                #{grade,jdbcType=INTEGER},
+                #{grade"},
             </if>
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.chii.www.pojo.Sct">
-        update sct
+        update "sct"
         <set>
             <if test="grade != null">
-                grade = #{grade,jdbcType=INTEGER},
+                "grade" = #{grade"},
             </if>
         </set>
-        where sno = #{sno,jdbcType=CHAR}
-        and cno = #{cno,jdbcType=CHAR}
-        and tno = #{tno,jdbcType=CHAR}
+        where "sno" = #{sno}
+        and "cno" = #{cno}
+        and "tno" = #{tno}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.chii.www.pojo.Sct">
-        update sct
-        set grade = #{grade,jdbcType=INTEGER}
-        where sno = #{sno,jdbcType=CHAR}
-          and cno = #{cno,jdbcType=CHAR}
-          and tno = #{tno,jdbcType=CHAR}
+        update "sct"
+        set "grade" = #{grade"}
+        where "sno" = #{sno}
+          and "cno" = #{cno}
+          and "tno" = #{tno}
     </update>
 </mapper>

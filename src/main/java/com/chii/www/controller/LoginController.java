@@ -43,12 +43,14 @@ public class LoginController {
             try {
 //                System.out.println(token.hashCode());
                 currentUser.login(token);
+                System.out.println("登录成功: " + user.getUsername());
+
             } catch (AuthenticationException ae) {
                 System.out.println("登录失败: " + ae.getMessage());
                 model.addAttribute("message", "用户名或密码错误");
                 return "redirect:/login/index";
             } finally {
-                System.out.println("登录成功: " + user.getUsername());
+//                System.out.println("登录成功: " + user.getUsername());
                 model.addAttribute("message", "");
             }
         }

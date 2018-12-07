@@ -2,182 +2,183 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.chii.www.mapper.TeacherMapper">
     <resultMap id="BaseResultMap" type="com.chii.www.pojo.Teacher">
-        <id column="tno" property="tno" jdbcType="CHAR"/>
-        <result column="tname" property="tname" jdbcType="VARCHAR"/>
-        <result column="tsex" property="tsex" jdbcType="CHAR"/>
-        <result column="tage" property="tage" jdbcType="INTEGER"/>
-        <result column="teb" property="teb" jdbcType="VARCHAR"/>
-        <result column="tpt" property="tpt" jdbcType="VARCHAR"/>
-        <result column="cno1" property="cno1" jdbcType="CHAR"/>
-        <result column="cno2" property="cno2" jdbcType="CHAR"/>
-        <result column="cno3" property="cno3" jdbcType="CHAR"/>
-        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <id column="tno" property="tno"/>
+        <result column="tname" property="tname" />
+        <result column="tsex" property="tsex"/>
+        <result column="tage" property="tage" />
+        <result column="teb" property="teb" />
+        <result column="tpt" property="tpt" />
+        <result column="cno1" property="cno1"/>
+        <result column="cno2" property="cno2"/>
+        <result column="cno3" property="cno3"/>
+        <result column="password" property="password" />
 
     </resultMap>
     <sql id="Base_Column_List">
-        a.tno,
-        a.tname,
-        a.tsex,
-        a.tage,
-        a.teb,
-        a.tpt,
-        b.cno AS cno1,
-        c.cno AS cno2,
-        d.cno AS cno3,
-        password
+        A."tno",
+        A."tname",
+        A."tsex",
+        A."tage",
+        A."teb",
+        A."tpt",
+        A."cno1" AS "cno1",
+        A."cno2" AS "cno2",
+        A."cno3" AS "cno3",
+        A."password"
     </sql>
     <select id="selectAll" resultMap="BaseResultMap" parameterType="java.lang.String">
         SELECT
         <include refid="Base_Column_List"/>
-        FROM teacher a
-                 LEFT JOIN Course b ON a.cno1 = b.cno
-                 LEFT JOIN Course c ON a.cno2 = c.cno
-                 LEFT JOIN Course d ON a.cno3 = d.cno
+        FROM
+            "teacher" A
+            LEFT JOIN "course" B ON A."cno1" = B."cno"
+            LEFT JOIN "course" C ON A."cno2" = B."cno"
+            LEFT JOIN "course" D ON A."cno3" = B."cno"
         <where>
             <if test="_parameter != null">
-                CONCAT(a.tno,a.tname,a.tsex, a.tage,a.teb,a.tpt) LIKE CONCAT('%',#{_parameter},'%')
+                CONCAT(<include refid="Base_Column_List"/>) LIKE CONCAT('%',#{_parameter},'%')
             </if>
         </where>
     </select>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
         SELECT
         <include refid="Base_Column_List"/>
-        FROM teacher a
-                 LEFT JOIN Course b ON a.cno1 = b.cno
-                 LEFT JOIN Course c ON a.cno2 = c.cno
-                 LEFT JOIN Course d ON a.cno3 = d.cno
-        where tno = #{tno,jdbcType=CHAR}
+        FROM "teacher" a
+                 LEFT JOIN "course" b ON a."cno1" = b."cno"
+                 LEFT JOIN "course" c ON a."cno2" = c."cno"
+                 LEFT JOIN "course" d ON a."cno3" = d."cno"
+        where "tno" = #{tno}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
         delete
-        from teacher
-        where tno = #{tno,jdbcType=CHAR}
+        from "teacher"
+        where "tno" = #{tno}
     </delete>
     <insert id="insert" parameterType="com.chii.www.pojo.Teacher">
-        insert into teacher (tno, tname, tsex, tage, teb, tpt, cno1, cno2, cno3,password)
-        values (#{tno,jdbcType=CHAR},
-                #{tname,jdbcType=VARCHAR},
-                #{tsex,jdbcType=CHAR},
-                #{tage,jdbcType=INTEGER},
-                #{teb,jdbcType=VARCHAR},
-                #{tpt,jdbcType=VARCHAR},
-                #{cno1,jdbcType=CHAR},
-                #{cno2,jdbcType=CHAR},
-                #{cno3,jdbcType=CHAR},
-                #{password,jdbcType=VARCHAR})
+        insert into "teacher" ("tno", "tname", "tsex", "tage", "teb", "tpt", "cno1", "cno2", "cno3","password")
+        values (#{tno},
+                #{tname},
+                #{tsex},
+                #{tage},
+                #{teb},
+                #{tpt},
+                #{cno1},
+                #{cno2},
+                #{cno3},
+                #{password})
 
     </insert>
     <insert id="insertSelective" parameterType="com.chii.www.pojo.Teacher">
-        insert into teacher
+        insert into "teacher"
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="tno != null">
-                tno,
+                "tno",
             </if>
             <if test="tname != null">
-                tname,
+                "tname",
             </if>
             <if test="tsex != null">
-                tsex,
+                "tsex",
             </if>
             <if test="tage != null">
-                tage,
+                "tage",
             </if>
             <if test="teb != null">
-                teb,
+                "teb",
             </if>
             <if test="tpt != null">
-                tpt,
+                "tpt",
             </if>
             <if test="cno1 != null">
-                cno1,
+                "cno1",
             </if>
             <if test="cno2 != null">
-                cno2,
+                "cno2",
             </if>
             <if test="cno3 != null">
-                cno3,
+                "cno3",
             </if>
             <if test="password != null">
-                password,
+                "password",
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="tno != null">
-                #{tno,jdbcType=CHAR},
+                #{tno},
             </if>
             <if test="tname != null">
-                #{tname,jdbcType=VARCHAR},
+                #{tname},
             </if>
             <if test="tsex != null">
-                #{tsex,jdbcType=CHAR},
+                #{tsex},
             </if>
             <if test="tage != null">
-                #{tage,jdbcType=INTEGER},
+                #{tage},
             </if>
             <if test="teb != null">
-                #{teb,jdbcType=VARCHAR},
+                #{teb},
             </if>
             <if test="tpt != null">
-                #{tpt,jdbcType=VARCHAR},
+                #{tpt},
             </if>
             <if test="cno1 != null">
-                #{cno1,jdbcType=CHAR},
+                #{cno1},
             </if>
             <if test="cno2 != null">
-                #{cno2,jdbcType=CHAR},
+                #{cno2},
             </if>
             <if test="cno3 != null">
-                #{cno3,jdbcType=CHAR},
+                #{cno3},
             </if>
             <if test="password != null">
-                #{password,jdbcType=VARCHAR},
+                #{password},
             </if>
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.chii.www.pojo.Teacher">
-        update teacher
+        update "teacher"
         <set>
             <if test="tname != null">
-                tname = #{tname,jdbcType=VARCHAR},
+                "tname" = #{tname},
             </if>
             <if test="tsex != null">
-                tsex = #{tsex,jdbcType=CHAR},
+                tsex = #{tsex},
             </if>
             <if test="tage != null">
-                tage = #{tage,jdbcType=INTEGER},
+                tage = #{tage},
             </if>
             <if test="teb != null">
-                teb = #{teb,jdbcType=VARCHAR},
+                teb = #{teb},
             </if>
             <if test="tpt != null">
-                tpt = #{tpt,jdbcType=VARCHAR},
+                tpt = #{tpt},
             </if>
             <if test="cno1 != null">
-                cno1 = #{cno1,jdbcType=CHAR},
+                "cno1" = #{cno1},
             </if>
             <if test="cno2 != null">
-                cno2 = #{cno2,jdbcType=CHAR},
+                "cno2" = #{cno2},
             </if>
             <if test="cno3 != null">
-                cno3 = #{cno3,jdbcType=CHAR},
+                "cno3" = #{cno3},
             </if>
             <if test="password != null">
-                password = #{password,jdbcType=VARCHAR},
+                "password" = #{password},
             </if>
         </set>
-        where tno = #{tno,jdbcType=CHAR}
+        where "tno" = #{tno}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.chii.www.pojo.Teacher">
-        update teacher
-        set tname = #{tname,jdbcType=VARCHAR},
-            tsex  = #{tsex,jdbcType=CHAR},
-            tage  = #{tage,jdbcType=INTEGER},
-            teb   = #{teb,jdbcType=VARCHAR},
-            tpt   = #{tpt,jdbcType=VARCHAR},
-            cno1  = #{cno1,jdbcType=CHAR},
-            cno2  = #{cno2,jdbcType=CHAR},
-            cno3  = #{cno3,jdbcType=CHAR},
-            password = #{password,jdbcType=VARCHAR}
-        where tno = #{tno,jdbcType=CHAR}
+        update "teacher"
+        set "tname" = #{tname},
+            "tsex"  = #{tsex},
+            "tage"  = #{tage},
+            "teb"   = #{teb},
+            "tpt"   = #{tpt},
+            "cno1"  = #{cno1},
+            "cno2"  = #{cno2},
+            "cno3"  = #{cno3},
+            "password" = #{password}
+        where "tno" = #{tno}
     </update>
 </mapper>

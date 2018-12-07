@@ -3,12 +3,13 @@ plugins {
     id 'war'
 }
 
-group 'SelectiveSystem'
+group 'SelectiveSystem_oracle'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
 
 repositories {
+    mavenLocal()
     mavenCentral()
 }
 //引入generator工具
@@ -35,10 +36,10 @@ dependencies {
     //java ee jar 包
     compile 'javax:javaee-api:7.0'
     //Mysql数据库链接jar包
-    compile 'mysql:mysql-connector-java:5.1.30'
+//    compile 'mysql:mysql-connector-java:5.1.30'
     //oracle数据库链接jar包
-//    compile files('lib/ojdbc6.jar')
-    //dbcp的jar包，用来在applicationContext.xml中配置数据库
+//    compile group: 'com.hynnet', name: 'oracle-driver-ojdbc6', version: '12.1.0.1'
+//    dbcp的jar包，用来在applicationContext.xml中配置数据库
     compile 'commons-dbcp:commons-dbcp:1.2.2'
     //PageHelper数据库分页
     compile group: 'com.github.pagehelper', name: 'pagehelper', version: '5.1.4'
@@ -76,6 +77,8 @@ dependencies {
     //generator-mybatis生成代码依赖
     mybatisGenerator 'org.mybatis.generator:mybatis-generator-core:1.3.2'
     mybatisGenerator 'tk.mybatis:mapper:3.3.2'
+    // 本地jar
+    compile fileTree(dir:'lib',includes:['*jar'])
 }
 //配置generator的mysql配置文件
 def getDbProperties = {
@@ -90,9 +93,9 @@ task mybatisGenerate << {
     def properties = getDbProperties()
     ant.properties['targetProject'] = projectDir.path
     ant.properties['driverLocation'] = properties.getProperty("jdbc.driverLocation")
-    ant.properties['driverClass'] = properties.getProperty("jdbc.driverClass")
-    ant.properties['connectionURL'] = properties.getProperty("jdbc.connectionURL")
-    ant.properties['userId'] = properties.getProperty("jdbc.userId")
+    ant.properties['driverClass'] = properties.getProperty("jdbc.driver")
+    ant.properties['connectionURL'] = properties.getProperty("jdbc.url")
+    ant.properties['userId'] = properties.getProperty("jdbc.username")
     ant.properties['password'] = properties.getProperty("jdbc.password")
     ant.properties['src_main_java'] = sourceSets.main.java.srcDirs[0].path
     ant.properties['src_main_resources'] = sourceSets.main.resources.srcDirs[0].path

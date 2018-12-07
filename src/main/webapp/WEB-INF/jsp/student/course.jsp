@@ -55,8 +55,7 @@
                     // 判断学生已经选课
                     <c:forEach items="${scts}" var="score">
                     <c:set var="sctcno" value="${score.cno}"/>
-                    if (${sctcno} == row.cno
-                )
+                    if (${sctcno} == row.cno)
                     {
                         return "<button type=\"button\" class=\"btn\" data-row-id=\"" + row.cno + "\" disabled=\"true\">已选</button>";
                     }

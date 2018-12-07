@@ -2,74 +2,74 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.chii.www.mapper.DepartmentMapper">
     <resultMap id="BaseResultMap" type="com.chii.www.pojo.Department">
-        <id column="dname" property="dname" jdbcType="VARCHAR"/>
-        <result column="dno" property="dno" jdbcType="CHAR"/>
-        <result column="dmanager" property="dmanager" jdbcType="CHAR"/>
+        <id column="dname" property="dname" />
+        <result column="dno" property="dno"/>
+        <result column="dmanager" property="dmanager"/>
     </resultMap>
     <sql id="Base_Column_List">
-        dname, dno, dmanager
+        "dname", "dno", "dmanager"
     </sql>
     <select id="selectAll" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from department
+        from "department"
     </select>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
         select
         <include refid="Base_Column_List"/>
-        from department
-        where dname = #{dname,jdbcType=VARCHAR}
+        from "department"
+        where "dname" = #{dname}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
         delete
-        from department
-        where dname = #{dname,jdbcType=VARCHAR}
+        from "department"
+        where "dname" = #{dname}
     </delete>
     <insert id="insert" parameterType="com.chii.www.pojo.Department">
-        insert into department (dname, dno, dmanager)
-        values (#{dname,jdbcType=VARCHAR}, #{dno,jdbcType=CHAR}, #{dmanager,jdbcType=CHAR})
+        insert into "department" ("dname", "dno", "dmanager")
+        values (#{dname}, #{dno}, #{dmanager})
     </insert>
     <insert id="insertSelective" parameterType="com.chii.www.pojo.Department">
-        insert into department
+        insert into "department"
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="dname != null">
-                dname,
+                "dname",
             </if>
             <if test="dno != null">
-                dno,
+                "dno",
             </if>
             <if test="dmanager != null">
-                dmanager,
+                "dmanager",
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="dname != null">
-                #{dname,jdbcType=VARCHAR},
+                #{dname},
             </if>
             <if test="dno != null">
-                #{dno,jdbcType=CHAR},
+                #{dno},
             </if>
             <if test="dmanager != null">
-                #{dmanager,jdbcType=CHAR},
+                #{dmanager},
             </if>
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.chii.www.pojo.Department">
-        update department
+        update "department"
         <set>
             <if test="dno != null">
-                dno = #{dno,jdbcType=CHAR},
+                "dno" = #{dno},
             </if>
             <if test="dmanager != null">
-                dmanager = #{dmanager,jdbcType=CHAR},
+                "dmanager" = #{dmanager},
             </if>
         </set>
-        where dname = #{dname,jdbcType=VARCHAR}
+        where "dname" = #{dname}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.chii.www.pojo.Department">
-        update department
-        set dno      = #{dno,jdbcType=CHAR},
-            dmanager = #{dmanager,jdbcType=CHAR}
-        where dname = #{dname,jdbcType=VARCHAR}
+        update "department"
+        set "dno"      = #{dno},
+            "dmanager" = #{dmanager}
+        where "dname" = #{dname}
     </update>
 </mapper>

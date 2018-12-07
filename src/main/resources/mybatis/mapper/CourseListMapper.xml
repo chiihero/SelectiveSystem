@@ -2,34 +2,36 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.chii.www.mapper.CourseListMapper">
     <resultMap id="BaseResultMap" type="com.chii.www.pojo.CourseList">
-        <result column="cno" property="cno" jdbcType="CHAR"/>
-        <result column="cname" property="cname" jdbcType="VARCHAR"/>
-        <result column="tno" property="tno" jdbcType="CHAR"/>
-        <result column="tname" property="tname" jdbcType="VARCHAR"/>
-        <result column="cnum" property="cnum" jdbcType="INTEGER"/>
-        <result column="cnewnum" property="cnewnum" jdbcType="INTEGER"/>
+        <result column="cno" property="cno"/>
+        <result column="cname" property="cname"/>
+        <result column="tno" property="tno"/>
+        <result column="tname" property="tname"/>
+        <result column="cnum" property="cnum" />
+        <result column="cnewnum" property="cnewnum"/>
     </resultMap>
     <sql id="Base_Column_List">
-        course.cno,
-        course.cname,
-        teacher.tno,
-        teacher.tname,
-        course.cnum,
-        Count(sct.sno) AS cnewnum
+        "course"."cno",
+        "course"."cname",
+        "teacher"."tno",
+        "teacher"."tname",
+        "course"."cnum",
+        Count("sct"."sno") AS "cnewnum"
     </sql>
     <select id="selectAll" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>
         FROM
-        teacher
-        INNER JOIN course ON teacher.cno1 = teacher.cno1 OR teacher.cno2 = course.cno OR teacher.cno3 = course.cno
-        LEFT JOIN sct ON teacher.tno = sct.tno AND course.cno = sct.cno
+        "teacher"
+        INNER JOIN "course" ON "teacher"."cno1" = "teacher"."cno1" OR "teacher"."cno2" = "course"."cno" OR "teacher"."cno3" = "course"."cno"
+        LEFT JOIN "sct" ON "teacher"."tno" = "sct"."tno" AND "course"."cno" = "sct"."cno"
         WHERE
-        course.cname <![CDATA[ <> ]]>'无'
+        "course"."cname" <![CDATA[ <> ]]>'无'
         GROUP BY
-        course.cname,
-        teacher.tname,
-        course.cnum
+        "course"."cno",
+        "course"."cname",
+        "teacher"."tname",
+        "course"."cnum",
+        "teacher"."tno"
     </select>
 
 </mapper>
