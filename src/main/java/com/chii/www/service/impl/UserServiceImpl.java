@@ -68,9 +68,13 @@ public class UserServiceImpl implements UserService {
         adminMapper.updateByPrimaryKeySelective(admin);
     }
 
+    @Override
+    public List<Teacher> getAllTeaInfo() {
+        return teacherMapper.selectAll(null);
+    }
 
     @Override
-    public PageInfo<Teacher> getAllTeaInfo(PageBean pageBean) {
+    public PageInfo<Teacher> getAllTeaInfoByPage(PageBean pageBean) {
         PageHelper.startPage(pageBean.getCurrent(), pageBean.getRowCount());
         List<Teacher> teacher = teacherMapper.selectAll(pageBean.getSearchPhrase());
         PageInfo<Teacher> pi = new PageInfo<>(teacher);

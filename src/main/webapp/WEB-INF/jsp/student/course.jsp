@@ -43,6 +43,8 @@
     $(document).ready(function () {
         var grid = $("#grid-data").bootgrid({
             ajax: true,
+            sorting :false,
+
             post: function () {
                 /* To accumulate custom parameter with the request object */
                 return {
@@ -55,17 +57,16 @@
                     // 判断学生已经选课
                     <c:forEach items="${scts}" var="score">
                     <c:set var="sctcno" value="${score.cno}"/>
-                    if (${sctcno} == row.cno
-                )
+                    if (${sctcno} == row.cno)
                     {
                         return "<button type=\"button\" class=\"btn\" data-row-id=\"" + row.cno + "\" disabled=\"true\">已选</button>";
                     }
                     </c:forEach>
                     // 判断选课人数已满
-                    if (row.cnewnum >= row.cnum) {
-                        return "<button type=\"button\" class=\"btn\" data-row-id=\"" + row.cno + "\" disabled=\"true\">选课人数已满</button>";
-                    } else {
+                    if (row.cnewnum < row.cnum) {
                         return "<button type=\"button\" class=\"btn btn-info\" data-row-id=\"" + row.cno + "\" value=\"" + row.tno + "\">选课</button>";
+                    } else {
+                        return "<button type=\"button\" class=\"btn\" data-row-id=\"" + row.cno + "\" disabled=\"true\">选课人数已满</button>";
                     }
                 }
             }

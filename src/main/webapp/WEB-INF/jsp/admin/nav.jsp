@@ -61,7 +61,7 @@
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
                        aria-haspopup="true" aria-expanded="false">院系管理 <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li class="dropdown-item"><a href="${basePath}/admin/departmentadd">添加院系</a></li>
+                        <li class="dropdown-item"><a href="${basePath}/admin/departmentInfo">添加院系</a></li>
                         <li class="dropdown-item"><a href="${basePath}/admin/department">院系管理</a></li>
                     </ul>
                 </li>

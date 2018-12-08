@@ -65,7 +65,7 @@
 
             <div class="input-group">
                 <div class="input-group-addon">
-                    <span class="glyphicon glyphicon-time"</span>
+                    <span class="glyphicon glyphicon-time"></span>
                 </div>
                 <input type="text" class="form-control" placeholder="年龄" id="tage" name="tage"
                        oninput="value=value.replace(/[^\d]/g,'')">

@@ -41,7 +41,7 @@
     <!-- 会话管理器 -->
     <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
         <!-- Shiro去掉URL中的JSESSIONID -->
-        <property name="sessionIdUrlRewritingEnabled" value="false" />
+        <property name="sessionIdUrlRewritingEnabled" value="false"/>
         <property name="globalSessionTimeout" value="1800000"/><!-- 毫秒 -->
         <property name="deleteInvalidSessions" value="true"/>
         <property name="sessionValidationSchedulerEnabled" value="true"/>
@@ -77,7 +77,7 @@
     </bean>
 
     <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
-      depends-on="lifecycleBeanPostProcessor"/>
+          depends-on="lifecycleBeanPostProcessor"/>
     <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
         <property name="securityManager" ref="securityManager"/>
     </bean>
@@ -133,7 +133,7 @@
                 /js/** = anon
                 /img/** = anon
                 /fonts/** = anon
-                 /** kickout,authc
+                /** kickout,authc
             </value>
         </property>
     </bean>
