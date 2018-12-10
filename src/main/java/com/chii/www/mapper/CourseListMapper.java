@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface CourseListMapper {
     List<CourseList> selectAll(String search);
+    List<CourseList> selectAllByView(String search);
 
     int insert(CourseList record);
 }

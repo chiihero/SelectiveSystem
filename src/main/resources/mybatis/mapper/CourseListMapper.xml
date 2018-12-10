@@ -17,7 +17,15 @@
         "course"."cnum",
         Count("sct"."sno") AS "cnewnum"
     </sql>
-    <select id="selectAll" resultMap="BaseResultMap">
+    <sql id="View_Column_List">
+        "cno",
+        "cname",
+        "tno",
+        "tname",
+        "cnum",
+        "cnewnum"
+    </sql>
+    <select id="selectAll" resultMap="BaseResultMap" parameterType="java.lang.String">
         SELECT
         <include refid="Base_Column_List"/>
         FROM
@@ -26,6 +34,9 @@
         LEFT JOIN "sct" ON "teacher"."tno" = "sct"."tno" AND "course"."cno" = "sct"."cno"
         WHERE
         "course"."cname" <![CDATA[ <> ]]>'无'
+        <if test="_parameter != null">
+            AND CONCAT("course"."cname","teacher"."tname") LIKE '%${_parameter}%'
+        </if>
         GROUP BY
         "course"."cno",
         "course"."cname",
@@ -33,5 +44,17 @@
         "course"."cnum",
         "teacher"."tno"
     </select>
+    <!--调用视图-->
+    <select id="selectAllByView" resultMap="BaseResultMap" parameterType="java.lang.String">
+        SELECT
+        <include refid="View_Column_List"/>
+        FROM
+        "selectAllCourseList"
+        <where>
+            <if test="_parameter != null">
+                concat("cname","tname") LIKE '%${_parameter}%'
+            </if>
+        </where>
 
+    </select>
 </mapper>

@@ -52,9 +52,9 @@
         FROM "student" LEFT JOIN "sct" ON "sct"."sno" = "student"."sno"
         INNER JOIN "course" ON "sct"."cno" = "course"."cno"
         INNER JOIN "teacher" ON "sct"."tno" = "teacher"."tno"
-        where "sno" = #{sno}
-        and "cno" = #{cno}
-        and "tno" = #{tno}
+        where "sct"."sno" = #{sno}
+        and "sct"."cno" = #{cno}
+        and "sct"."tno" = #{tno}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="com.chii.www.pojo.Sct">
         delete
@@ -116,4 +116,18 @@
           and "cno" = #{cno}
           and "tno" = #{tno}
     </update>
+
+
+    <!-- 调用存储过程查询 -->
+    <select id="testProcedure" parameterType="java.util.Map" statementType="CALLABLE" resultType="java.util.HashMap">
+        {call loginandreg(
+                #{out_ret,mode=OUT,javaType=java.lang.Integer,jdbcType=INTEGER},
+                #{out_desc,mode=OUT,javaType=java.lang.String,jdbcType=VARCHAR},
+                #{userId,jdbcType=VARCHAR,mode=OUT},
+                #{user_pwd,jdbcType=VARCHAR,mode=IN},
+                #{nickname,jdbcType=VARCHAR,mode=IN}
+        )
+        }
+    </select>
+
 </mapper>

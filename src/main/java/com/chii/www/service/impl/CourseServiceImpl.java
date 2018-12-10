@@ -40,7 +40,6 @@ public class CourseServiceImpl implements CourseService {
     }
 
 
-
     @Override
     public PageInfo<Sct> getAllSctInfoByPage(PageBean pageBean) {
         PageHelper.startPage(pageBean.getCurrent(), pageBean.getRowCount());
@@ -50,11 +49,11 @@ public class CourseServiceImpl implements CourseService {
     }
 
 
-
     @Override
     public PageInfo<CourseList> getAllCourseListInfo(PageBean pageBean) {
         PageHelper.startPage(pageBean.getCurrent(), pageBean.getRowCount());
-        List<CourseList> students = courseListMapper.selectAll(pageBean.getSearchPhrase());
+        //视图view
+        List<CourseList> students = courseListMapper.selectAllByView(pageBean.getSearchPhrase());
         PageInfo<CourseList> pi = new PageInfo<>(students);
         return pi;
 

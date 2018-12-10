@@ -35,6 +35,8 @@ public class LoginController {
 
     @RequestMapping(value = "/signIn", method = RequestMethod.POST)
     public String Login(User user, Model model) {
+        Admin admin = userService.getAdminInfoById("admin");
+
         Subject currentUser = SecurityUtils.getSubject();
         System.out.println(currentUser.isAuthenticated());
         if (!currentUser.isAuthenticated()) {

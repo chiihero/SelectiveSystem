@@ -3,6 +3,7 @@
 <mapper namespace="com.chii.www.mapper.AdminMapper">
     <resultMap id="BaseResultMap" type="com.chii.www.pojo.Admin">
         <id column="ano" property="ano" />
+        <result column="aname" property="aname"/>
         <result column="password" property="password" />
     </resultMap>
     <sql id="Base_Column_List">
@@ -12,7 +13,7 @@
         select
         <include refid="Base_Column_List"/>
         from "admin"
-        where  "ano" = #{ano}
+        where "ano" = #{ano}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
         delete
