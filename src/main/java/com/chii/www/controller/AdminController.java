@@ -78,7 +78,7 @@ public class AdminController {
 
     @RequestMapping("/teacheruser")
     public String teacheruserUrl(Model model) {
-//        model.addAttribute("teachers", userService.getAllTeaInfo());
+//        model.addAttribute("teachers", userService.getAllTeaInfoByPage());
 //        model.addAttribute("courses", courseService.getAllCourseInfo());
         return "admin/teacheruser";
     }
@@ -86,7 +86,7 @@ public class AdminController {
     @RequestMapping(value = "/AllTeacherUser")
     @ResponseBody
     public PageBean AllTeacherUser(PageBean page) {
-        PageInfo<Teacher> pi = userService.getAllTeaInfo(page);
+        PageInfo<Teacher> pi = userService.getAllTeaInfoByPage(page);
         page.setCurrent(page.getCurrent());
         page.setRowCount(page.getRowCount());
         page.setRows(pi.getList());
@@ -107,10 +107,10 @@ public class AdminController {
         return "Info/TeacherInfo";
     }
 
-    @RequestMapping("/userimport")
-    public String userimportUrl() {
-        return "admin/userimport";
-    }
+//    @RequestMapping("/userimport")
+//    public String userimportUrl() {
+//        return "admin/userimport";
+//    }
 
     @RequestMapping("/scoreupdate")
     @ResponseBody
@@ -180,22 +180,33 @@ public class AdminController {
         return "/admin/department";
     }
 
-    @RequestMapping("/departmentadd")
-    public String departmentaddUrl(Model model) {
-//        model.addAttribute("teachers", userService.getAllTeaInfo(null));
-        return "/admin/departmentadd";
+    @RequestMapping("/departmentInfo")
+    public String departmentInfoUrl(String dname,Model model) {
+        if (dname == null) {
+            model.addAttribute("mode", "insert");
+        } else {
+            System.out.println(dname);
+            model.addAttribute("dep", courseService.getDepInfoByDname(dname));
+            model.addAttribute("mode", "update");
+        }
+        model.addAttribute("teachers", userService.getAllTeaInfo());
+        return "/admin/departmentInfo";
     }
 
     @RequestMapping("/departmentInsert")
     public String departmentInsert(Department department) {
         courseService.insertDepartmentInfo(department);
-        return "redirect:/admin/departmentadd";
+        return "redirect:/admin/department";
     }
-
+    @RequestMapping("/departmentUpdate")
+    public String departmentUpdate(Department department) {
+        courseService.updateDepartmentInfo(department);
+        return "redirect:/admin/department";
+    }
     @RequestMapping("/departmentDelete")
-    public String departmentDelete(String dno, Model model) {
+    public String departmentDelete(String dname, Model model) {
 //        System.out.println(cno);
-        courseService.deleteDepartmentInfo(dno);
+        courseService.deleteDepartmentInfo(dname);
         return "redirect:/admin/department";
     }
 

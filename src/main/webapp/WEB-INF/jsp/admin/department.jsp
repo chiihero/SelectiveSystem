@@ -35,8 +35,7 @@
             <th>系编号</th>
             <th>系名</th>
             <th>系主任</th>
-            <th>删除</th>
-
+            <th>修改</th>
         </tr>
         </thead>
         <tbody>
@@ -45,7 +44,9 @@
                 <td>${department.dno}</td>
                 <td>${department.dname}</td>
                 <td>${department.dmanager}</td>
-                <td><a href="${basePath}/admin/departmentDelete?dno=${department.dno}" class="btn btn-danger">删除</a>
+                <td>
+                    <a href="${basePath}/admin/departmentInfo?dname=${department.dname}" class="btn btn-primary">修改</a>
+                    <a href="${basePath}/admin/departmentDelete?dname=${department.dname}" class="btn btn-danger">删除</a>
                 </td>
             </tr>
 

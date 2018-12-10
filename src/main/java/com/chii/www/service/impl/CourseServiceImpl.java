@@ -54,7 +54,7 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public PageInfo<CourseList> getAllCourseListInfo(PageBean pageBean) {
         PageHelper.startPage(pageBean.getCurrent(), pageBean.getRowCount());
-        List<CourseList> students = courseListMapper.selectAll();
+        List<CourseList> students = courseListMapper.selectAll(pageBean.getSearchPhrase());
         PageInfo<CourseList> pi = new PageInfo<>(students);
         return pi;
 
@@ -72,9 +72,14 @@ public class CourseServiceImpl implements CourseService {
         return sctMapper.selectBySno(userno);
     }
 
+//    @Override
+//    public List<CourseList> getAllSelectCourse() {
+//        return courseListMapper.selectAll(String search);
+//    }
+
     @Override
-    public List<CourseList> getAllSelectCourse() {
-        return courseListMapper.selectAll();
+    public Department getDepInfoByDname(String dname) {
+        return departmentMapper.selectByPrimaryKey(dname);
     }
 
     @Override
@@ -108,6 +113,11 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
+    public void updateDepartmentInfo(Department department) {
+        departmentMapper.updateByPrimaryKeySelective(department);
+    }
+
+    @Override
     public void deleteSctInfo(Sct sct) {
         sctMapper.deleteByPrimaryKey(sct);
     }
@@ -118,7 +128,7 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public void deleteDepartmentInfo(String userno) {
-        departmentMapper.deleteByPrimaryKey(userno);
+    public void deleteDepartmentInfo(String dname) {
+        departmentMapper.deleteByPrimaryKey(dname);
     }
 }

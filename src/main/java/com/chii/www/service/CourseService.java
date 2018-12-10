@@ -12,8 +12,9 @@ public interface CourseService {
 
     Course getCourseInfoById(String cno);
 
-    List<CourseList> getAllSelectCourse();
+//    List<CourseList> getAllSelectCourse();
 
+    Department getDepInfoByDname(String dname);
 
     PageInfo<Sct> getAllSctInfoByPage(PageBean pageBean);
 
@@ -35,10 +36,12 @@ public interface CourseService {
 
     void updateGradeInfo(Sct sct);
 
+    void updateDepartmentInfo(Department department);
+
     void deleteSctInfo(Sct sct);
 
     void deleteCourseInfo(String userno);
 
-    void deleteDepartmentInfo(String userno);
+    void deleteDepartmentInfo(String dname);
 
 }

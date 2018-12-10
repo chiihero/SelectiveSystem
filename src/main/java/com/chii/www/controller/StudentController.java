@@ -54,6 +54,7 @@ public class StudentController {
 
     @RequestMapping("/course")
     public String courseUrl(@ModelAttribute("username") String sno, Model model) {
+        model.addAttribute("scts", courseService.getSctInfoByStuId(sno));
         return "student/course";
     }
 

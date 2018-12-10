@@ -62,6 +62,7 @@
     $(document).ready(function () {
         $("#grid-data").bootgrid({
             ajax: true,
+            sorting :false,
             post: function () {
                 /* To accumulate custom parameter with the request object */
                 return {

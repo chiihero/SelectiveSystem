@@ -21,7 +21,9 @@ public interface UserService {
 
     Teacher getTeaInfoById(String userno);
 
-    PageInfo<Teacher> getAllTeaInfo(PageBean pageBean);
+    List<Teacher> getAllTeaInfo();
+
+    PageInfo<Teacher> getAllTeaInfoByPage(PageBean pageBean);
 
     Admin getAdminInfoById(String userno);
 
