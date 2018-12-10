@@ -17,7 +17,6 @@ public interface StudentMapper {
 
     Student selectByPrimaryKey(String sno);
 
-
     int updateByPrimaryKeySelective(Student record);
 
     int updateByPrimaryKey(Student record);

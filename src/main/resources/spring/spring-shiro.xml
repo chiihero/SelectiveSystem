@@ -126,15 +126,15 @@
                 /index.jsp = authc
                 /login/logout = logout
                 /login/** = anon
-                <!--/admin/** = kickout,roles[admin]-->
-                <!--/teacher/** = kickout,roles[teacher]-->
-                <!--/student/** = kickout,roles[student]-->
+                /admin/** = kickout,roles[admin]
+                /teacher/** = kickout,roles[teacher]
+                /student/** = kickout,roles[student]
                 /css/** = anon
                 /js/** = anon
                 /img/** = anon
                 /fonts/** = anon
-                 <!--/** kickout,authc-->
-                /** = anon
+                 /** kickout,authc
+                <!--/** = anon-->
             </value>
         </property>
     </bean>

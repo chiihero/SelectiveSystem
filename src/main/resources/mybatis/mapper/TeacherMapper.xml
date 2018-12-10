@@ -66,7 +66,6 @@
                 #{cno2},
                 #{cno3},
                 #{password})
-
     </insert>
     <insert id="insertSelective" parameterType="com.chii.www.pojo.Teacher">
         insert into "teacher"
