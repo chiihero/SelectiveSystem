@@ -15,37 +15,31 @@
 
     </resultMap>
     <sql id="Base_Column_List">
-        a.tno,
-        a.tname,
-        a.tsex,
-        a.tage,
-        a.teb,
-        a.tpt,
-        b.cno AS cno1,
-        c.cno AS cno2,
-        d.cno AS cno3,
+        tno,
+        tname,
+        tsex,
+        tage,
+        teb,
+        tpt,
+        cno1,
+        cno2,
+        cno3,
         password
     </sql>
     <select id="selectAll" resultMap="BaseResultMap" parameterType="java.lang.String">
         SELECT
         <include refid="Base_Column_List"/>
-        FROM teacher a
-                 LEFT JOIN Course b ON a.cno1 = b.cno
-                 LEFT JOIN Course c ON a.cno2 = c.cno
-                 LEFT JOIN Course d ON a.cno3 = d.cno
+        FROM teacher 
         <where>
             <if test="_parameter != null">
-                CONCAT(a.tno,a.tname,a.tsex, a.tage,a.teb,a.tpt) LIKE CONCAT('%',#{_parameter},'%')
+                CONCAT(tno,tname,tsex, tage,teb,tpt) LIKE CONCAT('%',#{_parameter},'%')
             </if>
         </where>
     </select>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
         SELECT
         <include refid="Base_Column_List"/>
-        FROM teacher a
-                 LEFT JOIN Course b ON a.cno1 = b.cno
-                 LEFT JOIN Course c ON a.cno2 = c.cno
-                 LEFT JOIN Course d ON a.cno3 = d.cno
+        FROM teacher 
         where tno = #{tno,jdbcType=CHAR}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">

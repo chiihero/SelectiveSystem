@@ -32,6 +32,7 @@
         </thead>
     </table>
 </div>
+<button id="tableTitle" value="course" disabled="disabled"></button>
 </body>
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
 <script src="${basePath}/js/jquery.min.js" type="text/javascript"></script>
@@ -44,7 +45,6 @@
         var grid = $("#grid-data").bootgrid({
             ajax: true,
             sorting :false,
-
             post: function () {
                 /* To accumulate custom parameter with the request object */
                 return {

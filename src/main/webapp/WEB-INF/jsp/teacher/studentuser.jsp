@@ -41,6 +41,8 @@
         </table>
     </div>
 </div>
+<button id="tableTitle" value="student" disabled="disabled"></button>
+
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
 <script src="${basePath}/js/jquery.min.js" type="text/javascript"></script>
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
@@ -51,7 +53,7 @@
 <script src="${basePath}/js/tableexport/FileSaver.min.js"></script>
 <script src="${basePath}/js/tableexport/tableExport.min.js"></script>
 <script src="${basePath}/js/tableexport/xlsx.core.min.js"></script>
-<script src="${basePath}/js/checkinfo.min.js" type="text/javascript"></script>
+<script src="${basePath}/js/checkinfo.js" type="text/javascript"></script>
 <script typeof="text/javascript">
     $(document).ready(function () {
         $("#grid-data").bootgrid({
@@ -60,7 +62,6 @@
             post: function () {
                 /* To accumulate custom parameter with the request object */
                 return {
-                    // sdept:sdept_id
                     // id: "b0df282a-0d67-40e5-8558-c9e93b7befed"
                 };
             },
@@ -69,8 +70,8 @@
                 "commands": function (column, row) {
                     var grade = row.grade;
                     if (row.grade == null) {
-                        return "<input type=\"text\" class=\"layui-input\" id=\"" + row.sno + "_" + row.cno + "_" + row.tno + "\" value=\"\" style=\"width:80px; display: inline-block;\">" +
-                            "<button class=\"btn btn-primary\" onclick=\"update_score(" + row.sno + "," + row.cno + "," + row.tno + ")\">评分";
+                        return "<input type=\"text\" class=\"col-xs-5\" id=\"" + row.sno + "_" + row.cno + "_" + row.tno + "\" value=\"\" style=\"padding: 6px 1px;\">" +
+                            "<button class=\"btn btn-primary  col-xs-7\" onclick=\"update_score(" + row.sno + "," + row.cno + "," + row.tno + ")\">评分";
                     } else {
                         return "<button class=\"btn\" disabled>已经评分";
                     }

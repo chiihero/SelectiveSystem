@@ -85,7 +85,7 @@
 <script src="${basePath}/js/bootstrap/bootstrap.min.js" type="text/javascript"></script>
 <script src="${basePath}/js/encrypt/md5.min.js" type="text/javascript"></script>
 <script src="${basePath}/js/encrypt/sha3.min.js" type="text/javascript"></script>
-<script src="${basePath}/js/checkinfo.min.js" type="text/javascript"></script>
+<script src="${basePath}/js/checkinfo.js" type="text/javascript"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {

@@ -3,6 +3,8 @@
 <mapper namespace="com.chii.www.mapper.AdminMapper">
     <resultMap id="BaseResultMap" type="com.chii.www.pojo.Admin">
         <id column="ano" property="ano" jdbcType="CHAR"/>
+        <result column="aname" property="aname" jdbcType="VARCHAR"/>
+
         <result column="password" property="password" jdbcType="VARCHAR"/>
     </resultMap>
     <sql id="Base_Column_List">

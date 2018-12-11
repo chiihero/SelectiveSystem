@@ -1,31 +1,41 @@
-﻿//报表下载按键
+﻿//选择框的js
+// $('.selectpicker').selectpicker();
+//报表下载按键
 $("#xlsx").click(function () {
     var length = $(".table thead tr th").length;
     var button_num = $("tr").find("button").length;
     var a_num = $("tr").find("a").length;
-
+    var tableTitle = $("#tableTitle").val();
     if (button_num>0 || a_num>0 ){//判断是否有按键
         length = length -1;
     }
     $(".table").tableExport({
         type:'xlsx',
-        // fileName:'student',
+        fileName:tableTitle+"_"+getNowFormatDate(),
         ignoreColumn:[length],
         bootstrap: true,
     });
 });
 $("#xls").click(function ()  {
+    var length = $(".table thead tr th").length;
+    var button_num = $("tr").find("button").length;
+    var a_num = $("tr").find("a").length;
+    var tableTitle = $("#tableTitle").val();
     $(".table").tableExport({
         type:'excel',
-        // fileName:'student',
+        fileName:tableTitle+"_"+getNowFormatDate(),
         ignoreColumn:[length],
         bootstrap: true,
     });
 });
 $("#csv").click(function () {
+    var length = $(".table thead tr th").length;
+    var button_num = $("tr").find("button").length;
+    var a_num = $("tr").find("a").length;
+    var tableTitle = $("#tableTitle").val();
     $(".table").tableExport({
         type:'csv',
-        // fileName:'student',
+        fileName:tableTitle+"_"+getNowFormatDate(),
         ignoreColumn:[length],
         bootstrap: true,
     });
@@ -211,4 +221,20 @@ function post(URL,TYPE,PARAMS) {
             return false;
         }
     });
+}
+//获取当前时间，格式YYYY-MM-DD
+function getNowFormatDate() {
+    var date = new Date();
+    var seperator1 = "-";
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var strDate = date.getDate();
+    if (month >= 1 && month <= 9) {
+        month = "0" + month;
+    }
+    if (strDate >= 0 && strDate <= 9) {
+        strDate = "0" + strDate;
+    }
+    var currentdate = year + seperator1 + month + seperator1 + strDate;
+    return currentdate;
 }

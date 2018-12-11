@@ -49,4 +49,6 @@
 <script src="${basePath}/js/tableexport/FileSaver.min.js"></script>
 <script src="${basePath}/js/tableexport/tableExport.min.js"></script>
 <script src="${basePath}/js/tableexport/xlsx.core.min.js"></script>
+<script src="${basePath}/js/checkinfo.js" type="text/javascript"></script>
+
 </html>

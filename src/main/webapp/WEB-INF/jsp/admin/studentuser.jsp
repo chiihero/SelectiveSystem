@@ -46,6 +46,8 @@
         </thead>
     </table>
 </div>
+<button id="tableTitle" value="student" disabled="disabled"></button>
+
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
 <script src="${basePath}/js/jquery.min.js" type="text/javascript"></script>
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
@@ -56,7 +58,7 @@
 <script src="${basePath}/js/tableexport/FileSaver.min.js"></script>
 <script src="${basePath}/js/tableexport/tableExport.min.js"></script>
 <script src="${basePath}/js/tableexport/xlsx.core.min.js"></script>
-<script src="${basePath}/js/checkinfo.min.js" type="text/javascript"></script>
+<script src="${basePath}/js/checkinfo.js" type="text/javascript"></script>
 <script typeof="text/javascript">
     $(document).ready(function () {
         $("#grid-data").bootgrid({

@@ -57,7 +57,7 @@
                 <div class="input-group-addon">
                     <span class="glyphicon glyphicon-heart-empty"></span>
                 </div>
-                <select name="tsex" class="selectpicker mb-4">
+                <select name="tsex" class="selectpicker " data-live-search="true" data-width="auto">
                     <option value="男">男</option>
                     <option value="女">女</option>
                 </select>
@@ -74,7 +74,7 @@
                 <div class="input-group-addon">
                     <span class="glyphicon glyphicon-book"></span>
                 </div>
-                <select id="teb" name="teb" class="selectpicker mb-4">
+                <select id="teb" name="teb" class="selectpicker " data-live-search="true" data-width="auto">
                     <option value="学士">学士</option>
                     <option value="硕士">硕士</option>
                     <option value="博士">博士</option>
@@ -85,7 +85,7 @@
                 <div class="input-group-addon">
                     <span class="glyphicon glyphicon-briefcase"></span>
                 </div>
-                <select id="tpt" name="tpt" class="selectpicker mb-4">
+                <select id="tpt" name="tpt" class="selectpicker " data-live-search="true" data-width="auto">
                     <option value="助教">助教</option>
                     <option value="讲师">讲师</option>
                     <option value="副教授">副教授</option>
@@ -97,7 +97,7 @@
                 <div class="input-group-addon">
                     <span class="glyphicon glyphicon-menu-hamburger"></span>
                 </div>
-                <select id="cno1" name="cno1" class="selectpicker mb-4">
+                <select id="cno1" name="cno1" class="selectpicker " data-live-search="true" data-width="auto">
                     <c:forEach items="${courses}" var="course">
                         <option value="${course.cno}">${course.cname}</option>
                     </c:forEach>
@@ -108,7 +108,7 @@
                 <div class="input-group-addon">
                     <span class="glyphicon glyphicon-menu-hamburger"></span>
                 </div>
-                <select id="cno2" name="cno2" class="selectpicker mb-4">
+                <select id="cno2" name="cno2" class="selectpicker " data-live-search="true" data-width="auto">
                     <c:forEach items="${courses}" var="course">
                         <option value="${course.cno}">${course.cname}</option>
                     </c:forEach>
@@ -119,7 +119,7 @@
                 <div class="input-group-addon">
                     <span class="glyphicon glyphicon-menu-hamburger"></span>
                 </div>
-                <select id="cno3" name="cno3" class="selectpicker mb-4">
+                <select id="cno3" name="cno3" class="selectpicker " data-live-search="true" data-width="auto">
                     <c:forEach items="${courses}" var="course">
                         <option value="${course.cno}">${course.cname}</option>
                     </c:forEach>
@@ -147,7 +147,7 @@
 <script src="${basePath}/js/bootstrap/bootstrap.min.js" type="text/javascript"></script>
 <script src="${basePath}/js/encrypt/md5.min.js" type="text/javascript"></script>
 <script src="${basePath}/js/encrypt/sha3.min.js" type="text/javascript"></script>
-<script src="${basePath}/js/checkinfo.min.js" type="text/javascript"></script>
+<script src="${basePath}/js/checkinfo.js" type="text/javascript"></script>
 <script src="${basePath}/js/bootstrap/bootstrap-select.min.js" type="text/javascript"></script>
 <script type="text/javascript">
     $(document).ready(function () {

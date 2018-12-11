@@ -25,7 +25,7 @@
     <div id="loginbox">
         <form id="loginform" action="/login/signIn" method="post">
             <div class="form-group">
-                <select id="type" name="type" class="selectpicker mb-4" data-style="btn-default">
+                <select id="type" name="type" class="selectpicker"  data-style="btn-default">
                     <option value="1" selected="selected">学生登录</option>
                     <option value="2">教师登录</option>
                     <option value="3">管理人员登录</option>
@@ -114,7 +114,7 @@
 <script src="${basePath}/js/bootstrap/bootstrap-select.min.js" type="text/javascript"></script>
 <script src="${basePath}/js/encrypt/md5.min.js" type="text/javascript"></script>
 <script src="${basePath}/js/encrypt/sha3.min.js" type="text/javascript"></script>
-<script src="${basePath}/js/checkinfo.min.js" type="text/javascript"></script>
+<script src="${basePath}/js/checkinfo.js" type="text/javascript"></script>
 <script src="${basePath}/js/index.min.js" type="text/javascript" charset="uft-8"></script>
 </body>
 

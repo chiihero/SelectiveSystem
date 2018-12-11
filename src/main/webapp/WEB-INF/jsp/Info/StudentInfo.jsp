@@ -60,7 +60,7 @@
                     <span class="glyphicon glyphicon-heart-empty"></span>
                 </div>
                 <%--<input type="text" class="form-control col-4" placeholder="性别" id="sex" name="sex">--%>
-                <select id="ssex" name="ssex" class="selectpicker mb-4">
+                <select id="ssex" name="ssex" class="selectpicker " data-live-search="true" data-width="auto">
                     <option value="男">男</option>
                     <option value="女">女</option>
                 </select>
@@ -80,7 +80,7 @@
                 <div class="input-group-addon">
                     <span class="glyphicon glyphicon-book"></span>
                 </div>
-                <select id="sdept" name="sdept" class="selectpicker mb-4">
+                <select id="sdept" name="sdept" class="selectpicker " data-live-search="true" data-width="auto">
                     <c:forEach items="${departments}" var="department">
                         <option value="${department.dname}">${department.dname}</option>
                     </c:forEach>
@@ -109,7 +109,7 @@
 <script src="${basePath}/js/bootstrap/bootstrap.min.js" type="text/javascript"></script>
 <script src="${basePath}/js/encrypt/md5.min.js" type="text/javascript"></script>
 <script src="${basePath}/js/encrypt/sha3.min.js" type="text/javascript"></script>
-<script src="${basePath}/js/checkinfo.min.js" type="text/javascript"></script>
+<script src="${basePath}/js/checkinfo.js" type="text/javascript"></script>
 <script src="${basePath}/js/bootstrap/bootstrap-select.min.js" type="text/javascript"></script>
 <script>
     $(document).ready(function () {
