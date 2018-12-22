@@ -33,11 +33,8 @@ public class AdminController {
     }
 
     @RequestMapping("/adminIndex")
-    public String adminUrl(@ModelAttribute("username") String user) {
-        BasicConfigurator.configure();
-//        if (user.equals(""))
-//            System.out.println("hhhhhh");
-//            return "redirect:/login/logout";
+    public String adminUrl(Model model) {
+        model.addAttribute("username", "chii");
         return "admin/adminIndex";
     }
 
@@ -145,77 +142,7 @@ public class AdminController {
         return "redirect:/admin/score";
     }
 
-    @RequestMapping("/course")
-    public String courseUrl(Model model) {
-        model.addAttribute("courses", courseService.getAllCourseInfo());
-        return "/admin/course";
-    }
 
-    @RequestMapping("/courseadd")
-    public String courseaddUrl(Model model) {
-        return "/admin/courseadd";
-    }
-
-    @RequestMapping("/courseInsert")
-    public String courseInsert(Course course) {
-        courseService.insertCourseInfo(course);
-        return "redirect:/admin/courseadd";
-    }
-
-    @RequestMapping("/courseDelete")
-    public String courseDelete(String cno, Model model) {
-//        System.out.println(cno);
-        courseService.deleteCourseInfo(cno);
-        return "redirect:/admin/course";
-    }
-
-    @RequestMapping("/department")
-    public String departmentUrl(Model model) {
-        model.addAttribute("departments", courseService.getAllDepartmentInfo());
-        return "/admin/department";
-    }
-
-    @RequestMapping("/departmentInfo")
-    public String departmentInfoUrl(String dname,Model model) {
-        if (dname == null) {
-            model.addAttribute("mode", "insert");
-        } else {
-            System.out.println(dname);
-            model.addAttribute("dep", courseService.getDepInfoByDname(dname));
-            model.addAttribute("mode", "update");
-        }
-        model.addAttribute("teachers", userService.getAllTeaInfo());
-        return "/admin/departmentInfo";
-    }
-
-    @RequestMapping("/departmentInsert")
-    public String departmentInsert(Department department) {
-        courseService.insertDepartmentInfo(department);
-        return "redirect:/admin/department";
-    }
-    @RequestMapping("/departmentUpdate")
-    public String departmentUpdate(Department department) {
-        courseService.updateDepartmentInfo(department);
-        return "redirect:/admin/department";
-    }
-    @RequestMapping("/departmentDelete")
-    public String departmentDelete(String dname, Model model) {
-//        System.out.println(cno);
-        courseService.deleteDepartmentInfo(dname);
-        return "redirect:/admin/department";
-    }
-
-    @RequestMapping("/exportStu")
-    public void export(HttpServletResponse response) throws Exception {
-        InputStream is = userService.getInputStream();
-        response.setContentType("application/vnd.ms-excel;charset=UTF-8");//设置浏览器以何种方式编码输入流
-        response.setCharacterEncoding("UTF-8");//设置输出流的编码方式
-        response.setHeader("Content-Disposition", "attachment;filename=student.xls");//设置content-disposition响应头控制浏览器以下载的形式打开文件
-        response.addHeader("Pargam", "no-cache");
-        response.addHeader("Cache-Control", "no-cache");
-        ServletOutputStream output = response.getOutputStream();
-        IOUtils.copy(is, output);
-    }
 
     @RequestMapping("/help")
     public String helpUrl(Model model) {

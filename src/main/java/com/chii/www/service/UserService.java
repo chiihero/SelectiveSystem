@@ -45,7 +45,6 @@ public interface UserService {
 
     void dateleTeaInfo(String userno);
 
-    InputStream getInputStream() throws Exception;
 
 
 }
