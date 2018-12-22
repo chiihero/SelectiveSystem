@@ -8,6 +8,7 @@
     <link href="${basePath}/css/tableexport/tableexport.min.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>选课管理信息系统</title>
+
 </head>
 <body>
 <%@include file="nav.jsp" %>
@@ -40,6 +41,8 @@
         </thead>
     </table>
 </div>
+<button id="tableTitle" value="score" disabled="disabled"></button>
+
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
 <script src="${basePath}/js/jquery.min.js" type="text/javascript"></script>
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
@@ -57,7 +60,6 @@
         $("#grid-data").bootgrid({
             ajax: true,
             sorting :false,
-
             post: function () {
                 /* To accumulate custom parameter with the request object */
                 return {
@@ -67,8 +69,8 @@
             url: "/admin/AllScore",
             formatters: {
                 "commands": function (column, row) {
-                    return "<input type=\"text\" class=\"layui-input\" id=\"" + row.sno + "_" + row.cno + "_" + row.tno + "\" value=\"\" style=\"max-width:50px; display: inline-block;\">" +
-                        "<button class=\"btn btn-primary\" onclick=\"update_score(" + row.sno + "," + row.cno + "," + row.tno + ")\">评分\n";
+                    return "<input type=\"text\" class=\"col-xs-5\" id=\"" + row.sno + "_" + row.cno + "_" + row.tno + "\" value=\"\" style=\"padding: 6px 1px;\">" +
+                        "<button class=\"btn btn-primary col-xs-7\" onclick=\"update_score(" + row.sno + "," + row.cno + "," + row.tno + ")\">评分";
                 },
                 "delete": function (column, row) {
                     return "<button class=\"btn btn-danger\" onclick=\"delete_sct(" + row.sno + "," + row.cno + "," + row.tno + ")\">删除\n";

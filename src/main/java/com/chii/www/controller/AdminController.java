@@ -107,11 +107,6 @@ public class AdminController {
         return "Info/TeacherInfo";
     }
 
-//    @RequestMapping("/userimport")
-//    public String userimportUrl() {
-//        return "admin/userimport";
-//    }
-
     @RequestMapping("/scoreupdate")
     @ResponseBody
     public int scoreupdate(Sct sct) {

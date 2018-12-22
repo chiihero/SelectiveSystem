@@ -6,7 +6,7 @@
 <!doctype html>
 <html lang="en">
 <script>
-    location.href='<%=basePath%>/login/index';
+    location.href='<%=basePath%>/admin/adminIndex';
 </script>
 <body>
 hello

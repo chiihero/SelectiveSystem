@@ -3,12 +3,11 @@
 <mapper namespace="com.chii.www.mapper.StudentMapper">
     <resultMap id="BaseResultMap" type="com.chii.www.pojo.Student">
         <id column="sno" property="sno"/>
-        <result column="sname" property="sname" />
+        <result column="sname" property="sname"/>
         <result column="ssex" property="ssex"/>
-        <result column="sage" property="sage" />
-        <result column="sdept" property="sdept" />
-        <result column="password" property="password" />
-
+        <result column="sage" property="sage"/>
+        <result column="sdept" property="sdept"/>
+        <result column="password" property="password"/>
     </resultMap>
     <sql id="Base_Column_List">
         "sno", "sname", "ssex", "sage", "sdept", "password"
@@ -19,16 +18,15 @@
         from "student"
         <where>
             <if test="_parameter != null">
-                CONCAT("sno", "sname", "ssex", "sage", "sdept") LIKE CONCAT('%',#{_parameter},'%')
+                CONCAT("sno", "sname", "ssex", "sage", "sdept") LIKE '%${_parameter}%'
             </if>
         </where>
     </select>
 
     <select id="selectAllByTeaKey" resultMap="BaseResultMap" parameterType="java.lang.String">
-        select "student"."sno", "student"."sname", "student"."ssex", "student"."sage", "student"."sdept"
-        from "student"
-        INNER JOIN "sct" ON "student"."sno" = "sct"."sno"
-        where "sct"."tno" = #{tno}
+        select "sno", "sname", "ssex", "sage", "sdept"
+        from "selectAllByTeaKey"
+        where "tno" = #{tno}
     </select>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
         select
@@ -42,13 +40,8 @@
         where "sno" = #{sno}
     </delete>
     <insert id="insert" parameterType="com.chii.www.pojo.Student">
-        insert into "student" ("sno", "sname", "ssex", "sage", "sdept","password")
-        values (#{sno},
-                #{sname},
-                #{ssex},
-                #{sage"},
-                #{sdept},
-                #{password})
+        insert into "student" ("sno", "sname", "ssex", "sage", "sdept", "password")
+        values (#{sno}, #{sname}, #{ssex}, #{sage"}, #{sdept}, #{password})
     </insert>
     <insert id="insertSelective" parameterType="com.chii.www.pojo.Student">
         insert into "student"
@@ -114,13 +107,22 @@
         </set>
         where "sno" = #{sno}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.chii.www.pojo.Student">
-        update "student"
-        set "sname" = #{sname},
-            "ssex"  = #{ssex},
-            "sage"  = #{sage"},
-            "sdept" = #{sdept},
-            "password" = #{password}
-        where "sno" = #{sno}
+    <update id="updateByPrimaryKey" statementType="CALLABLE" parameterType="com.chii.www.pojo.Student">
+        # update "student"
+        # set "sname" = #{sname},
+        # "ssex" = #{ssex},
+        # "sage" = #{sage},
+        # "sdept" = #{sdept},
+        # "password" = #{password}
+        # where "sno" = #{sno}
+        <!-- 调用存储过程查询 -->
+        call "updateStudentByKey"(
+        #{sname,jdbcType=NVARCHAR,mode=IN},
+        #{ssex,jdbcType=NCHAR,mode=IN},
+        #{sage,jdbcType=DOUBLE,mode=IN},
+        #{sdept,jdbcType=NVARCHAR,mode=IN},
+        #{password,jdbcType=NVARCHAR,mode=IN},
+        #{sno,jdbcType=NCHAR,mode=IN}
+        )
     </update>
 </mapper>

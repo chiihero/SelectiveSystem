@@ -29,10 +29,10 @@
     <select id="selectAll" resultMap="BaseResultMap" parameterType="java.lang.String">
         SELECT
         <include refid="Base_Column_List"/>
-        FROM "teacher"
+        FROM "selectAllTeacher"
         <where>
             <if test="_parameter != null">
-                CONCAT(<include refid="Base_Column_List"/>) LIKE CONCAT('%',#{_parameter},'%')
+                CONCAT(<include refid="Base_Column_List"/>) LIKE '%${_parameter}%'
             </if>
         </where>
     </select>

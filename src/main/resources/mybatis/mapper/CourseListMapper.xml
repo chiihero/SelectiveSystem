@@ -9,14 +9,7 @@
         <result column="cnum" property="cnum" />
         <result column="cnewnum" property="cnewnum"/>
     </resultMap>
-    <sql id="Base_Column_List">
-        "course"."cno",
-        "course"."cname",
-        "teacher"."tno",
-        "teacher"."tname",
-        "course"."cnum",
-        Count("sct"."sno") AS "cnewnum"
-    </sql>
+
     <sql id="View_Column_List">
         "cno",
         "cname",
@@ -25,25 +18,6 @@
         "cnum",
         "cnewnum"
     </sql>
-    <select id="selectAll" resultMap="BaseResultMap" parameterType="java.lang.String">
-        SELECT
-        <include refid="Base_Column_List"/>
-        FROM
-        "teacher"
-        INNER JOIN "course" ON "teacher"."cno1" = "teacher"."cno1" OR "teacher"."cno2" = "course"."cno" OR "teacher"."cno3" = "course"."cno"
-        LEFT JOIN "sct" ON "teacher"."tno" = "sct"."tno" AND "course"."cno" = "sct"."cno"
-        WHERE
-        "course"."cname" <![CDATA[ <> ]]>'无'
-        <if test="_parameter != null">
-            AND CONCAT("course"."cname","teacher"."tname") LIKE '%${_parameter}%'
-        </if>
-        GROUP BY
-        "course"."cno",
-        "course"."cname",
-        "teacher"."tname",
-        "course"."cnum",
-        "teacher"."tno"
-    </select>
     <!--调用视图-->
     <select id="selectAllByView" resultMap="BaseResultMap" parameterType="java.lang.String">
         SELECT
@@ -55,6 +29,5 @@
                 concat("cname","tname") LIKE '%${_parameter}%'
             </if>
         </where>
-
     </select>
 </mapper>

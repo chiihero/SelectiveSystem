@@ -43,17 +43,11 @@
                 </div>
                 <input type="text" class="form-control" placeholder="系名" id="dname" name="dname">
             </div>
-            <%--<div class="input-group">--%>
-            <%--<div class="input-group-addon">--%>
-            <%--<span class="glyphicon glyphicon-user"></span>--%>
-            <%--</div>--%>
-            <%--<input type="text" class="form-control" placeholder="系主任" id="dmanager" name="dmanager">--%>
-            <%--</div>--%>
             <div class="input-group">
                 <div class="input-group-addon">
                     <span class="glyphicon glyphicon-book">系主任:</span>
                 </div>
-                <select class="selectpicker mb-4" id="dmanager" name="dmanager">
+                <select class="selectpicker " data-live-search="true" data-width="auto" id="dmanager" name="dmanager">
                     <c:forEach items="${teachers}" var="teacher">
                         <option value="${teacher.tname}">${teacher.tname}</option>
                     </c:forEach>

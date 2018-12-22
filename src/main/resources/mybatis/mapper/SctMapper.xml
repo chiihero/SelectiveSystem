@@ -8,53 +8,49 @@
         <id column="cname" property="cname"/>
         <id column="tno" property="tno"/>
         <id column="tname" property="tname"/>
-        <result column="grade" property="grade" />
+        <result column="grade" property="grade"/>
     </resultMap>
     <sql id="Base_Column_List">
-        "student"."sno", "student"."sname", "student"."sdept", "course"."cno", "course"."cname", "teacher"."tno", "teacher"."tname", "sct"."grade"
+        "sno", "sname", "sdept", "cno", "cname", "tno", "tname", "grade"
     </sql>
     <select id="selectAll" resultMap="BaseResultMap" parameterType="java.lang.String">
         select
         <include refid="Base_Column_List"/>
-        FROM "student" LEFT JOIN "sct" ON "sct"."sno" = "student"."sno"
-        INNER JOIN "course" ON "sct"."cno" = "course"."cno"
-        INNER JOIN "teacher" ON "sct"."tno" = "teacher"."tno"
+        FROM
+        "selectAllSct"
         <where>
             <if test="_parameter != null">
-                CONCAT(<include refid="Base_Column_List"/>) LIKE CONCAT('%',#{_parameter},'%')
+                CONCAT(<include refid="Base_Column_List"/>) LIKE '%${_parameter}%'
             </if>
         </where>
     </select>
     <select id="selectBySno" resultMap="BaseResultMap" parameterType="java.lang.String">
         select
         <include refid="Base_Column_List"/>
-        FROM "student" LEFT JOIN "sct" ON "sct"."sno" = "student"."sno"
-        INNER JOIN "course" ON "sct"."cno" = "course"."cno"
-        INNER JOIN "teacher" ON "sct"."tno" = "teacher"."tno"
-        where "student"."sno" = #{sno}
+        FROM
+        "selectAllSct"
+        where "sno" = #{sno}
     </select>
     <select id="selectByTno" resultMap="BaseResultMap" parameterType="com.chii.www.pojo.PageBean">
         select
         <include refid="Base_Column_List"/>
-        FROM "student" LEFT JOIN "sct" ON "sct"."sno" = "student"."sno"
-        INNER JOIN "course" ON "sct"."cno" = "course"."cno"
-        INNER JOIN "teacher" ON "sct"."tno" = "teacher"."tno"
+        FROM
+        "selectAllSct"
         <where>
-            "sct"."tno" = #{key}
+            "tno" = #{key}
             <if test="searchPhrase != null">
-              AND CONCAT("student"."sno","student"."sname","course"."cname") LIKE CONCAT('%',#{searchPhrase},'%')
+                AND CONCAT("sno","sname","cname") LIKE '%${_parameter}%'
             </if>
         </where>
     </select>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.chii.www.pojo.Sct">
         select
         <include refid="Base_Column_List"/>
-        FROM "student" LEFT JOIN "sct" ON "sct"."sno" = "student"."sno"
-        INNER JOIN "course" ON "sct"."cno" = "course"."cno"
-        INNER JOIN "teacher" ON "sct"."tno" = "teacher"."tno"
-        where "sct"."sno" = #{sno}
-        and "sct"."cno" = #{cno}
-        and "sct"."tno" = #{tno}
+        FROM
+        "selectAllSct"
+        where "sno" = #{sno}
+        and "cno" = #{cno}
+        and "tno" = #{tno}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="com.chii.www.pojo.Sct">
         delete
@@ -109,25 +105,13 @@
         and "cno" = #{cno}
         and "tno" = #{tno}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.chii.www.pojo.Sct">
-        update "sct"
-        set "grade" = #{grade"}
-        where "sno" = #{sno}
-          and "cno" = #{cno}
-          and "tno" = #{tno}
-    </update>
-
-
     <!-- 调用存储过程查询 -->
-    <select id="testProcedure" parameterType="java.util.Map" statementType="CALLABLE" resultType="java.util.HashMap">
-        {call loginandreg(
-                #{out_ret,mode=OUT,javaType=java.lang.Integer,jdbcType=INTEGER},
-                #{out_desc,mode=OUT,javaType=java.lang.String,jdbcType=VARCHAR},
-                #{userId,jdbcType=VARCHAR,mode=OUT},
-                #{user_pwd,jdbcType=VARCHAR,mode=IN},
-                #{nickname,jdbcType=VARCHAR,mode=IN}
+    <update id="updateByPrimaryKey" statementType="CALLABLE"  parameterType="com.chii.www.pojo.Sct">
+        call "updateSctByKey"(
+                #{sno,jdbcType=NCHAR,mode=IN},
+                #{cno,jdbcType=NCHAR,mode=IN},
+                #{tno,jdbcType=NCHAR,mode=IN},
+                #{grade,jdbcType=DOUBLE,mode=IN}
         )
-        }
-    </select>
-
+    </update>
 </mapper>

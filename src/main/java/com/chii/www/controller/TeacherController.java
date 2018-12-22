@@ -27,66 +27,11 @@ public class TeacherController {
     @Autowired
     private CourseService courseService;
 
-    @ModelAttribute
-    private void addAttributes(Model model) {
-        model.addAttribute("role", "teacher");
-    }
-
-    @RequestMapping("/teacherIndex")
-    public String teacherUrl() {
-        return "teacher/teacherIndex";
-    }
-
-    @RequestMapping("/TeacherInfo")
-    public String TeacherInfoUrl(@ModelAttribute("username") String tno, Model model) {
-        System.out.println(tno);
-        model.addAttribute("teacher", userService.getTeaInfoById(tno));
-        model.addAttribute("mode", "update");
-        model.addAttribute("courses", courseService.getAllCourseInfo());
-        return "Info/TeacherInfo";
-    }
-
-    @RequestMapping("/ChangePassword")
-    public String ChangePasswordUrl(@ModelAttribute("username") String tno, Model model) {
-        model.addAttribute("userno", tno);
-        return "Info/ChangePassword";
-    }
-
-    @RequestMapping("/studentuser")
-    public String studentuserUrl(Model model) {
-        return "teacher/studentuser";
-    }
-
-    @RequestMapping(value = "/AllStudentUser")
-    @ResponseBody
-    public PageBean AllStudentUser(@ModelAttribute("username") String tno, PageBean page) {
-        page.setKey(tno);
-        PageInfo<Sct> pi = courseService.getSctInfoByTeaId(page);
-        page.setCurrent(page.getCurrent());
-        page.setRowCount(page.getRowCount());
-        page.setRows(pi.getList());
-        page.setTotal(pi.getTotal());
-        return page;
-    }
-
-    @RequestMapping("/scoreupdate")
-    @ResponseBody
-    public int scoreupdate(Sct sct) {
-        courseService.updateGradeInfo(sct);
-//        return "redirect:/admin/score";
-        return sct.getGrade();
-    }
-
-    @RequestMapping("/help")
-    public String helpUrl(Model model) {
-        return "/teacher/help";
-    }
-
     @RequestMapping("/update")
     public String teacherupdate(Teacher teacher, HttpServletRequest request, Model model) {
         //加密密码
         if (teacher.getPassword() != null) {
-            String password = SafeCode.PasswordHash(teacher.getPassword(), teacher.getTno());
+            String password = SafeCode.safe_password(teacher.getPassword(), teacher.getTno());
             teacher.setPassword(password);
         }
         userService.updateTeaInfo(teacher);
@@ -103,7 +48,7 @@ public class TeacherController {
     @RequestMapping("/insert")
     public String teacherinsert(Teacher teacher, Model model) {
         //加入默认密码
-        String password = SafeCode.PasswordHash("c6274012383f2674afbff44a332a8896", teacher.getTno());
+        String password = SafeCode.safe_password("c6274012383f2674afbff44a332a8896", teacher.getTno());
         teacher.setPassword(password);
         userService.insertTeaInfo(teacher);
         model.addAttribute("msg", "插入成功");

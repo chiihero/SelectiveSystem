@@ -22,72 +22,12 @@ public class StudentController {
 
     @Autowired
     private UserService userService;
-    @Autowired
-    private CourseService courseService;
-
-
-    @ModelAttribute
-    private void addAttributes(Model model) {
-        model.addAttribute("role", "student");
-    }
-
-    @RequestMapping("/studentIndex")
-    public String studentUrl() {
-        return "student/studentIndex";
-    }
-
-    @RequestMapping("/StudentInfo")
-    public String StudentInfoUrl(@ModelAttribute("username") String sno, Model model) {
-        System.out.println(sno);
-        model.addAttribute("student", userService.getStuInfoById(sno));
-        model.addAttribute("departments", courseService.getAllDepartmentInfo());
-        model.addAttribute("mode", "update");
-        return "Info/StudentInfo";
-    }
-
-    //    }
-    @RequestMapping("/ChangePassword")
-    public String ChangePasswordUrl(@ModelAttribute("username") String tno, Model model) {
-        model.addAttribute("userno", tno);
-        return "Info/ChangePassword";
-    }
-
-    @RequestMapping("/course")
-    public String courseUrl(@ModelAttribute("username") String sno, Model model) {
-        model.addAttribute("scts", courseService.getSctInfoByStuId(sno));
-        return "student/course";
-    }
-
-    @RequestMapping(value = "/AllCourse")
-    @ResponseBody
-    public PageBean AllCourse(PageBean page) {
-        PageInfo<CourseList> pi = courseService.getAllCourseListInfo(page);
-        page.setCurrent(page.getCurrent());
-        page.setRowCount(page.getRowCount());
-        page.setRows(pi.getList());
-        page.setTotal(pi.getTotal());
-        return page;
-    }
-
-    @RequestMapping("/score")
-    public String scoreUrl(@ModelAttribute("username") String sno, Model model) {
-        model.addAttribute("scts", courseService.getSctInfoByStuId(sno));
-        return "student/score";
-    }
-
-    @RequestMapping("/sctInsert")
-    public String sctInsert(Sct sct) {
-        System.out.println(sct.getSno());
-
-        courseService.insertSctInfo(sct);
-        return "redirect:/student/course";
-    }
 
     @RequestMapping("/update")
     public String studentupdate(Student student, HttpServletRequest request, Model model) {
         if (student.getPassword() != null) {
             //加密密码
-            String password = SafeCode.PasswordHash(student.getPassword(), student.getSno());
+            String password = SafeCode.safe_password(student.getPassword(), student.getSno());
             student.setPassword(password);
         }
         userService.updateStuInfo(student);
@@ -104,15 +44,11 @@ public class StudentController {
     @RequestMapping("/insert")
     public String studentinsert(Student student, Model model) {
         //加入默认密码
-        String password = SafeCode.PasswordHash("c6274012383f2674afbff44a332a8896", student.getSno());
+        String password = SafeCode.safe_password("c6274012383f2674afbff44a332a8896", student.getSno());
         student.setPassword(password);
         userService.insertStuInfo(student);
         model.addAttribute("msg", "插入成功");
         return "redirect:/admin/studentuser";
     }
 
-    @RequestMapping("/help")
-    public String helpUrl(Model model) {
-        return "/student/help";
-    }
 }
