@@ -7,14 +7,15 @@
 安全权限功能：在前端使用js进行密码加密，后端使用shiro权限管理，并且再次加密密码，使得数据库存储的用户密码为非对称密钥<br>
 会话功能：对用户长时间不操作定时下线，防止用户离开被操作，禁止用户不同ip登录，导致用户数据出错<br>
 选课功能：教师添加自己信息和给学生选课成绩打分，管理者负责课程、课程老师的选择并且可以修改学生选课成绩和课程，并生成对应选课信息，学生可以选择对应老师对应的课程，并且可以查看选课成绩<br>
-
-[]([])
-
+***
+[]([https://raw.githubusercontent.com/chiihero/SelectiveSystem/master/readme/1.png])
+[]([https://raw.githubusercontent.com/chiihero/SelectiveSystem/master/readme/2.png])
+[]([https://raw.githubusercontent.com/chiihero/SelectiveSystem/master/readme/3.png])
 
 1. 加密
 对于用户的密码进行了加密，为了减轻服务器的负载优化性能，在前端采用了高强度的加密方式使得整体性能需求集中在用户身上，后端采用了较为低强度的加密方式，并且在加密方式使用加盐使得密码更加难以破解，而且整体都是使用单向加密方式，使得密码加密不可逆。
 前端
-```
+```java
 try {
 	var shaObj = new jsSHA("SHA3-512", "TEXT", {numRounds: parseInt("4096", 10)});
 	shaObj.update(encrypt_str);
@@ -26,7 +27,7 @@ return hex_md5(encrypt_str);
 ```
 后端
 使用了shiro自带的加密模块，在xml文件中定义加密
-```
+```xml
 <bean id="credentialsMatcher" 
 class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
 	<property name="hashAlgorithmName" value="SHA-512"/>
@@ -38,7 +39,7 @@ class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
 在本项目中使用了
 2.1.	Authentication
 身份认证/登录，验证用户是不是拥有相应的身份；
-```
+```java
 UsernamePasswordToken upToken = (UsernamePasswordToken) token;
 String username = upToken.getUsername();
 Admin admin = userService.getAdminInfoById(username);
@@ -55,7 +56,7 @@ getName()//realmName
 ```
 2.2.	Authorization
 授权，即权限验证，验证某个已认证的用户是否拥有某个权限；即判断用户是否能做事情，常见的如：验证某个用户是否拥有某个角色。或者细粒度的验证某个用户对某个资源是否具有某个权限；
-```
+```java
 String username = (String) principals.getPrimaryPrincipal();
 Admin admin = userService.getAdminInfoById(username);//从数据库获取信息
 Set<String> roles = new HashSet<>();
@@ -68,7 +69,7 @@ SimpleAuthorizationInfo info = new SimpleAuthorizationInfo(roles);
 ```
 2.3.	Session Manager
 会话管理，即用户登录后就是一次会话，在没有退出之前，它的所有信息都在会话中；会话可以是普通JavaSE环境的，也可以是如Web环境的；
-```
+```xml
 <!-- Shiro去掉URL中的JSESSIONID -->
 <property name="sessionIdUrlRewritingEnabled" value="false"/>
 <property name="globalSessionTimeout" value="1500000"/><!-- 毫秒 -->
@@ -90,7 +91,7 @@ SimpleAuthorizationInfo info = new SimpleAuthorizationInfo(roles);
  
 3.	模糊查询、表格显示
 在jsp页面设置table控件
-```
+```html
 <table id="grid-data" class="table table-condensed table-hover table-striped">
     <thead>
     <tr>
@@ -105,7 +106,7 @@ SimpleAuthorizationInfo info = new SimpleAuthorizationInfo(roles);
 </table>
 ```
 在js部分设置好就可以通过ajax来获取数据库的数据
-```
+```js
  $("#grid-data").bootgrid({
 	ajax: true,
 	sorting :false,
@@ -125,7 +126,7 @@ SimpleAuthorizationInfo info = new SimpleAuthorizationInfo(roles);
 ```
 4.	报表
 本程序使用的是在前端使用js的方式生成报表，而不是后端生成。前端通过使用tableExport来实现出报表功能，我们通过调用js语句去触发
-```
+```js
 $(".table").tableExport({
         type:'xlsx',
         fileName:tableTitle+"_"+getNowFormatDate(),
@@ -137,14 +138,14 @@ $(".table").tableExport({
 4.	前端与后端的通信
 4.1.	前端
 第一种使用了form表单方式传递数据
-```
+```html
 <form id="loginform" action="/login/signIn" method="post">
 <input type="text" class="form-control" id="username" name="username" placeholder="请输入学号">
 <input type="password" class="form-control" id="password" name="password" placeholder="请输入5~24位密码"/>
 </form>
 ```
 第二种采用了ajax的方法，这是一种异步传输方式，可以只刷新局部页面，可以大大的减少页面资源的消耗
-```
+```js
 $.ajax({
 	url: URL,
 	aysnc: false,
@@ -173,10 +174,12 @@ $.ajax({
 5.3 数据库与后端
 这里使用了mybatis的框架，MyBatis 是支持定制化 SQL、存储过程以及高级映射的持久层框架，其主要就完成封装JDBC操作和利用反射打通Java类与SQL语句之间的相互转换。
 前端通过调用请求get或者post触发映射到控制器上，控制器通过调用写好的mapper方法操作数据库，而mapper是mybatis的方法映射文件，对应的xml文件可以书写具体的sql语句控制数据库的增删查改
-```
+```java
 public interface StudentMapper {
 int insert(Student record);
 }
+```
+```xml
 <insert id="insert" parameterType="com.chii.www.pojo.Student">
     insert into student (sno, sname, ssex, sage, sdept,password)
     values (#{sno,jdbcType=CHAR},
