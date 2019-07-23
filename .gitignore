@@ -37,3 +37,5 @@ gen
 build/
 out/
 src/test/
+bin/
+.classpath

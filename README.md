@@ -8,9 +8,9 @@
 会话功能：对用户长时间不操作定时下线，防止用户离开被操作，禁止用户不同ip登录，导致用户数据出错<br>
 选课功能：教师添加自己信息和给学生选课成绩打分，管理者负责课程、课程老师的选择并且可以修改学生选课成绩和课程，并生成对应选课信息，学生可以选择对应老师对应的课程，并且可以查看选课成绩<br>
 ***
-[]([https://raw.githubusercontent.com/chiihero/SelectiveSystem/master/readme/1.png])
-[]([https://raw.githubusercontent.com/chiihero/SelectiveSystem/master/readme/2.png])
-[]([https://raw.githubusercontent.com/chiihero/SelectiveSystem/master/readme/3.png])
+[image]([https://github.com/chiihero/SelectiveSystem/blob/master/readme/1.png])
+[image]([https://github.com/chiihero/SelectiveSystem/blob/master/readme/2.png])
+[image]([https://github.com/chiihero/SelectiveSystem/blob/master/readme/3.png])
 
 1. 加密
 对于用户的密码进行了加密，为了减轻服务器的负载优化性能，在前端采用了高强度的加密方式使得整体性能需求集中在用户身上，后端采用了较为低强度的加密方式，并且在加密方式使用加盐使得密码更加难以破解，而且整体都是使用单向加密方式，使得密码加密不可逆。
