@@ -1,123 +1,70 @@
-plugins {
-    id 'java'
-    id 'war'
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "gradle.plugin.com.arenagod.gradle:mybatis-generator-plugin:1.4"
+    }
 }
-
-group 'SelectiveSystem'
-version '1.0-SNAPSHOT'
-
-sourceCompatibility = 1.8
+plugins {
+    id 'org.springframework.boot' version '2.1.8.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'java'
+}
+apply plugin: 'io.spring.dependency-management'
+//引入 mybatis-generator 插件
+apply plugin: "com.arenagod.gradle.MybatisGenerator"
+group = 'com.chii'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
 
 repositories {
     mavenCentral()
 }
-//引入generator工具
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-devtools'
+
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.0'
+    runtimeOnly 'mysql:mysql-connector-java'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+
+    //PageHelper数据库分页
+    implementation group: 'com.github.pagehelper', name: 'pagehelper', version: '5.1.4'
+    implementation group: 'com.github.jsqlparser', name: 'jsqlparser', version: '0.9.5'
+
+    //日志文件管理包
+    implementation group: 'log4j', name: 'log4j', version: '1.2.17'
+    //格式化对象
+    implementation 'com.alibaba:fastjson:1.1.41'
+    implementation 'org.slf4j:slf4j-api:1.7.7'
+    implementation 'org.slf4j:slf4j-log4j12:1.7.7'
+    //映入JSON
+    implementation 'org.codehaus.jackson:jackson-mapper-asl:1.9.13'
+    //shiro
+    implementation group: 'org.apache.shiro', name: 'shiro-core', version: '1.4.0'
+    implementation group: 'org.apache.shiro', name: 'shiro-spring', version: '1.4.0'
+    implementation group: 'org.apache.shiro', name: 'shiro-quartz', version: '1.4.0'
+    implementation group: 'org.apache.shiro', name: 'shiro-ehcache', version: '1.4.0'
+    implementation group: 'org.apache.shiro', name: 'shiro-web', version: '1.4.0'
+    implementation group: 'org.apache.shiro', name: 'shiro-crypto', version: '1.4.0'
+    implementation group: 'net.sf.ehcache', name: 'ehcache-core', version: '2.6.11'
+
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+    implementation group: 'org.mybatis.generator', name: 'mybatis-generator-core', version:'1.3.2'
+
+}
 configurations {
     mybatisGenerator
 }
-dependencies {
-    //spring核心包
-    compile 'org.springframework:spring-core:.RELEASE'
-    compile 'org.springframework:spring-oxm:4.3.20.RELEASE'
-    compile 'org.springframework:spring-beans:4.3.20.RELEASE'
-    compile 'org.springframework:spring-tx:4.3.20.RELEASE'
-    compile 'org.springframework:spring-jdbc:4.3.20.RELEASE'
-    compile 'org.springframework:spring-web:4.3.20.RELEASE'
-    compile 'org.springframework:spring-webmvc:4.3.20.RELEASE'
-    compile 'org.springframework:spring-aop:4.3.20.RELEASE'
-    compile 'org.springframework:spring-context-support:4.3.20.RELEASE'
-    compile 'org.springframework:spring-orm:4.3.20.RELEASE'
-    compile 'org.springframework:spring-test:4.3.20.RELEASE'
-    //mybatis核心包
-    compile 'org.mybatis:mybatis:3.2.2'
-    //mybatis/spring包
-    compile 'org.mybatis:mybatis-spring:1.3.0'
-    //java ee jar 包
-    compile 'javax:javaee-api:7.0'
-    //Mysql数据库链接jar包
-    compile 'mysql:mysql-connector-java:5.1.30'
-    //oracle数据库链接jar包
-//    compile files('lib/ojdbc6.jar')
-    //dbcp的jar包，用来在applicationContext.xml中配置数据库
-    compile 'commons-dbcp:commons-dbcp:1.2.2'
-    //PageHelper数据库分页
-    compile group: 'com.github.pagehelper', name: 'pagehelper', version: '5.1.4'
-    compile group: 'com.github.jsqlparser', name: 'jsqlparser', version: '0.9.5'
-    //JSTL标签类
-    compile 'jstl:jstl:1.2'
-    //日志文件管理包
-    compile group: 'log4j', name: 'log4j', version: '1.2.17'
-    //格式化对象
-    compile 'com.alibaba:fastjson:1.1.41'
-    compile 'org.slf4j:slf4j-api:1.7.7'
-    compile 'org.slf4j:slf4j-log4j12:1.7.7'
-    //映入JSON
-    compile 'org.codehaus.jackson:jackson-mapper-asl:1.9.13'
-    //shiro
-    compile group: 'org.apache.shiro', name: 'shiro-core', version: '1.4.0'
-    compile group: 'org.apache.shiro', name: 'shiro-spring', version: '1.4.0'
-    compile group: 'org.apache.shiro', name: 'shiro-quartz', version: '1.4.0'
-    compile group: 'org.apache.shiro', name: 'shiro-ehcache', version: '1.4.0'
-    compile group: 'org.apache.shiro', name: 'shiro-web', version: '1.4.0'
-    compile group: 'org.apache.shiro', name: 'shiro-crypto', version: '1.4.0'
-    compile group: 'net.sf.ehcache', name: 'ehcache-core', version: '2.6.11'
 
-    //上传组件包
-    compile group: 'commons-fileupload', name: 'commons-fileupload', version: '1.3.3'
-    compile group: 'commons-io', name: 'commons-io', version: '2.6'
-    compile 'commons-codec:commons-codec:1.9'
-    //报表 (POI)
-    compile group: 'org.apache.poi', name: 'poi', version: '3.15'
-    compile group: 'org.apache.poi', name: 'poi-ooxml-schemas', version: '3.15'
-    compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.15'
-
-    // https://mvnrepository.com/artifact/org.apache.shiro/shiro-all
-    testCompile group: 'junit', name: 'junit', version: '4.11'
-    //generator-mybatis生成代码依赖
-    mybatisGenerator 'org.mybatis.generator:mybatis-generator-core:1.3.2'
-    mybatisGenerator 'tk.mybatis:mapper:3.3.2'
-}
-//配置generator的mysql配置文件
-def getDbProperties = {
-    def properties = new Properties()
-    file("src/main/resources/generator/generator.properties").withInputStream { inputStream ->
-        properties.load(inputStream)
-    }
-    properties
-}
-
-task mybatisGenerate << {
-    def properties = getDbProperties()
-    ant.properties['targetProject'] = projectDir.path
-    ant.properties['driverLocation'] = properties.getProperty("jdbc.driverLocation")
-    ant.properties['driverClass'] = properties.getProperty("jdbc.driverClass")
-    ant.properties['connectionURL'] = properties.getProperty("jdbc.connectionURL")
-    ant.properties['userId'] = properties.getProperty("jdbc.userId")
-    ant.properties['password'] = properties.getProperty("jdbc.password")
-    ant.properties['src_main_java'] = sourceSets.main.java.srcDirs[0].path
-    ant.properties['src_main_resources'] = sourceSets.main.resources.srcDirs[0].path
-    ant.properties['Package'] = properties.getProperty("Package")
-    ant.properties['mapperPackage'] = properties.getProperty("mapperPackage")
-    ant.properties['sqlMapperPackage'] = properties.getProperty("sqlMapperPackage")
-    ant.taskdef(
-            name: 'mbgenerator',
-            classname: 'org.mybatis.generator.ant.GeneratorAntTask',
-            classpath: configurations.mybatisGenerator.asPath
-    )
-    ant.mbgenerator(overwrite: true,
-            configfile: 'src/main/resources/generator/generator-config.xml', verbose: true) {
-        propertyset {
-            propertyref(name: 'targetProject')
-            propertyref(name: 'driverLocation')
-            propertyref(name: 'driverClass')
-            propertyref(name: 'connectionURL')
-            propertyref(name: 'userId')
-            propertyref(name: 'password')
-            propertyref(name: 'src_main_java')
-            propertyref(name: 'src_main_resources')
-            propertyref(name: 'Package')
-            propertyref(name: 'mapperPackage')
-            propertyref(name: 'sqlMapperPackage')
-        }
-    }
+mybatisGenerator {
+    verbose = true
+    configFile = 'src/main/resources/mybatis/generator/generatorConfig.xml'
 }

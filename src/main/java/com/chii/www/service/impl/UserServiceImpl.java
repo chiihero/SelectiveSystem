@@ -9,7 +9,6 @@ import com.chii.www.pojo.PageBean;
 import com.chii.www.pojo.Student;
 import com.chii.www.pojo.Teacher;
 import com.chii.www.service.UserService;
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;

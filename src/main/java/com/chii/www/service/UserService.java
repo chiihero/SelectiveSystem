@@ -5,7 +5,6 @@ import com.chii.www.pojo.Admin;
 import com.chii.www.pojo.PageBean;
 import com.chii.www.pojo.Student;
 import com.chii.www.pojo.Teacher;
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 
 import java.io.InputStream;

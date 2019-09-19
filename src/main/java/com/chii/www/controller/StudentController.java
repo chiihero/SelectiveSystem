@@ -1,7 +1,10 @@
 package com.chii.www.controller;
 
 import com.chii.www.Tool.SafeCode;
-import com.chii.www.pojo.*;
+import com.chii.www.pojo.CourseList;
+import com.chii.www.pojo.PageBean;
+import com.chii.www.pojo.Sct;
+import com.chii.www.pojo.Student;
 import com.chii.www.service.CourseService;
 import com.chii.www.service.UserService;
 import com.github.pagehelper.PageInfo;

@@ -2,7 +2,6 @@ package com.chii.www.mapper;
 
 import com.chii.www.pojo.PageBean;
 import com.chii.www.pojo.Sct;
-import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 

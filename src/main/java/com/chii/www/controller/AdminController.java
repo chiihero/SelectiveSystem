@@ -9,13 +9,13 @@ import org.apache.log4j.BasicConfigurator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
-import javax.ejb.Init;
 import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.InputStream;
 
 @Controller
@@ -181,7 +181,7 @@ public class AdminController {
     }
 
     @RequestMapping("/departmentInfo")
-    public String departmentInfoUrl(String dname,Model model) {
+    public String departmentInfoUrl(String dname, Model model) {
         if (dname == null) {
             model.addAttribute("mode", "insert");
         } else {
