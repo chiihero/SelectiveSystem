@@ -1,5 +1,5 @@
 # SelectiveSystem
-# 基于JavaWeb的学生选课系统（个人开发）<br>
+# 基于JavaWeb的学生选课系统<br>
 •	开发软件：idea、tomcat、mysql<br>
 •	开发环境：spring、springMVC、Mybatis <br>
 •	项目描述：使用java web为核心部位，使用SSM框架。后台传输json。并且设计了安全权限登录问题。前端分为学生端、教师端和管理员端，使用分页功能，优化了大量数据的效率<br>
